@@ -106,7 +106,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="notice_admin01.php">UPLOAD NOTICE</a></li>
-                                        <li><a href="notice_admin02php">UPLOADED NOTICE</a></li>
+                                        <li><a href="notice_admin02.php">UPLOADED NOTICE</a></li>
                                         
                                     </ul>
                                 </li>
