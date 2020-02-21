@@ -1,3 +1,6 @@
+<?php 
+include 'dbconnection01.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -7,7 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -34,22 +37,6 @@
         <link href="css/responsive.css" rel="stylesheet">
     
         <style type="text/css">
-            .resort_title1 h2 {
-  font-size: 27px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: .96px;
-  text-transform: uppercase;
-  color: #242424;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
-
-.resort_title1 h2 span {
-  color: #ffb606;
-
-  padding-left: 20px;
-}
         .h_middle_text2 {
                  
                 font-family: "Montserrat", sans-serif;
@@ -255,14 +242,132 @@
     <body>
 
         <!--================Header Area =================-->
-       <?php include 'header.php'; ?>
+        <header class="main_header_area">
+            <div class="header_top">
+                <div class="container">
+                    <div class="header_top_inner">
+                        <div class="pull-left">
+                            <a href="#"><i class="fa fa-phone"></i>+ (1800) 456 7890</a>
+                            <a href="#"><i class="fa fa-envelope-o"></i>hostelmanagement01@gmail.com</a>
+                        </div>
+                        <!--<div class="pull-right">
+                            <ul class="header_social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+               <div class="header_menu">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <div class="h_middle_text2">
+                            <!-- <a href="#"><img src="img/logo.png" alt=""></a> -->
+                            <h3><span id="H">H</span>OSTEL</h3> <h5> MANAGEMEN<span id="T">T</span></h5>
+                        </div>
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index-4.html">HOME</a></li>
+                               <!--  <li class="dropdown submenu active">
+                                    <a href="index-4.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html">Home Page 1</a></li>
+                                        <li><a href="index-2.html">Home Page 2</a></li>
+                                        <li><a href="index-3.html">Home Page 3</a></li>
+                                        <li><a href="index-4.html">Home Page 4</a></li>
+                                    </ul>
+                                </li> -->
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="room.html">APPLICATION</a></li>
+                                        <li><a href="room-list.html">UPLOAD DOCUMENTS</a></li>
+                                        <li><a href="room-details.html">RESULTS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">FEES</a></li>
+                                <!-- <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                                   <!--  <ul class="dropdown-menu">
+                                        <li><a href="aminities.html">Aminities</a></li>
+                                        <li><a href="search.html">Search</a></li>
+                                        <li class="dropdown submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="event.html">-  Event List</a></li>
+                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
+                                                <li><a href="event-details.html">-  Event Single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
+                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
+                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="restaurant.html">Our Reataurant</a></li>
+                                        <li><a href="spa.html">Spa & Relax</a></li>
+                                        <li><a href="activities.html">Activities</a></li>
+                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
+                                        <li><a href="404.html">404 Error</a></li>
+                                    </ul> -->
+                                </li>
+                                <li><a href="">COMPLAINT</a></li>
+                                <!-- <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                                    <!-- <ul class="dropdown-menu">
+                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
+                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
+                                        <li><a href="blog.html">Blog without side bar</a></li>
+                                        <li><a href="blog-details.html">Blog details</a></li>
+                                    </ul> -->
+                                </li>
+                                <li><a href="about-us.html">NOTICE</a></li>
+                                <li><a href="contact-us.html">HELP</a></li>
+                                <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
+                                <li><a href="#">PROFILE</a></li>
+
+                                <ul class="nav navbar-nav navbar-right">
+                                <!-- <li class="search_dropdown">
+                                    <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
+                                </li> -->
+                                <li class="book_btn">
+                                    <a class="book_now_btn" href="#">LOGIN</a>
+                                </li>
+                            </ul>
+
+                                <!-- <li><a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a></li> -->
+                            </ul>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </header>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>COMPLAINT FORM</h3>
+                    <h3>COMPLAINT</h3>
                     <ul>
                         <li class="active"><a href="index.html">Home</a></li>
                         <li><a href="event-details.html">Complaint</a></li>
@@ -273,18 +378,15 @@
         <!--================End Banner Area =================-->
         
         <!--================Event Details Area =================-->
-        <section class="event_details_area" style="background-color: #F6F6F6;">
+        <section class="event_details_area">
             <div class="container" align="center">
                 <div class="row">
                     <div class="col-md-16">
                         <div class="event_detials_inner">
                             <div class="s_comment_area">
-                                <div class="main_big_title">
-                    <h2><span>Complaint</span>&nbspForm</h2>
-                </div>
-                                
+                                <h3 align="center">Complaint form</h3>
                                 <div class="s_comment_inner">
-                                    <form class="row contact_us_form" action="http://designarc.biz/demos/hilltown/theme/contact_process.php" method="post" id="contactForm" validate="validate">
+                                    <form class="row contact_us_form" id="contactForm" validate="validate" method="POST" enctype="multipart/form-data" action="complaint01.php">
                                         
                                         <div class="form-group col-md-12" >
                                             <input type="text" class="form-control" id="name" name="name" style="text-transform: none" placeholder="Enter your name" required="required">
@@ -307,15 +409,15 @@
                                         <div class="form-group col-md-8">
                                             <select type="text" id="category" name="category" style="text-transform: none" required="required">
                                                 <option value="" disabled selected>Select Category Of Your Complaint</option>
-                                                <option value="water">Water related complaint</option>
-                                                <option value="electricity">Electricity related complaint</option>
-                                                <option value="cleanliness">Cleanliness related complaint</option>
-                                                <option value="mess">Complaint related to mess(food)</option>
-                                                <option value="accomodation">Complaint related to accomodation</option>
-                                                <option value="illegal">Complaint related to illegal hostelites</option>
-                                                <option value="internet">Complaint related to internet connectivity</option>
-                                                <option value="missing">Complaint of missing/stolen things</option>
-                                                <option value="other">Other complaints</option>
+                                                <option value="Water related complaint">Water related complaint</option>
+                                                <option value="Electricity related complaint">Electricity related complaint</option>
+                                                <option value="Cleanliness related complaint">Cleanliness related complaint</option>
+                                                <option value="Complaint related to mess(food)">Complaint related to mess(food)</option>
+                                                <option value="Complaint related to accomodation">Complaint related to accomodation</option>
+                                                <option value="Complaint related to illegal hostelites">Complaint related to illegal hostelites</option>
+                                                <option value="Complaint related to internet connectivity">Complaint related to internet connectivity</option>
+                                                <option value="Complaint of missing/stolen things">Complaint of missing/stolen things</option>
+                                                <option value="Other complaints">Other complaints</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
@@ -330,8 +432,94 @@
                                         	<label>2)Strict actions will be taken if your complaint is detected as fake.</label>
                                         </div>
                                         <button type="submit" id="submit" class="btn btn-default" style="background:#E3E4FA;font-size: 16px;border: 2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Submit</button>
-                                        <button type="reset" id="reset" class="btn btn-default" style="background: #E3E4FA;font-size: 16px;border:2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Reset</button>                 
-                                    </form>
+                                        <input type="hidden" name="submit" value="submit">
+                                        <button type="reset" id="reset" class="btn btn-default" style="background: #E3E4FA;font-size: 16px;border:2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Reset</button>   
+
+                                    <?php 
+                                    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+                        $submit=$_POST["submit"];
+                        if($submit=='submit')
+                       { 	
+                        $name=$_POST["name"];
+                        $email=$_POST["email"];
+                        $contact=$_POST["contact"];
+                        $branch=$_POST["branch"];
+                        $sem=$_POST["sem"];
+                        $category=$_POST["category"];
+                        $roomno=$_POST["room"];
+                        $desc=$_POST["description"];
+                        
+                        $query="select max(cid) from complaint";
+                        $run=mysqli_query($connection,$query);
+                        $row=mysqli_fetch_array($run);
+                        $maxcid=$row[0];
+                        if($maxcid==" ")
+                            $cid="CID1";
+                        else{
+                        $cid=substr($maxcid,3);
+                        $cid=intval($cid);
+                        $cid="CID".($cid + 1);
+                       }
+                        
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["proof"]["name"]);
+$uploadOk = 1;
+/*list($width, $height, $type, $attr) = getimagesize($_FILES['proof']['name']);
+echo $width;
+echo $height;*/
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["proof"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["proof"]["size"] < 5000000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["proof"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["proof"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+}
+					$proof=$_FILES['proof']['name'];
+					$status="Pending";
+ 					$update = "insert into complaint (cid,name,email,contact,branch,sem,roomno,category,description,proof,status) values ('$cid','$name','$email','$contact','$branch','$sem','$roomno','$category','$desc','$proof','$status')";
+                    $execute=mysqli_query($connection,$update);
+                        
+                    if(!$execute){
+                           $error= mysqli_error($connection);
+                           echo $error;}
+
+}
+?>
+
+                        </form>
+
                                 </div>
                             </div>
                         </div>
@@ -339,80 +527,59 @@
                 </div>
             </div>
         </section>
-        <section style="background: #F6F6F6; width: 100%;margin-bottom: 20px;height: 100px;">
-        	<div align="center" style="width: 100%;"><center>
-        	<a href="complaint02.html"><button type="view" id="view" class="btn btn-default"  style="background:#E3E4FA;font-size: 20px;border: 2px solid #242424;border-radius: 10px;color: black;padding: 15px;margin: 30px;width: 300px;">View previous complaints</button></a></center>
+        <section style="background: #E3E4FA;width: 100%;margin-bottom: 20px;height: 100px;">
+        	<div align="center" style="background: #E3E4FA;width: 100%;"><center>
+        	<a href="complaint02.php"><button type="view" id="view" class="btn btn-default"  style="background:#E3E4FA;font-size: 20px;border: 2px solid #242424;border-radius: 10px;color: black;padding: 15px;margin: 30px;width: 300px;">View previous complaints</button></a></center>
     		</div>
     	</section>
         <!--================End Event Details Area =================-->
         
         <!--================Footer Area =================-->
-         <footer class="footer_area">
+        <footer class="footer_area">
             <div class="footer_widget_area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-3 col-xs-6">
                             <aside class="f_widget about_widget">
-                                <!-- <div class="h_middle_text2">
-                             <a href="#"><img src="img/logo.png" alt=""></a> 
-                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
-                        </div> --> 
-                        <div>
-                                <a class="navbar-brand1" href="#" style="height: 85px;
-    line-height: 50px;
-    padding: 0px 0px 0px 10px;">
-                                <img src="img/logo.png" alt="" style="display: inline-block;;
-    height: 48px;
-    margin-top: 27px; ">
-                            
-                            </a>
-                        
-                           
-                            <div class="resort_title1 ">
-                                
-                            
-                            
-                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                        </div>
+                                <img src="img/footer-logo.png" alt="">
                                 <div class="ab_wd_list">
                                     <div class="media">
                                         <div class="media-left">
                                             <i class="fa fa-map-marker"></i>
                                         </div>
                                         <div class="media-body">
-                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
+                                            <h4>54B, Tailstoi Town 5238 MT, La city, IA 522364</h4>
                                         </div>
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <i class="fa fa-envelope-o"></i>
+                                            <i class="fa fa-phone"></i>
                                         </div>
                                         <div class="media-body">
-                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
+                                            <h4>+ 547 5895 621</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
+                                    <a class="book_now_btn" href="#">Book now</a>
                                 </div>
                             </aside>
                         </div>
-                        <div class="col-md-4 col-xs-6">
+                        <div class="col-md-3 col-xs-6">
                             <aside class="f_widget link_widget">
                                 <div class="f_title">
-                                    <h3>Useful Links</h3>
+                                    <h3>Extra Links</h3>
                                 </div>
                                 <ul>
-                                    <li><a href="#">- Sign up</a></li>
-                                    <li><a href="#">- Admission process</a></li>
-                                    <li><a href="#">-  Gallery</a></li>
-                                    <li><a href="help.html">-  Faq’s </a></li>
-                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
+                                    <li><a href="#">-  About Us</a></li>
+                                    <li><a href="#">-  Faq’s</a></li>
+                                    <li><a href="#">-  Blog</a></li>
+                                    <li><a href="#">-  Testimonials</a></li>
+                                    <li><a href="#">-  Reservation Now</a></li>
                                 </ul>
                             </aside>
                         </div>
-                        <!-- <div class="col-md-2 col-xs-6">
+                        <div class="col-md-3 col-xs-6">
                             <aside class="f_widget link_widget">
                                 <div class="f_title">
                                     <h3>our services</h3>
@@ -425,26 +592,14 @@
                                     <li><a href="#">-  Hill Tours</a></li>
                                 </ul>
                             </aside>
-                        </div> -->
-                        <div class="col-md-4 col-xs-6">
-                                
-
-                                <div class="f_title">
-                                     <h3 style="margin-right:10px; ">Location</h3>
-                                    
-                                
-                                   
-                                </div> 
-                                
-                            <!-- <aside class="f_widget instagram_widget">
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <aside class="f_widget instagram_widget">
                                 <div class="f_title">
                                     <h3>Instagram</h3>
                                 </div>
                                 <ul class="instagram_list" id="instafeed"></ul>
-                            </aside> -->
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="80%"  style=" border:5; border-radius: 7px; opacity: .7;" allowfullscreen=""></iframe>
-
-
+                            </aside>
                         </div>
                     </div>
                 </div>
@@ -452,10 +607,10 @@
             <div class="footer_copyright_area">
                 <div class="container">
                     <div class="pull-left">
-                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
+                        <h4>Copyright © HillTown Resort  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
                     </div>
                     <div class="pull-right">
-                        <h4>Created by: <a href="#">CE Dept.</a></h4>
+                        <h4>Created by: <a href="#">DesignArc</a></h4>
                     </div>
                 </div>
             </div>
