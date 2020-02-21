@@ -114,6 +114,7 @@ include 'dbconnection1.php';
                     <table border="2" class="table text-align table-responsive" style="width: 80%;text-align: center;padding: 40px;border-radius: 10px;border-color: black;color: black;" align="center">
                         <thead style="padding: 20px;background: white;font-size: 20px;border-radius: 10px;">
                             <tr style="border:4px;border-color: black;border-radius: 10px;font-weight: bold;">
+                                <td>Timestamp</td>
                                 <td>Complaint ID</td>
                                 <td>Complaint category</td>
                                 <td>Status</td>
@@ -121,12 +122,13 @@ include 'dbconnection1.php';
                             </tr>
                         </thead>
                         <?php
-                            $query="select cid,category,status,action from complaint";
+                            $query="select cid,category,status,action,timestamp from complaint";
                             $run=mysqli_query($connection1,$query);
                             while($result=mysqli_fetch_array($run,MYSQLI_NUM))
                         {
                         ?>
                         <tr style="font-size: 15px;">
+                            <td><?php echo $result[4]; ?></td>
                             <td><?php echo $result[0]; ?></td>
                             <td><?php echo $result[1]; ?></td>
                             <td><?php echo $result[2]?></td>

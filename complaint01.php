@@ -327,7 +327,7 @@ include 'dbconnection1.php';
                                             <textarea class="form-control" name="description" id="description" rows="1" placeholder="Write the description about your complaint/problem" style="text-transform: none" required="required"></textarea>
                                         </div>
                                         <div>
-                                        	<label>NOTE: &nbsp 1)Upload any image/video for reference and proof in the given field.</label>&nbsp &nbsp
+                                        	<label>NOTE: &nbsp 1)Upload any image for reference and proof in the given field.</label>&nbsp &nbsp
                                         	<label>2)Strict actions will be taken if your complaint is detected as fake.</label>
                                         </div>
                                         <button type="submit" id="submit" class="btn btn-default" style="background:#E3E4FA;font-size: 16px;border: 2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Submit</button>

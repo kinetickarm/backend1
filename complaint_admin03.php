@@ -114,8 +114,10 @@ include 'dbconnection1.php';
                     <table border="1" class="table text-align table-responsive table-hover" style="width: 80%;text-align: center;padding: 40px;border-radius: 10px;border-color: black;color: black;overflow-y: scroll;" align="center">
                         <thead style="padding: 20px;background: white;font-size: 20px;border-radius: 10px;">
                             <tr style="border:4px;border-color: black;border-radius: 10px;font-weight: bold;">
+                                <td>Timestamp</td>
                                 <td>Complaint Id</td>
                                 <td>Complainant</td>
+                                <td>Email-id</td>
                                 <td>Complaint category</td>
                                 <td>Status</td>
                                 <td>Action</td>
@@ -123,7 +125,7 @@ include 'dbconnection1.php';
                         </thead>
                         <tr style="font-size: 15px;" class="table-hover">
                         <?php    
-                        $query="select cid,name,category,status,action from complaint where decision=1";
+                        $query="select timestamp,cid,name,email,category,status,action from complaint where decision=1";
                         $run=mysqli_query($connection1,$query);
                         if(!$run)
                         {
@@ -135,16 +137,18 @@ include 'dbconnection1.php';
                             <td><?php echo "$result[0]"?></td>
                             <td><?php echo "$result[1]"?></td>
                             <td><?php echo "$result[2]"?></td>
-                            <?php if($result[3]=='Solved')
+                            <td><?php echo "$result[3]"?></td>
+                            <td><?php echo "$result[4]"?></td>
+                            <?php if($result[5]=='Solved')
                             { ?>   
-                            <td><span class="label label-success"><?php echo "$result[3]"?></span></td>
+                            <td><span class="label label-success"><?php echo "$result[5]"?></span></td>
                             <?php } 
-                            else if($result[3]=='Rejected')
+                            else if($result[5]=='Rejected')
                             {
                             ?>
-                            <td><span class="label label-danger"><?php echo "$result[3]"?></span></td>
+                            <td><span class="label label-danger"><?php echo "$result[5]"?></span></td>
                             <?php } ?>
-                            <td><?php echo "$result[4]"?></td>
+                            <td><?php echo "$result[6]"?></td>
                         </tr>
                        <?php  
                     }      ?>
