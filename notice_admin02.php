@@ -1,5 +1,5 @@
 <?php
-include 'dbconnection1.php';
+include 'dbconnection01.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,7 +190,7 @@ include 'dbconnection1.php';
             error_reporting(E_ERROR | E_WARNING | E_PARSE);
             $submit=$_POST['submit'];
             if($submit!=='submit'){                
-                $error=mysqli_error($connection1);
+                $error=mysqli_error($connection);
                 echo $error;}
             if($submit=='submit'){
 
@@ -200,9 +200,9 @@ include 'dbconnection1.php';
             $notice=$_POST['notice'];
             $status=1;
             $query="insert into notice (subject,sdate,edate,notice,status) values ('$subject','$sdate','$edate','$notice','$status')";
-            $run=mysqli_query($connection1,$query);
+            $run=mysqli_query($connection,$query);
             if(!$run){
-                           $error= mysqli_error($connection1);
+                           $error= mysqli_error($connection);
                            echo $error;}
             }
 ?>
@@ -214,10 +214,10 @@ include 'dbconnection1.php';
                             $not=$_POST['not'];
                             $nid=$_POST['nid'];
                             $query="update notice set status='$status' where subject='$sub' and notice='$not' and nid='$nid'";
-                            $run=mysqli_query($connection1,$query);
+                            $run=mysqli_query($connection,$query);
                             if(!$run)
                             {  
-                                $error=mysqli_error($connection1);
+                                $error=mysqli_error($connection);
                                 echo "$error";
                             }
                         }
@@ -229,27 +229,26 @@ include 'dbconnection1.php';
         	<div class="container" style="width: 70%;background: white;height: 85%;margin: all;padding: 20px;" >
                 <div class="container" style="width: 80%;background: #E3E4FA;height: 95%;padding-bottom: 30px;margin:auto;margin-top: 15px;overflow-y: scroll;">  
                 <?php 
-                    $query="select subject,notice,sdate,edate,status,nid,timestamp from notice";
-                    $run=mysqli_query($connection1,$query);
+                    $query="select subject,notice,sdate,edate,status,nid from notice";
+                    $run=mysqli_query($connection,$query);
                     if(!$run)
                     {
-                        $error=mysqli_error($connection1);
+                        $error=mysqli_error($connection);
                         echo "$error";
                     }
                     while($result=mysqli_fetch_array($run,MYSQLI_NUM)){
                         if($result[4]=='1' && $result[2]<=date("Y-m-d") && $result[3]>=date("Y-m-d")){ 
                 ?>
                 <div><form method="post" enctype="multipart/form-data">
-                    <p style="background: none;border: none;font-size: 15px;margin: 15px;color: black;"><span style="font-weight: bold;"><?php echo "$result[0]".":"?></span><?php echo "$result[1]"?></p>
-                    <span style="margin: 15px;"><?php echo "$result[6]" ?></span>
-                    <pre style="background: none;border: none;font-size: 15px;margin:10px;color: grey;"><span style="font-weight: bold;">Expires on:</span><?php echo "$result[3]"?>
-                    <button type="submit" class="btn btn-default btn-sm" name="remove" ><span class="glyphicon glyphicon-remove"></span></button></div>
+                    <p style="background: none;border: none;font-size: 15px;padding: 15px;margin: 15px;color: black;"><span style="font-weight: bold;padding-bottom: 0px;"><?php echo "$result[0]".":"?></span><?php echo "$result[1]"?></p>
+                    <pre style="background: none;border: none;font-size: 15px;padding: 15px;margin: 15px;padding-top: 0px;color: grey;"><span style="font-weight: bold;">Expires on:</span><?php echo "$result[3]"?>
+                    <button type="submit" class="btn btn-default btn-sm" name="remove"><span class="glyphicon glyphicon-remove"></span></button>
                     <input type="hidden" name="remove" value="remove">
                     <input type="hidden" name="sub" value="<?php echo $result[0]; ?>">
                     <input type="hidden" name="not" value="<?php echo $result[1]; ?>">    
                     <input type="hidden" name="nid" value="<?php echo $result[5]; ?>">
                 </form>    
-                
+                </div>
                 <hr style="border-color: black;">
                 <? }}
                 ?>
@@ -258,86 +257,7 @@ include 'dbconnection1.php';
         </section>
 
         <!--================Footer Area =================-->
-        <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <img src="img/footer-logo.png" alt="">
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>54B, Tailstoi Town 5238 MT, La city, IA 522364</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>+ 547 5895 621</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Book now</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Extra Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  About Us</a></li>
-                                    <li><a href="#">-  Faq’s</a></li>
-                                    <li><a href="#">-  Blog</a></li>
-                                    <li><a href="#">-  Testimonials</a></li>
-                                    <li><a href="#">-  Reservation Now</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © HillTown Resort  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">DesignArc</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       <?php include 'footer_admin.php'; ?>
         <!--================End Footer Area =================-->
         
         <!--================Search Box Area =================-->
