@@ -1,5 +1,5 @@
 ﻿<?php 
-include 'dbconnection01.php';
+include 'dbconnection1.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -311,15 +311,15 @@ include 'dbconnection01.php';
                                 <center style="font-size:30px;padding: 20px"><b>NOTICE</b></center>
                                 <marquee onmouseout="this.start();" onmouseover="this.stop();" style="overflow-y:scroll;padding:10px;padding-top: 30px;padding-bottom: 40px;height: 400px;" scrollamount="4" direction="up" >
                                     <?php
-                                        $query="select subject,notice,sdate,edate,status from notice";
-                                        $run=mysqli_query($connection,$query);
+                                        $query="select subject,notice,sdate,edate,status,timestamp from notice";
+                                        $run=mysqli_query($connection1,$query);
                                         while ($result=mysqli_fetch_array($run,MYSQLI_NUM)) {
                                             if($result[4]=="1" && $result[2]<=date("Y-m-d") && $result[3]>=date("Y-m-d")){
                                     ?>
-                                
-                                    <center>
-                                        <b class="notice"><?php echo "$result[0]:" ?></b><br />
-                                    </center>
+                                    <b class="notice"><?php echo "$result[0]:" ?></b>
+                                    <br />
+                                    <?php echo "$result[5]";?>
+                                    <br /><br />
                                     <?php echo "$result[1]"; ?>
                                     <br /> 
                                     <br />

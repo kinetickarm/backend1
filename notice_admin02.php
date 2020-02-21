@@ -1,5 +1,5 @@
 <?php
-include 'dbconnection01.php';
+include 'dbconnection1.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,7 +190,7 @@ include 'dbconnection01.php';
             error_reporting(E_ERROR | E_WARNING | E_PARSE);
             $submit=$_POST['submit'];
             if($submit!=='submit'){                
-                $error=mysqli_error($connection);
+                $error=mysqli_error($connection1);
                 echo $error;}
             if($submit=='submit'){
 
@@ -200,9 +200,9 @@ include 'dbconnection01.php';
             $notice=$_POST['notice'];
             $status=1;
             $query="insert into notice (subject,sdate,edate,notice,status) values ('$subject','$sdate','$edate','$notice','$status')";
-            $run=mysqli_query($connection,$query);
+            $run=mysqli_query($connection1,$query);
             if(!$run){
-                           $error= mysqli_error($connection);
+                           $error= mysqli_error($connection1);
                            echo $error;}
             }
 ?>
@@ -214,10 +214,10 @@ include 'dbconnection01.php';
                             $not=$_POST['not'];
                             $nid=$_POST['nid'];
                             $query="update notice set status='$status' where subject='$sub' and notice='$not' and nid='$nid'";
-                            $run=mysqli_query($connection,$query);
+                            $run=mysqli_query($connection1,$query);
                             if(!$run)
                             {  
-                                $error=mysqli_error($connection);
+                                $error=mysqli_error($connection1);
                                 echo "$error";
                             }
                         }
@@ -229,26 +229,27 @@ include 'dbconnection01.php';
         	<div class="container" style="width: 70%;background: white;height: 85%;margin: all;padding: 20px;" >
                 <div class="container" style="width: 80%;background: #E3E4FA;height: 95%;padding-bottom: 30px;margin:auto;margin-top: 15px;overflow-y: scroll;">  
                 <?php 
-                    $query="select subject,notice,sdate,edate,status,nid from notice";
-                    $run=mysqli_query($connection,$query);
+                    $query="select subject,notice,sdate,edate,status,nid,timestamp from notice";
+                    $run=mysqli_query($connection1,$query);
                     if(!$run)
                     {
-                        $error=mysqli_error($connection);
+                        $error=mysqli_error($connection1);
                         echo "$error";
                     }
                     while($result=mysqli_fetch_array($run,MYSQLI_NUM)){
                         if($result[4]=='1' && $result[2]<=date("Y-m-d") && $result[3]>=date("Y-m-d")){ 
                 ?>
                 <div><form method="post" enctype="multipart/form-data">
-                    <p style="background: none;border: none;font-size: 15px;padding: 15px;margin: 15px;color: black;"><span style="font-weight: bold;padding-bottom: 0px;"><?php echo "$result[0]".":"?></span><?php echo "$result[1]"?></p>
-                    <pre style="background: none;border: none;font-size: 15px;padding: 15px;margin: 15px;padding-top: 0px;color: grey;"><span style="font-weight: bold;">Expires on:</span><?php echo "$result[3]"?>
-                    <button type="submit" class="btn btn-default btn-sm" name="remove"><span class="glyphicon glyphicon-remove"></span></button>
+                    <p style="background: none;border: none;font-size: 15px;margin: 15px;color: black;"><span style="font-weight: bold;"><?php echo "$result[0]".":"?></span><?php echo "$result[1]"?></p>
+                    <span style="margin: 15px;"><?php echo "$result[6]" ?></span>
+                    <pre style="background: none;border: none;font-size: 15px;margin:10px;color: grey;"><span style="font-weight: bold;">Expires on:</span><?php echo "$result[3]"?>
+                    <button type="submit" class="btn btn-default btn-sm" name="remove" ><span class="glyphicon glyphicon-remove"></span></button></div>
                     <input type="hidden" name="remove" value="remove">
                     <input type="hidden" name="sub" value="<?php echo $result[0]; ?>">
                     <input type="hidden" name="not" value="<?php echo $result[1]; ?>">    
                     <input type="hidden" name="nid" value="<?php echo $result[5]; ?>">
                 </form>    
-                </div>
+                
                 <hr style="border-color: black;">
                 <? }}
                 ?>
