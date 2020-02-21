@@ -501,11 +501,12 @@
                         <table align="center" id="application">
                         <tr>
                         <th>NO</th>
+                        <th>Timestamp</th>
                         <th>Application id</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th>Branch</th>
                         <th>Sem</th>
-                        <th>Rank/CPI</th>
                         <th>STATUS</th>
                         <th>View fees reciept</th>
                         <th>Action</th>
@@ -577,11 +578,12 @@
                         ?>
                         <tr>
                         	<td><?php echo ++$no; ?></td>
+                            <td><?php echo $result['timestamp']?></td>
                             <td><?php echo $result['id']; ?></td>
                             <td><?php echo $result['name']; ?></td>
+                            <td><?php echo $result['email_id']; ?></td>
                             <td><?php echo $result['branch']; ?></td>
                             <td><?php echo $result['sem']; ?></td>
-                            <td><?php echo $result['rank']; ?></td>
                             <td><?php echo "<span style='color:green;' >APPROVED</span>"?></td>
                             
                             <td><a href="">click here</a></td>
@@ -628,7 +630,7 @@
                        
                             <td>
                                 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-                                <input type="text" name="remarks" style="background: transparent;border: none; border-bottom: 2px solid; margin-bottom: 4px;">
+                                <input type="text" name="remarks" style="background: transparent;border: none; border-bottom: 2px solid; margin-bottom: 4px;width: 100px;">
                                 <button style="background-color: red; color: white;">Reject</button>
                                 <input type="hidden" name="id" value="<?php echo $result['id'];?>"> 
                                 <input type="hidden" name="action2" value="rejected">

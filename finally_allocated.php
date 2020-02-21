@@ -471,8 +471,10 @@
                         <table align="center" id="application">
                         <tr>
                         <th>No.</th>
+                        <th>Timestamp</th>
                         <th>Application id</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th>Branch</th>
                         <th>Sem</th>
                         <th>ACPC RANK or CPI</th>
@@ -534,8 +536,10 @@
                             
                         <tr>
                         	<td><?php echo $sr; ?></td>
+                            <td><?php echo $result['timestamp']?></td>
                             <td><?php echo $result['id']; ?></td>
                             <td><?php echo $result['name']; ?></td>
+                            <td><?php echo $result['email_id']?></td>
                             <td><?php echo $result['branch']; ?></td>
                             <td><?php echo $result['sem']; ?></td>
                             <td><?php echo $result['rank']; ?></td>
