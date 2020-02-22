@@ -1,5 +1,5 @@
-<?php session_start();
-include 'dbconnection1.php';
+<?php 
+include 'dbconnection01.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,23 +37,6 @@ include 'dbconnection1.php';
         <link href="css/responsive.css" rel="stylesheet">
     
         <style type="text/css">
-            .resort_title1 h2 {
-  font-size: 27px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: .96px;
-  text-transform: uppercase;
-  color: #242424;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
-
-.resort_title1 h2 span {
-  color: #ffb606;
-
-  padding-left: 20px;
-}
-            
         .h_middle_text2 {
                  
                 font-family: "Montserrat", sans-serif;
@@ -247,6 +230,51 @@ include 'dbconnection1.php';
 .event_details_area {
   padding: 60px 60px;
 }
+      .resort_title1 h2 {
+  font-size: 27px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: .96px;
+  text-transform: uppercase;
+  color: #242424;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.resort_title1 h2 span {
+  color: #ffb606;
+
+  padding-left: 20px;
+}
+        .h_middle_text2 {
+                 
+                font-family: "Montserrat", sans-serif;
+                 font-size: 25px;
+                font-weight: bold;
+                margin-top: 15px;
+                /*letter-spacing: .96px;*/
+                text-transform: uppercase;
+                 padding-bottom: 15px;
+                 position: relative;
+            }
+
+            .h_middle_text2 h3{
+                 color: #ffb606;
+                letter-spacing: 3.3px;
+            }
+
+            .h_middle_text2 h5{
+                color: #ffb606;
+            }
+            #H{
+                font-size: 35px;
+
+            }
+
+            table,th,td{
+                padding: 5px;
+                
+            }
 
     </style>    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -259,7 +287,7 @@ include 'dbconnection1.php';
     <body>
 
         <!--================Header Area =================-->
-        <?php include 'header.php'; ?>
+       <?php include 'header.php' ;?>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
@@ -286,34 +314,24 @@ include 'dbconnection1.php';
                                 <h3 align="center">Complaint form</h3>
                                 <div class="s_comment_inner">
                                     <form class="row contact_us_form" id="contactForm" validate="validate" method="POST" enctype="multipart/form-data" action="complaint01.php">
-                                        <?php 
-                                        $email=$_SESSION['email'];
-                                        $query="select * from admission where email_id='$email'";
-                                        $run=mysqli_query($connection1,$query);
-                                        $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
-                                        ?>
+                                        
                                         <div class="form-group col-md-12" >
-                                            <input type="text" class="form-control" id="name" name="name" style="text-transform: none" value="<?php echo $result['name']?>" required="required" readonly="readonly">
+                                            <input type="text" class="form-control" id="name" name="name" style="text-transform: none" placeholder="Enter your name" required="required">
                                         </div>
-                                        <?php 
-                                        $query1="select * from admission_form where email='$email'";
-                                        $run1=mysqli_query($connection1,$query1);
-                                        $result1=mysqli_fetch_array($run1);
-                                        ?>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="contact" name="contact" style="text-transform: none" value="<?php echo $result1['phone_number']?>" required="required" readonly>
+                                            <input type="text" class="form-control" id="contact" name="contact" style="text-transform: none" placeholder="Enter your contact number" required="required">
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <input type="email" class="form-control" id="email" name="email" style="text-transform: none" value="<?php echo $email ?>" required="required" readonly>
+                                            <input type="email" class="form-control" id="email" name="email" style="text-transform: none" placeholder="Enter your email address" required="required">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="branch" name="branch" style="text-transform: none" value="<?php echo $result['branch'] ?>" required="required" readonly>
+                                            <input type="text" class="form-control" id="branch" name="branch" style="text-transform: none" placeholder="Enter your branch" required="required">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="sem" name="sem" style="text-transform: none" value="<?php echo $result['sem'] ?>" required="required" readonly>
+                                            <input type="text" class="form-control" id="sem" name="sem" style="text-transform: none" placeholder="Enter your semester" required="required">
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="room" name="room" style="text-transform: none" value="<?php echo $result['room_no'] ?>" required="required" readonly>
+                                            <input type="text" class="form-control" id="room" name="room" style="text-transform: none" placeholder="Enter your room number" required="required">
                                         </div>
                                         <div class="form-group col-md-8">
                                             <select type="text" id="category" name="category" style="text-transform: none" required="required">
@@ -337,7 +355,7 @@ include 'dbconnection1.php';
                                             <textarea class="form-control" name="description" id="description" rows="1" placeholder="Write the description about your complaint/problem" style="text-transform: none" required="required"></textarea>
                                         </div>
                                         <div>
-                                        	<label>NOTE: &nbsp 1)Upload any image for reference and proof in the given field.</label>&nbsp &nbsp
+                                        	<label>NOTE: &nbsp 1)Upload any image/video for reference and proof in the given field.</label>&nbsp &nbsp
                                         	<label>2)Strict actions will be taken if your complaint is detected as fake.</label>
                                         </div>
                                         <button type="submit" id="submit" class="btn btn-default" style="background:#E3E4FA;font-size: 16px;border: 2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Submit</button>
@@ -359,7 +377,7 @@ include 'dbconnection1.php';
                         $desc=$_POST["description"];
                         
                         $query="select max(cid) from complaint";
-                        $run=mysqli_query($connection1,$query);
+                        $run=mysqli_query($connection,$query);
                         $row=mysqli_fetch_array($run);
                         $maxcid=$row[0];
                         if($maxcid==" ")
@@ -418,10 +436,10 @@ if ($uploadOk == 0) {
 					$proof=$_FILES['proof']['name'];
 					$status="Pending";
  					$update = "insert into complaint (cid,name,email,contact,branch,sem,roomno,category,description,proof,status) values ('$cid','$name','$email','$contact','$branch','$sem','$roomno','$category','$desc','$proof','$status')";
-                    $execute=mysqli_query($connection1,$update);
+                    $execute=mysqli_query($connection,$update);
                         
                     if(!$execute){
-                           $error= mysqli_error($connection1);
+                           $error= mysqli_error($connection);
                            echo $error;}
 
 }
@@ -443,122 +461,9 @@ if ($uploadOk == 0) {
     	</section>
         <!--================End Event Details Area =================-->
         
-                <!--================Footer Area =================-->
- <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <!-- <div class="h_middle_text2">
-                             <a href="#"><img src="img/logo.png" alt=""></a> 
-                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
-                        </div> --> 
-                        <div>
-                                <a class="navbar-brand1" href="#" style="height: 85px;
-    line-height: 50px;
-    padding: 0px 0px 0px 10px;">
-                                <img src="img/logo.png" alt="" style="display: inline-block;;
-    height: 48px;
-    margin-top: 27px; ">
-                            
-                            </a>
-                        
-                           
-                            <div class="resort_title1 ">
-                                
-                            
-                            
-                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                        </div>
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </div>
-                                        <div class="media-body">
-                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Useful Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">- Sign up</a></li>
-                                    <li><a href="#">- Admission process</a></li>
-                                    <li><a href="#">-  Gallery</a></li>
-                                    <li><a href="help.html">-  Faq’s </a></li>
-                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <!-- <div class="col-md-2 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div> -->
-                        <div class="col-md-4 col-xs-6">
-                                
-
-                                <div class="f_title">
-                                     <h3 style="margin-right:10px; ">Location</h3>
-                                    
-                                
-                                   
-                                </div> 
-                                
-                            <!-- <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside> -->
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="80%"  style=" border:5; border-radius: 7px; opacity: .7;" allowfullscreen=""></iframe>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">CE Dept.</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <!--================Footer Area =================-->
+        <?php include 'footer_student.php' ;?>
         <!--================End Footer Area =================-->
-
         
         <!--================Search Box Area =================-->
         <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
@@ -578,6 +483,7 @@ if ($uploadOk == 0) {
         
         
         
+        <!--================End Footer Area =================-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-2.2.4.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
