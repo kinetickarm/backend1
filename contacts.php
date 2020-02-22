@@ -41,73 +41,23 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 <style type="text/css">
-       /*<style type="text/css">
-            .resort_title1 h2 {
-  font-size: 27px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: .96px;
-  text-transform: uppercase;
-  color: #242424;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
-
-.resort_title1 h2 span {
-  color: #ffb606;
-
-  padding-left: 20px;
-
-
-}*//*h4{
-    font-size: 20px;
-    margin-top: 12px;
     
-
-}*/
-    
-        .h_middle_text2 {
-                 
-                font-family: "Montserrat", sans-serif;
-                 font-size: 25px;
-                font-weight: bold;
-                margin-top: 15px;
-                /*letter-spacing: .96px;*/
-                text-transform: uppercase;
-                 padding-bottom: 15px;
-                 position: relative;
+          .resort_title1 h2 
+          {
+              font-size: 27px;
+              font-weight: bold;
+              font-family: "Montserrat", sans-serif;
+              letter-spacing: .96px;
+              text-transform: uppercase;
+              color: #242424;
+              margin-top: 20px;
+              padding-bottom: 10px;
             }
 
-            .h_middle_text2 h3{
-                 color: #ffb606;
-                letter-spacing: 3.3px;
+            .resort_title1 h2 span {
+              color: #ffb606;
+              padding-left: 20px;
             }
-
-            .h_middle_text2 h5{
-                color: #ffb606;
-            }
-            #H{
-                font-size: 35px;
-
-            }
-            .resort_title1 h2 {
-    }
-    }
-  font-size: 27px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: .96px;
-  text-transform: uppercase;
-  color: #242424;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
-
-.resort_title1 h2 span {
-  color: #ffb606;
-
-  padding-left: 20px;
-}
 
             #application tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -176,7 +126,7 @@
              }
             .container h2{
                 font-family: "Montserrat";
-                margin: 0 0 20px 0;
+                margin: 10 0 20px 0;
                 color: #039287;
 
              }
@@ -189,11 +139,11 @@
                 margin-bottom: 1rem;
                /* color: #212529;*/
                 /*table-layout: inherit;*/
-                background-color: #ccc;
+                background-color: #cccc;
             
              }
               .table-hover tbody tr:hover {
-                background-color: #039287;
+                background-color: rgba(0,0,0,0.1);
 
              }
              
@@ -214,59 +164,41 @@
                 font-family: "Montserrat";
                 font-size: 20px;
                 background-color: #039287;
-                color: #d3d3d3;
+                color: #ccc;
 
              }
-             .dropdown {
-  position: relative;
-  display: inline-block;
-  
-  
-}
-/*#dropdown{
-    background-color: rgba(192,192,200,0.3);
-}*/
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover
-
- .dropdown-content {
-  display: block;
-}
+             td{
+              color: black;
+             }
+             
 
         </style>
     </head>
     <body>
 
         <!--================Header Area =================-->
-        <?php include 'header.php'; ?>
+        <?php  
+            include 'header.php';
+        ?>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
-       <!--<section class="banner_area">
-            <div class="container">
-                <div class="banner_inner_content">
-                    <h3>Upload Documents</h3>
-                    <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="room-list.html">Admission</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>-->
+         <section class="banner_area">
+                    <div class="container">
+                        <div class="banner_inner_content">
+                            <h3>Co-ordinators</h3>
+                            <ul>
+                                <li class="active"><a href="index.html" style="color: #039287">Home</a></li>
+                                <li><a href="activities.html">Addmission</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
         <!--================End Banner Area =================-->
         
         <!--================Room List Area =================-->
-       <section class="room_details_area">
+       <!--<section class="room_details_area">
             <div class="container">
                 <div class="main_big_title">
                    <!-- <h2>NEW Admission&nbsp<span>APPLICATIONS</span></h2>-->
@@ -477,20 +409,24 @@
     <table class="table table-striped table-hover ">
     <thead>
       <tr>
+        <th>Name</th>
         <th>Designation</th>
         <th>Phone number</th>
       </tr>
     </thead>
     <tbody>
   <tr>
+    <td>Abc</td>
     <td>Student Co-ordinator</td> 
   <td>675465868548</td>
 </tr>
   <tr>
+    <td>Abc</td>
     <td>House keeping</td>
   <td>657465455</td>
 </tr>
   <tr>
+    <td>Abc</td>
     <td>Electrician</td>
   <td>675485748
 </td>
@@ -498,8 +434,6 @@
 </tbody>
 </table>
 </div>
-
-
                 
             </div>
             </div>
@@ -509,122 +443,9 @@
         <!--================End Room List Area =================-->
         
         <!--================Footer Area =================-->
-         <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <!-- <div class="h_middle_text2">
-                             <a href="#"><img src="img/logo.png" alt=""></a> 
-                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
-                        </div> --> 
-                        <div>
-                                <a class="navbar-brand1" href="#" style="height: 85px;
-    line-height: 50px;
-    padding: 0px 0px 0px 10px;">
-
-                                <img src="img/logo.png" alt="" style="display: inline-block;;
-    height: 48px;
-    margin-top: 0px; ">
-                            
-                            </a>
-                        
-                           
-                            <div class="resort_title1 " >
-                                
-                            
-                            
-                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                        </div>
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </div>
-                                        <div class="media-body">
-                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Useful Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">- Sign up</a></li>
-                                    <li><a href="#">- Admission process</a></li>
-                                    <li><a href="#">-  Gallery</a></li>
-                                    <li><a href="help.html">-  Faq’s </a></li>
-                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <!-- <div class="col-md-2 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div> -->
-                        <div class="col-md-4 col-xs-6">
-                                
-
-                                <div class="f_title">
-                                     <h3 style="margin-right:10px; ">Location</h3>
-                                    
-                                
-                                   
-                                </div> 
-                                
-                            <!-- <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside> -->
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="80%"  style=" border:5; border-radius: 7px; opacity: .7;" allowfullscreen=""></iframe>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">CE Dept.</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+      <?php include 'footer_student.php' ?>
         <!--================End Footer Area =================-->
-        
+      
         
         
         
