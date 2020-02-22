@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
 include 'dbconnection1.php';
 ?>
 <!DOCTYPE html>
@@ -286,24 +286,34 @@ include 'dbconnection1.php';
                                 <h3 align="center">Complaint form</h3>
                                 <div class="s_comment_inner">
                                     <form class="row contact_us_form" id="contactForm" validate="validate" method="POST" enctype="multipart/form-data" action="complaint01.php">
-                                        
+                                        <?php 
+                                        $email=$_SESSION['email'];
+                                        $query="select * from admission where email_id='$email'";
+                                        $run=mysqli_query($connection1,$query);
+                                        $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
+                                        ?>
                                         <div class="form-group col-md-12" >
-                                            <input type="text" class="form-control" id="name" name="name" style="text-transform: none" placeholder="Enter your name" required="required">
+                                            <input type="text" class="form-control" id="name" name="name" style="text-transform: none" value="<?php echo $result['name']?>" required="required" readonly="readonly">
                                         </div>
+                                        <?php 
+                                        $query1="select * from admission_form where email='$email'";
+                                        $run1=mysqli_query($connection1,$query1);
+                                        $result1=mysqli_fetch_array($run1);
+                                        ?>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="contact" name="contact" style="text-transform: none" placeholder="Enter your contact number" required="required">
+                                            <input type="text" class="form-control" id="contact" name="contact" style="text-transform: none" value="<?php echo $result1['phone_number']?>" required="required" readonly>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <input type="email" class="form-control" id="email" name="email" style="text-transform: none" placeholder="Enter your email address" required="required">
+                                            <input type="email" class="form-control" id="email" name="email" style="text-transform: none" value="<?php echo $email ?>" required="required" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="branch" name="branch" style="text-transform: none" placeholder="Enter your branch" required="required">
+                                            <input type="text" class="form-control" id="branch" name="branch" style="text-transform: none" value="<?php echo $result['branch'] ?>" required="required" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="sem" name="sem" style="text-transform: none" placeholder="Enter your semester" required="required">
+                                            <input type="text" class="form-control" id="sem" name="sem" style="text-transform: none" value="<?php echo $result['sem'] ?>" required="required" readonly>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <input type="text" class="form-control" id="room" name="room" style="text-transform: none" placeholder="Enter your room number" required="required">
+                                            <input type="text" class="form-control" id="room" name="room" style="text-transform: none" value="<?php echo $result['room_no'] ?>" required="required" readonly>
                                         </div>
                                         <div class="form-group col-md-8">
                                             <select type="text" id="category" name="category" style="text-transform: none" required="required">
@@ -433,52 +443,73 @@ if ($uploadOk == 0) {
     	</section>
         <!--================End Event Details Area =================-->
         
-        <!--================Footer Area =================-->
-        <footer class="footer_area">
+                <!--================Footer Area =================-->
+ <footer class="footer_area">
             <div class="footer_widget_area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-xs-6">
+                        <div class="col-md-4 col-xs-6">
                             <aside class="f_widget about_widget">
-                                <img src="img/footer-logo.png" alt="">
+                                <!-- <div class="h_middle_text2">
+                             <a href="#"><img src="img/logo.png" alt=""></a> 
+                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
+                        </div> --> 
+                        <div>
+                                <a class="navbar-brand1" href="#" style="height: 85px;
+    line-height: 50px;
+    padding: 0px 0px 0px 10px;">
+                                <img src="img/logo.png" alt="" style="display: inline-block;;
+    height: 48px;
+    margin-top: 27px; ">
+                            
+                            </a>
+                        
+                           
+                            <div class="resort_title1 ">
+                                
+                            
+                            
+                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
+                            </div>
+                        </div>
                                 <div class="ab_wd_list">
                                     <div class="media">
                                         <div class="media-left">
                                             <i class="fa fa-map-marker"></i>
                                         </div>
                                         <div class="media-body">
-                                            <h4>54B, Tailstoi Town 5238 MT, La city, IA 522364</h4>
+                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
                                         </div>
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <i class="fa fa-phone"></i>
+                                            <i class="fa fa-envelope-o"></i>
                                         </div>
                                         <div class="media-body">
-                                            <h4>+ 547 5895 621</h4>
+                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Book now</a>
+                                    <a class="book_now_btn" href="#">Login</a>
                                 </div>
                             </aside>
                         </div>
-                        <div class="col-md-3 col-xs-6">
+                        <div class="col-md-4 col-xs-6">
                             <aside class="f_widget link_widget">
                                 <div class="f_title">
-                                    <h3>Extra Links</h3>
+                                    <h3>Useful Links</h3>
                                 </div>
                                 <ul>
-                                    <li><a href="#">-  About Us</a></li>
-                                    <li><a href="#">-  Faq’s</a></li>
-                                    <li><a href="#">-  Blog</a></li>
-                                    <li><a href="#">-  Testimonials</a></li>
-                                    <li><a href="#">-  Reservation Now</a></li>
+                                    <li><a href="#">- Sign up</a></li>
+                                    <li><a href="#">- Admission process</a></li>
+                                    <li><a href="#">-  Gallery</a></li>
+                                    <li><a href="help.html">-  Faq’s </a></li>
+                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
                                 </ul>
                             </aside>
                         </div>
-                        <div class="col-md-3 col-xs-6">
+                        <!-- <div class="col-md-2 col-xs-6">
                             <aside class="f_widget link_widget">
                                 <div class="f_title">
                                     <h3>our services</h3>
@@ -491,14 +522,26 @@ if ($uploadOk == 0) {
                                     <li><a href="#">-  Hill Tours</a></li>
                                 </ul>
                             </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget instagram_widget">
+                        </div> -->
+                        <div class="col-md-4 col-xs-6">
+                                
+
+                                <div class="f_title">
+                                     <h3 style="margin-right:10px; ">Location</h3>
+                                    
+                                
+                                   
+                                </div> 
+                                
+                            <!-- <aside class="f_widget instagram_widget">
                                 <div class="f_title">
                                     <h3>Instagram</h3>
                                 </div>
                                 <ul class="instagram_list" id="instafeed"></ul>
-                            </aside>
+                            </aside> -->
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="80%"  style=" border:5; border-radius: 7px; opacity: .7;" allowfullscreen=""></iframe>
+
+
                         </div>
                     </div>
                 </div>
@@ -506,15 +549,16 @@ if ($uploadOk == 0) {
             <div class="footer_copyright_area">
                 <div class="container">
                     <div class="pull-left">
-                        <h4>Copyright © HillTown Resort  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
+                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
                     </div>
                     <div class="pull-right">
-                        <h4>Created by: <a href="#">DesignArc</a></h4>
+                        <h4>Created by: <a href="#">CE Dept.</a></h4>
                     </div>
                 </div>
             </div>
         </footer>
         <!--================End Footer Area =================-->
+
         
         <!--================Search Box Area =================-->
         <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
@@ -534,7 +578,6 @@ if ($uploadOk == 0) {
         
         
         
-        <!--================End Footer Area =================-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-2.2.4.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
