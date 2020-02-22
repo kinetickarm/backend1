@@ -64,7 +64,18 @@
                                         <li><a href="Admission_status.php">ADMISSION STATUS</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="fees.php">FEES</a></li>
+                                <?php error_reporting(E_ERROR | E_PARSE);
+                                $email=$_SESSION["email"];
+                                $query="select action,action2 from admission where email_id='$email'";
+                                $run=mysqli_query($connection1,$query);
+                                $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
+                                if(!$run){
+                                     $error=mysqli_error($connection1);
+                                echo $error;}
+                                ?>
+                                <li><a <?php if($result['action']=='1'){ ?>href="fees.php"<?php } ?>>FEES</a> </li>
+                               
+                               
                                 <!-- <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
                                    <!--  <ul class="dropdown-menu">
@@ -93,11 +104,12 @@
                                         <li><a href="404.html">404 Error</a></li>
                                     </ul> -->
                                 </li>
+                               
                                 <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="complaint01.php">COMPLAINT FORM</a></li>
-                                        <li><a href="complaint02.php">COMPLAINT STATUS</a></li>
+                                        <li><a <?php if($result['action2']== 'finally_allocated' || $result['action2']== 'temp_allocated'){ ?>href="complaint01.php"<?php } ?>>COMPLAINT FORM</a></li>
+                                        <li><a <?php if($result['action2']== 'finally_allocated' || $result['action2']== 'temp_allocated'){ ?>href="complaint02.php"<?php } ?>>COMPLAINT STATUS</a></li>
                                         
                                     </ul>
                                 </li>
