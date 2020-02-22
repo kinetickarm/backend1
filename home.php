@@ -64,31 +64,47 @@ include 'dbconnection1.php';
         <![endif]-->
 
         <style type="text/css">
-            .h_middle_text2 {
+                .resort_title1 h2 {
+  font-size: 27px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: .96px;
+  text-transform: uppercase;
+  color: #242424;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.resort_title1 h2 span {
+  color: #ffb606;
+
+  padding-left: 20px;
+}
+        .h_middle_text2 {
                  
                 font-family: "Montserrat", sans-serif;
-                 font-size: 32px;
+                 font-size: 25px;
                 font-weight: bold;
+                margin-top: 15px;
                 /*letter-spacing: .96px;*/
                 text-transform: uppercase;
                  padding-bottom: 15px;
                  position: relative;
             }
 
-            .h_middle_text2 h1{
-                 color: #67f7eb;
+            .h_middle_text2 h3{
+                 color: #ffb606;
                 letter-spacing: 3.3px;
-                font-weight: bold;
             }
 
-            .h_middle_text2 h3{
-                color: #67f7eb;
-                font-weight: bold;
+            .h_middle_text2 h5{
+                color: #ffb606;
             }
             #H{
-                font-size: 60px;
+                font-size: 35px;
 
             }
+
 
             .media-body h2{
                 font-size: 32px;
@@ -122,22 +138,6 @@ include 'dbconnection1.php';
   color: #242424;
 }
 
-.resort_title1 h2 {
-  font-size: 27px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: .96px;
-  text-transform: uppercase;
-  color: #242424;
-  margin-top: 20px;
-  padding-bottom: 10px;
-}
-
-.resort_title1 h2 span {
-  color: #ffb606;
-
-  padding-left: 20px;
-}
 
 .navbar-brand1{
     height: 85px;
@@ -162,7 +162,7 @@ include 'dbconnection1.php';
                 <div class="container" >
                     <div class="header_top_l_inner" >
                         <div class="h_left_text">
-                            <a href="#"><img src="img/icon/phone-icon.png" alt="">1800 456 7890</a><span><?php echo $_SESSION["email"]; ?></span> 
+                            <a href="#"><img src="img/icon/phone-icon.png" alt="">1800 456 7890</a>
                            
                         </div>
 
@@ -1000,7 +1000,7 @@ include 'dbconnection1.php';
         <!--================End Fun Fact Area =================-->
         
         <!--================Footer Area =================-->
-   <?php include 'footer_admin.php'; ?>
+         <?php include 'footer_student.php'; ?>
         <!--================End Footer Area =================-->
         
         <!--================Search Box Area =================-->
