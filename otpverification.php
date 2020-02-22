@@ -1,6 +1,6 @@
-<?php
-session_start();
-?>
+<?php session_start();
+ob_start();?>
+
 <!DOCTYPE html>
 <html lang="zxx">
   
@@ -143,7 +143,6 @@ window.onload = function () {
             {
             if($_SESSION['otp']==$_POST['inputOTP'])
             {
-              
               $con =mysqli_connect('localhost','root','');
               mysqli_select_db($con ,'HostelManagement');
               $email=$_SESSION['Email'];
@@ -151,10 +150,9 @@ window.onload = function () {
               $pass = $_SESSION['pass'];
               $pnumber=$_SESSION['pnumber'];
               $type = 'user';
-             // echo $email.$name.$pass.$pnumber;
-              $reg="INSERT INTO usersignup(email_id,fullname,password,phonenumber,type) VALUES ('$email','$name','$pass','$pnumber','$type')";
+              $reg="INSERT INTO usersignup(email_id,fullname,password,phonenumber,type) VALUES ('$email','$name',md5('$pass'),'$pnumber','$type')";
               if(mysqli_query($con ,$reg))
-              echo "<br>You have successfully register";
+                 { header("Location: login-07.php");}
                 else
                 {
                   echo mysqli_error($con);
@@ -162,7 +160,6 @@ window.onload = function () {
             }
             else
             {
-
               echo '<br><label class="pt-3 mb-0 text-danger w-100 text-center"><strong>'.'Wrong OTP'.'</strong></label>';
             }
           }
@@ -204,5 +201,5 @@ s0.parentNode.insertBefore(s1,s0);
 
 <!-- Mirrored from gitapp.top/demo/authfy/demo/login-07.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jan 2020 09:57:35 GMT -->
 </html>
-
+<?php ob_flush();?>
 

@@ -31,7 +31,7 @@ mysqli_select_db($connection1 ,'HostelManagement');
   $pass = $_POST['password'];
   
 
-  $s ="SELECT * FROM usersignup WHERE email_id = '$email_id' && password='$pass' && 
+  $s ="SELECT * FROM usersignup WHERE email_id = '$email_id' && password=md5('$pass') && 
         type='$type'";
 
 
@@ -44,12 +44,12 @@ mysqli_select_db($connection1 ,'HostelManagement');
   {
   while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
    {
-    if ($row['email_id']==$email_id && $row['password']==$pass && $row['type'] == 'admin') {
+    if ($row['email_id']==$email_id && $row['password']==md5($pass) && $row['type'] == 'admin') {
       echo "admin";
       header('location:login_admin.php');
     }
     
-    if ($row['email_id']==$email_id && $row['password']==$pass && $row['type']=='user')
+    if ($row['email_id']==$email_id && $row['password']==md5($pass) && $row['type']=='user')
      {
      // $_SESSION["email_id"]=$row['email_id'];
       $_SESSION["email"]=$row['email_id'];
