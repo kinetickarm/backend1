@@ -139,7 +139,7 @@
                 margin-bottom: 1rem;
                /* color: #212529;*/
                 /*table-layout: inherit;*/
-                background-color: #cccc;
+                background-color: #DCDCDCDC;
             
              }
               .table-hover tbody tr:hover {
@@ -170,6 +170,7 @@
 
              td{
               color: black;
+              font-size: 17px;
              }
              .button{
   background-color:black;

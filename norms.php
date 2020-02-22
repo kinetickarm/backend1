@@ -139,7 +139,7 @@
                 margin-bottom: 1rem;
                /* color: #212529;*/
                 /*table-layout: inherit;*/
-                background-color: #cccc;
+                background-color: #DCDCDCDC;
             
              }
               .table-hover tbody tr:hover {
@@ -439,7 +439,7 @@
     <thead>
     <tr>
       <th rowspan="2">Branch</th>
-      <th colspan="4">Intake</th>
+      <th colspan="5">Intake</th>
     </tr>
     <tr>
       
@@ -447,6 +447,7 @@
       <th>ST</th>
       <th>SC</th>
       <th>OBC</th>
+      <th>Total</th>
     </tr>
   </thead>
     <tbody>
@@ -456,6 +457,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
   <tr>
     <td>Computer</td>
@@ -463,6 +465,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
   <tr>
     <td>Civil</td>
@@ -470,6 +473,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Electrical</td>
@@ -477,6 +481,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Electrical & communication</td>
@@ -484,6 +489,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Information Technology</td>
@@ -491,6 +497,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Instrumentation & Control</td>
@@ -498,6 +505,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Mechanical</td>
@@ -505,6 +513,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 <tr>
     <td>Power Electronics</td>
@@ -512,6 +521,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
+  <td>50</td>
 </tr>
 
 </tbody>
