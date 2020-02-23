@@ -42,11 +42,20 @@
                             </div>
                              </div>
                         </div>
-
+                        <?php error_reporting(E_ERROR | E_PARSE);
+                                $email=$_SESSION["email"];
+                                $query="select action,action2 from admission where email_id='$email'";
+                                $run=mysqli_query($connection1,$query);
+                                $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
+                                if(!$run){
+                                     $error=mysqli_error($connection1);
+                                echo $error;}
+                        ?>
+                                
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="home.php">HOME</a></li>
+                                <li><a <?php if(isset($_SESSION['email'])) {?>href="home.php" <?php } else{ ?> href="homepage.php" <?php } ?>>HOME</a></li>
                                <!--  <li class="dropdown submenu active">
                                     <a href="home.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -56,7 +65,10 @@
                                         <li><a href="index-4.html">Home Page 4</a></li>
                                     </ul>
                                 </li> -->
-                                <li class="submenu dropdown">
+                                <?php
+                                if(isset($_SESSION['email'])){
+                                ?>
+                                   <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="Admission_application.php">APPLICATION</a></li>
@@ -64,15 +76,6 @@
                                         <li><a href="Admission_status.php">ADMISSION STATUS</a></li>
                                     </ul>
                                 </li>
-                                <?php error_reporting(E_ERROR | E_PARSE);
-                                $email=$_SESSION["email"];
-                                $query="select action,action2 from admission where email_id='$email'";
-                                $run=mysqli_query($connection1,$query);
-                                $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
-                                if(!$run){
-                                     $error=mysqli_error($connection1);
-                                echo $error;}
-                                ?>
                                 <li><a <?php if($result['action']=='1'){ ?>href="fees.php"<?php }else{ ?>onclick="fun1()"<?php } ?>>FEES</a> </li>
                                 <script>
                                     function fun1()
@@ -131,10 +134,14 @@
                                         <li><a href="blog-details.html">Blog details</a></li>
                                     </ul> -->
                                 
-                                <li><a href="notice.php">NOTICE</a></li>
+                                <li><a href="notice.php">NOTICE</a></li><?php } ?>
                                 <li><a href="help.php">HELP</a></li>
                                 <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
-                                <li><a href="editprofile_page.php">PROFILE</a></li>
+                                <?php
+                                if(isset($_SESSION['email'])){
+                                ?>
+                                
+                                <li><a href="editprofile_page.php">PROFILE</a></li><?php } ?>
 
                                 <ul class="nav navbar-nav navbar-right">
                                 <!-- <li class="search_dropdown">
