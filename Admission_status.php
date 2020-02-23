@@ -115,89 +115,94 @@
                 <div class="main_big_title">
                     <h2>Admission&nbsp<span>Status</span></h2>
                     
-                       
                     <?php 
-                    $email = $_SESSION["email"];
-                    if(mysqli_num_rows(mysqli_query($connection1,"select email_id from admission where email_id = '$email'")) == 1)
-                       {$status_app="Done";
-                        if($row = mysqli_fetch_array(mysqli_query($connection1,"select * from admission where email_id='$email'"),MYSQLI_ASSOC))
-                        { $id= $row['id'];
-                        
-                        if(mysqli_num_rows(mysqli_query($connection1,"select id from documents where id = '$id'"))==1)
-                         
+                        $email=$_SESSION['email'];
+                        $run1=mysqli_query($connection1,"select email_id from admission where email_id='$email'");
+                        if(mysqli_num_rows($run1)==1)
                         {
-                            $status_docs="done";
-                            $status_ractor="PENDING";
-                            if($row['action']==1){
-                                $status_ractor="APPROVED";
-                                if ($row['action2']=="not allocated" or $row['action2']=="temp_allocated") {
-                                    $status_room="not allocated";
-                                    $room_no = '-';
-                                }
-                                else if($row['action2']=="finally_allocated"){
-                                    $status_room="allocated";
-                                    $room_no = $row['room_no'];
-                                }
-                                else{
-                                    $status_room="FEES RECEIPT REJECTED: ".$row['remarks'];
-                                    $room_no = '-';
-                                }
-                            }
-                            else if($row['action'] == 2){
-                                $status_ractor="REJECTED: ".$row['remarks'] ;
-                                $status_room="NULL";
-                                $room_no = '-';}
-                            else{
-                                
-                                $status_room="NULL";
+                            $status_app="Done";
+                            $row=mysqli_fetch_array(mysqli_query($connection1,"select * from admission where email_id='$email'"),MYSQLI_ASSOC);
+                            $id= $row['id'];
+                            if(mysqli_num_rows(mysqli_query($connection1,"select id from documents where id = '$id'"))==1)  
+                            {
+                                $status_docs="Done";
+                                $status_ractor="Pending";
+                                $status_room="-";
                                 $room_no = '-';
-                                
+                                if($row['action']==1)
+                                {
+                                    $status_ractor="Approved";
+                                    if($row['action2']=="not allocated")
+                                    {
+                                        $status_room="Not allocated";
+                                        $room_no="-";
+                                    }
+                                    elseif($row['action2']=="temp_allocated")
+                                    {
+                                        $status_room="Temporary allocated";
+                                        $room_no="Pending";   
+                                    }
+                                    elseif($row['action2']=="finally_allocated")
+                                    {
+                                        $status_room="Allocated";
+                                        $room_no=$row['room_no'];   
+                                    }
+                                    elseif($row['action2']=="rejected")
+                                    {
+                                        $status_room="Fees receipt rejected: ".$row['remarks'];
+                                        $room_no='-';
+                                    }
+                                }
+                                else if($row['action'] == 2)
+                                {
+                                    $status_ractor="Rejected: ".$row['remarks'] ;
+                                    $status_room="-";
+                                    $room_no = '-';
+                                }
+                            
                             }
-
+                            else
+                            {
+                                $status_docs="Pending";
+                                $status_ractor="Pending";
+                                $status_room="-";
+                                $room_no = '-';
+                            }
                         }
-
-                         else{
-                           $status_docs ="pending";
-                           $status_ractor= "NULL";
-                           
-                           $status_room="NULL";
-                           $room_no = '-';}
-
-                           
-                         }   
-                           }
-
-                       
-
-                    else{
-                       $status_app = "pending"; 
-                       $status_docs ="pending";
-                       $status_ractor= "NULL";
-                       
-                       $status_room="NULL";
-                       $room_no = '-';  
-                       } 
+                        else
+                        {
+                            $status_app="Pending";
+                            $status_docs="Pending";
+                            $status_ractor= "NULL";
+                            $status_room="NULL";
+                            $room_no = '-';  
+                        }
                     ?>
-                    <table align="center">
+                    <table align="center" style="color: black;">
                         <br><br>
                         <tr>
                         <th>Application Uploaded by you:</th>
-                        <td style="color: green; font-weight: bold;"><?php echo $status_app; ?></td>
+                        <td>&nbsp</td>
+                        <td style="color:green;font-weight: bold;"><?php echo $status_app; ?></td>
                         </tr>
                         <tr>
                         <th>Documents Uploaded by you:</th>
+                        <td></td>
                         <td style="color: green; font-weight: bold;"><?php echo $status_docs; ?></td>
                         </tr>
                         <th>Verified by Ractor:</th>
+                        <td></td>
                         <td style="color: green; font-weight: bold;"><?php echo $status_ractor; ?></td>
                        
 
                         <tr>
                             <th>Room Allocated?:</th>
+                            <td></td>
                             <td><?php echo $status_room; ?></td>
                         </tr>
                         <tr>
                             <th>Room No:</th>
+                            <td></td>
                             <td><?php echo $room_no; ?></td>
                         </tr>
                     </table>
