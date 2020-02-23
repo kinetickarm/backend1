@@ -73,8 +73,13 @@
                                      $error=mysqli_error($connection1);
                                 echo $error;}
                                 ?>
-                                <li><a <?php if($result['action']=='1'){ ?>href="fees.php"<?php } ?>>FEES</a> </li>
-                               
+                                <li><a <?php if($result['action']=='1'){ ?>href="fees.php"<?php }else{ ?>onclick="fun1()"<?php } ?>>FEES</a> </li>
+                                <script>
+                                    function fun1()
+                                    {
+                                        window.alert("Sorry,you can only see fees page after your application is approved!")
+                                    }
+                                </script>
                                
                                 <!-- <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
@@ -104,13 +109,17 @@
                                         <li><a href="404.html">404 Error</a></li>
                                     </ul> -->
                                 </li>
-                               
                                 <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a <?php if($result['action2']== 'finally_allocated' || $result['action2']== 'temp_allocated'){ ?>href="complaint01.php"<?php } ?>>COMPLAINT FORM</a></li>
-                                        <li><a <?php if($result['action2']== 'finally_allocated' || $result['action2']== 'temp_allocated'){ ?>href="complaint02.php"<?php } ?>>COMPLAINT STATUS</a></li>
-                                        
+                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint01.php"<?php }else{?> onclick="fun2()"<?php } ?>>COMPLAINT FORM</a></li>
+                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint02.php"<?php }else{ ?> onclick="fun2()"<?php } ?>>COMPLAINT STATUS</a></li>
+                                        <script >
+                                            function fun2()
+                                            {
+                                                window.alert("Sorry,you can only see this after your admission in hostel gets confirm!");
+                                            }
+                                        </script>
                                     </ul>
                                 </li>
                                 <!-- <li class="submenu dropdown">
@@ -121,7 +130,7 @@
                                         <li><a href="blog.html">Blog without side bar</a></li>
                                         <li><a href="blog-details.html">Blog details</a></li>
                                     </ul> -->
-                                </li>
+                                
                                 <li><a href="notice.php">NOTICE</a></li>
                                 <li><a href="help.php">HELP</a></li>
                                 <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->

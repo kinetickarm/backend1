@@ -1,5 +1,6 @@
 <?php session_start(); 
 include 'dbconnection1.php';
+ error_reporting(E_ALL | E_WARNING | E_PARSE);
 //$email_id = $_POST['email_id'];
 //$_SESSION["email_id"] = $email_id;
 //echo "Email:".$_SESSION["email_id"];
@@ -238,13 +239,19 @@ include 'dbconnection1.php';
                                     </ul>
                                 </li>
                                   <?php 
+
                                 $email=$_SESSION["email"];
                                 $query="select * from admission where email_id='$email'";
                                 $run=mysqli_query($connection1,$query);
                                 $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
-                                ?>
-                                
-                                <li><a <?php if($result['action']=='1'){ ?>href="fees.php" <?php } ?>>FEES</a> </li>
+                                ?> 
+                                <li><a <?php if($result['action']=='1'){ ?> href="fees.php" <?php }else{?> onclick="fun1()" <?php } ?>>FEES</a> </li>
+                                <script>
+                                    function fun1()
+                                    {
+                                        window.alert("Sorry,you can only see fees page after your application is approved!")
+                                    }
+                                </script>
                                 <!--<li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -277,9 +284,14 @@ include 'dbconnection1.php';
                                 <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint01.php"<?php } ?>>COMPLAINT FORM</a></li>
-                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint02.php"<?php } ?>>COMPLAINT STATUS</a></li>
-                                        
+                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint01.php"<?php }else{?> onclick="fun2()"<?php } ?>>COMPLAINT FORM</a></li>
+                                        <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint02.php"<?php }else{ ?> onclick="fun2()"<?php } ?>>COMPLAINT STATUS</a></li>
+                                        <script >
+                                            function fun2()
+                                            {
+                                                window.alert("Sorry,you can only see this after your admission in hostel gets confirm!");
+                                            }
+                                        </script>
                                     </ul>
                                 </li>
                                 <li><a href="notice.php">NOTICE</a></li>
