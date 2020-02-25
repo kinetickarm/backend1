@@ -1,5 +1,6 @@
 <?php session_start(); 
 include 'dbconnection1.php';
+ error_reporting(E_ALL | E_WARNING | E_PARSE);
 //$email_id = $_POST['email_id'];
 //$_SESSION["email_id"] = $email_id;
 //echo "Email:".$_SESSION["email_id"];
@@ -157,7 +158,166 @@ include 'dbconnection1.php';
 
         <!--================Header Area =================-->
      
-        <?php include 'header_admin.php' ;?>
+        <header class="main_header_area tp_header_area" >
+            <div class="header_top_logo" >
+                <div class="container" >
+                    <div class="header_top_l_inner" >
+                        <div class="h_left_text">
+                            <a href="#"><img src="img/icon/phone-icon.png" alt="">1800 456 7890</a>
+                           
+                        </div>
+
+                                       
+                                    
+                        <!-- <div class="h_middle_text"> -->
+                            <!-- <div class="h_middle_text2"> -->
+                            <!-- <a href="#"><img src="img/logo.png" alt=""></a> -->
+                            <!-- <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
+                        </div> -->
+
+                         <div>
+
+                                <a class="navbar-brand1" href="#" style="">
+                                <img src="img/logo.png" alt="">
+                            
+                            </a>
+                        </div>
+                           
+                            <div class="resort_title1 ">
+                                
+                            
+                               <!--  <?php echo $_SESSION['s']; ?> -->
+                                <h2 ><span style="color: #039287">HOSTEL <span style="color: #039287;">MANAGEMENT</span></span></h2>
+                            </div>
+                             
+                        <div class="h_right_text">
+                            <?php if(isset($_SESSION["email"])){ ?>
+                            <a class="book_now_btn" href="logout.php">LOGOUT</a>
+                        <?php }
+                        else {?>
+                            <a class="book_now_btn" href="login-07.php">LOGIN</a> <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle_menu_area">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span style="background-color: #039287;" class="icon-bar"></span>
+                                <span style="background-color: #039287;" class="icon-bar"></span>
+                                <span style="background-color: #039287;" class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">
+                                <!--  <img src="img/logo.png" alt=""> 
+                                <img src="img/logo-sticky.png" alt="">  -->
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="home.php">HOME</a></li>
+                               <!--  <li class="dropdown submenu active">
+                                    <a href="home.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="index.html">Home Page 1</a></li>
+                                        <li><a href="index-2.html">Home Page 2</a></li>
+                                        <li><a href="index-3.html">Home Page 3</a></li>
+                                        <li><a href="index-4.html">Home Page 4</a></li>
+                                    </ul>
+                                </li> -->
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="manage_rounds.php">MANAGE ROUNDS</a></li>
+                                        <li><a href="application_table.php">NEW APPLICATIONS</a></li>
+                                        <li><a href="approved_table.php">APPROVED APPLICATIONS</a></li>
+                                        <li><a href="rejected_table.php">REJECTED APPLICATION</a></li>
+                                        <li><a href="roomallocation_table_admin.php">ROOM ALLOCATION</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="intake_branch_sem.php">INTAKE</a></li>
+                                
+                                <!-- <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                                   <!--  <ul class="dropdown-menu">
+                                        <li><a href="aminities.html">Aminities</a></li>
+                                        <li><a href="search.html">Search</a></li>
+                                        <li class="dropdown submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="event.html">-  Event List</a></li>
+                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
+                                                <li><a href="event-details.html">-  Event Single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
+                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
+                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="restaurant.html">Our Reataurant</a></li>
+                                        <li><a href="spa.html">Spa & Relax</a></li>
+                                        <li><a href="activities.html">Activities</a></li>
+                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
+                                        <li><a href="404.html">404 Error</a></li>
+                                    </ul> -->
+                                </li>
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="complaint_admin01.php">NEW COMPLAINTS</a></li>
+                                        <li><a href="complaint_admin03.php">PAST COMPLAINTS</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="notice_admin01.php">UPLOAD NOTICE</a></li>
+                                        <li><a href="notice_admin02.php">UPLOADED NOTICE</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li><a href="finally_allocated.php" style="color: white">STUDENTS</a></li>
+                                <!-- <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                                    <!-- <ul class="dropdown-menu">
+                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
+                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
+                                        <li><a href="blog.html">Blog without side bar</a></li>
+                                        <li><a href="blog-details.html">Blog details</a></li>
+                                    </ul> -->
+                                
+                                <!--<li><a href="notice.php">NOTICE</a></li>-->
+                                <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
+                                <!--<li><a href="editprofile_page.php">PROFILE</a></li>-->
+
+                               <!-- <ul class="nav navbar-nav navbar-right">
+                                <!-- <li class="search_dropdown">
+                                    <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
+                                </li> -->
+                                <!--<li class="book_btn">
+                                    <?php if(isset($_SESSION["email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGOUT</a>"; } 
+                                          else{
+                                            echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGIN</a>";
+                                          }  
+                                    ?>
+                                  <a class="book_now_btn" href="#">LOGIN</a> -->
+                            <!--    </li>
+                            </ul>
+
+                                <!-- <li><a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a></li> -->
+                            </ul>
+                        </div>
+        </header>
         <!--================Header Area =================-->
         
         <!--================Slider Area =================-->
@@ -342,13 +502,69 @@ include 'dbconnection1.php';
         <!--================End Slider Area =================-->
         
         <!--================Introduction Box Area =================-->
-        
+        <section class="introduction_box_area">
+            <div class="container">
+                <div class="main_big_title">
+                    <h2>Introduction <span>of Our Web</span></h2>
+                    <h6>Hostel Management System is a web based application which provides a platform for managing various services/activities related to the hostel.
+                    </h6>
+                    <!-- <h6>VGEC is Government engineering college situted in Chandkheda,Gandhinagar</h6> -->
+                    <!-- <p>There are 9 branch in VGEC & around 3000 students are studying. Among them approx 800 students are from out of city <br> So for that there is need of Hostel for these students. As well as good management of Hostel is also mandatory.,<br>So our web is online platform to manage hostel easily & efficiently</p> -->
+                    <p>this system is  designed to provide ease and efficiency in the admission process.  All the process of admission like filling form, uploading documents, documents verification, merit display and room allocation can be done online through our system. Our system also provides other management features such as post complaints/query, fee payment, news letter, help desk, etc.
+                    </p>
+                    <br>
+                    <h4 style="color: #757575; font-size: 20px;">There are 4 main advantages to use our web for managing hostel</h4>
+                </div>
+                <div class="row introduction_box">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="introduction_item">
+                           <!--  <div class="intro_img">
+                                <i class="flaticon-toaster"></i>
+                            </div> -->
+                            <a href="#"><h4>Less Physical Work</h4></a>
+                            <p>All processes like admission,fees payment,complaint are done through online platform, So physical work of both student & caretaker are reduced </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="introduction_item">
+                           <!--  <div class="intro_img">
+                                <i class="flaticon-wifi"></i>
+                            </div> -->
+                            <a href="#"><h4>Quick Updation</h4></a>
+                            <p>There is no need of paper work here is data can be updated easily & quickly via online platform<br><br><br><br></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="introduction_item">
+                            <!-- <div class="intro_img">
+                                <i class="flaticon-taxi"></i>
+                            </div> -->
+                            <a href="#"><h4>Less Human Error</h4></a>
+                            <p>Main tasks of Hostel are done through online platform. So there is very less chance of Human error<br><br><br><br></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="introduction_item">
+                           <!--  <div class="intro_img">
+                                <i class="flaticon-shield"></i>
+                            </div> -->
+                            <a href="#"><h4>Data Consistency</h4></a>
+                            <p>All students data is stored in online databases So data consistency is maintained & Admin can see data anytime. <br><br><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--================End Introduction Box Area =================-->
-
-        <!--================End About us Area =================-->
+        <!--================About us Area =================-->
+      <!--  --> <!--================End About us Area =================-->
         
         <!--================Facilities Area =================-->
-        
+<!--         <section class="choose_resort_area">
+            <div class="container">
+                <div class="center_w_title">
+                    <h2>Some <span>Facilities</span> of our Hostel </h2>
+                -->
         <!--================End Facilities Area =================-->
         
         <!--================Explor Room Area =================-->
@@ -650,7 +866,114 @@ include 'dbconnection1.php';
         <!--================End Fun Fact Area =================-->
         
         <!--================Footer Area =================-->
-         <?php include 'footer_admin.php'; ?>
+
+         <footer class="footer_area">
+            <div class="footer_widget_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6">
+                            <aside class="f_widget about_widget">
+                                <!-- <div class="h_middle_text2">
+                             <a href="#"><img src="img/logo.png" alt=""></a> 
+                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
+                        </div> --> 
+                        <div>
+                                <a class="navbar-brand" href="#">
+                                <img src="img/logo.png" alt="" height="70px" >
+                               
+                            </a>
+                           
+                            <div class="resort_title1">
+                                <h2 style="padding-top: 20px;"><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
+                            </div>
+                             </div>
+                                <div class="ab_wd_list">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <i class="fa fa-map-marker"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </div>
+                                        <div class="media-body">
+                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="book_now_area">
+                                    <a class="book_now_btn" href="#">Login</a>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-md-4 col-xs-6">
+                            <aside class="f_widget link_widget">
+                                <div class="f_title">
+                                    <h3>Useful Links</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">- Sign up</a></li>
+                                    <li><a href="#">- Admission process</a></li>
+                                    <li><a href="#">-  Gallery</a></li>
+                                    <li><a href="help.html">-  Faq’s </a></li>
+                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+                        <!-- <div class="col-md-2 col-xs-6">
+                            <aside class="f_widget link_widget">
+                                <div class="f_title">
+                                    <h3>our services</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="#">-  Food & Drinks</a></li>
+                                    <li><a href="#">-  Rooms</a></li>
+                                    <li><a href="#">-  Amenities</a></li>
+                                    <li><a href="#">-  Spa & Gym</a></li>
+                                    <li><a href="#">-  Hill Tours</a></li>
+                                </ul>
+                            </aside>
+                        </div> -->
+                        <div class="col-md-4 col-xs-6">
+                                
+
+                                <div class="f_title">
+                                     <h3 style="margin-right:10px; ">Location</h3>
+                                    
+                                
+                                   
+                                </div> 
+                                
+                            <!-- <aside class="f_widget instagram_widget">
+                                <div class="f_title">
+                                    <h3>Instagram</h3>
+                                </div>
+                                <ul class="instagram_list" id="instafeed"></ul>
+                            </aside> -->
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="300px" style=" border:5; border-radius: 4px; opacity: .5;" allowfullscreen=""></iframe>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_copyright_area">
+                <div class="container">
+                    <div class="pull-left">
+                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
+                    </div>
+                    <div class="pull-right">
+                        <h4>Created by: <a href="#">CE Dept.</a></h4>
+                    </div>
+                </div>
+            </div>
+        </footer>
+       
+
         <!--================End Footer Area =================-->
         
         <!--================Search Box Area =================-->
