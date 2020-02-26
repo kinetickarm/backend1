@@ -439,14 +439,14 @@
     <thead>
     <tr>
       <th rowspan="2">Branch</th>
-      <th colspan="5">Intake</th>
+      <th colspan="4">Intake</th>
     </tr>
     <tr>
       
-      <th>General</th>
-      <th>ST</th>
-      <th>SC</th>
-      <th>OBC</th>
+      <th>Sem-I</th>
+      <th>SEm-III</th>
+      <th>Sem-v</th>
+      <!--<th>OBC</th>-->
       <th>Total</th>
     </tr>
   </thead>
@@ -457,7 +457,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+ 
 </tr>
   <tr>
     <td>Computer</td>
@@ -465,7 +465,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+ 
 </tr>
   <tr>
     <td>Civil</td>
@@ -473,7 +473,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+  
 </tr>
 <tr>
     <td>Electrical</td>
@@ -481,7 +481,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+
 </tr>
 <tr>
     <td>Electrical & communication</td>
@@ -489,7 +489,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+ 
 </tr>
 <tr>
     <td>Information Technology</td>
@@ -497,7 +497,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+ 
 </tr>
 <tr>
     <td>Instrumentation & Control</td>
@@ -505,7 +505,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+  
 </tr>
 <tr>
     <td>Mechanical</td>
@@ -513,7 +513,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+
 </tr>
 <tr>
     <td>Power Electronics</td>
@@ -521,7 +521,7 @@
   <td>20</td>
   <td>30</td>
   <td>40</td>
-  <td>50</td>
+
 </tr>
 
 </tbody>

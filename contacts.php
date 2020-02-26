@@ -493,23 +493,46 @@
       <tr>
         <th>Name</th>
         <th>Designation</th>
+        <th>Hostel</th>
         <th>Phone number</th>
+
       </tr>
     </thead>
     <tbody>
   <tr>
     <td>Abc</td>
     <td>Student Co-ordinator</td> 
+    <td>1</td>
+  <td>675465868548</td>
+</tr>
+<tr>
+    <td>Abc</td>
+    <td>Student Co-ordinator</td> 
+    <td>1</td>
+  <td>675465868548</td>
+</tr>
+<tr>
+    <td>Abc</td>
+    <td>Student Co-ordinator</td> 
+    <td>2</td>
+  <td>675465868548</td>
+</tr>
+<tr>
+    <td>Abc</td>
+    <td>Student Co-ordinator</td> 
+    <td>2</td>
   <td>675465868548</td>
 </tr>
   <tr>
     <td>Abc</td>
     <td>House keeping</td>
+    <td>Both</td>
   <td>657465455</td>
 </tr>
   <tr>
     <td>Abc</td>
     <td>Electrician</td>
+    <td>Both</td>
   <td>675485748
 </td>
 </tr>
