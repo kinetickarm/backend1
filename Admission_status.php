@@ -9,8 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-       <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
-
+         <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -101,8 +100,8 @@
                 <div class="banner_inner_content">
                     <h3>Admission status</h3>
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="search.html">Admissions</a></li>
+                        <li class="active"><a href="home.php">Home</a></li>
+                        <li><a href="Admission_application.php">Admissions</a></li>
                     </ul>
                 </div>
             </div>
@@ -116,6 +115,7 @@
                     <h2>Admission&nbsp<span>Status</span></h2>
                     
                     <?php 
+                    
                         $email=$_SESSION['email'];
                         $run1=mysqli_query($connection1,"select email_id from admission where email_id='$email'");
                         if(mysqli_num_rows($run1)==1)

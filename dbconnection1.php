@@ -12,10 +12,9 @@ $connection1 = mysqli_connect($server,$username,$password,'HostelManagement');
 
 
 if($connection1){
-	echo "2nd conected!!<br>";
+	//echo "2nd conected!!<br>";
 }
 else{
-	echo "2nd failed!!";
+	//echo "2nd failed!!";
 }
-?>
 ?>

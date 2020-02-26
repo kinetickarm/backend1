@@ -9,9 +9,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>HillTown Resort</title>
+        <title>Hostel Management</title>
 
         <!-- Icon css link -->
         <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -150,8 +150,8 @@
                 <div class="banner_inner_content">
                     <h3>Upload Documents</h3>
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="room-list.html">Admission</a></li>
+                        <li class="active"><a href="home.php">Home</a></li>
+                        <li><a href="upload_documents.php">Admission</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,15 +170,15 @@ $target_dir = "documents/";
 $target_file = $target_dir.basename($_FILES[$file_name]["name"]);//base name gives file name with extension
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));//path info function gives info about path and pathinfo_extension gives only extension of file
-echo $imageFileType;
+//echo $imageFileType;
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES[$file_name]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
+        //echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;  
     } else {
-        echo "File is not an image.";
+        echo "<script>alert('file is not a image');</script>";
         $uploadOk = 0;
     }
     echo "<br>";
@@ -199,14 +199,16 @@ if(isset($_POST["submit"])) {
 
 // Check file size
 if ($_FILES[$file_name]["size"] > 50000000){//size is in byte:500000=500kb 
-    echo "Sorry, your file is too large.";
+  echo "<script>alert('Sorry, your file is too large.');</script>";
+    
     $uploadOk = 0;
     echo "<br>";
 }
 // Allow certain file formats
 if(!($imageFileType == "jpg" or $imageFileType == "png" or $imageFileType == "jpeg"
 or $imageFileType == "gif" )) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  if (!($imageFileType ==""))
+    echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed')</script>";
     $uploadOk = 0;
     echo "<br>";
 }
@@ -254,10 +256,10 @@ if(upload_image('photo',$connection1) and upload_image('aadhar_card',$connection
     $insert_image = "insert into documents(id,photo,aadhar_card,marksheet,feereciept) values('$id','$photo','$aadhar_card','$marksheet','$feereciept')";
     $run = mysqli_query($connection1,$insert_image);
     if($run){
-        echo "<br>image inserted in database<br>";
+        echo "<br><script>alert('image inserted in database');</script><br>";
     }
     else{
-        echo "<br>image can't inserted in database<br>";
+        echo "<script>alert('image can't inserted in database plaese follow rules for upload documents and try agian');</script?<br>";
     }
 
 }
@@ -360,119 +362,7 @@ if(upload_image('photo',$connection1) and upload_image('aadhar_card',$connection
         <!--================End Room List Area =================-->
         
         <!--================Footer Area =================-->
-         <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <!-- <div class="h_middle_text2">
-                             <a href="#"><img src="img/logo.png" alt=""></a> 
-                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
-                        </div> --> 
-                        <div>
-                                <a class="navbar-brand1" href="#" style="height: 85px;
-    line-height: 50px;
-    padding: 0px 0px 0px 10px;">
-                                <img src="img/logo.png" alt="" style="display: inline-block;;
-    height: 48px;
-    margin-top: 27px; ">
-                            
-                            </a>
-                        
-                           
-                            <div class="resort_title1 ">
-                                
-                            
-                            
-                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                        </div>
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </div>
-                                        <div class="media-body">
-                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Useful Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">- Sign up</a></li>
-                                    <li><a href="#">- Admission process</a></li>
-                                    <li><a href="#">-  Gallery</a></li>
-                                    <li><a href="help.html">-  Faq’s </a></li>
-                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <!-- <div class="col-md-2 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div> -->
-                        <div class="col-md-4 col-xs-6">
-                                
-
-                                <div class="f_title">
-                                     <h3 style="margin-right:10px; ">Location</h3>
-                                    
-                                
-                                   
-                                </div> 
-                                
-                            <!-- <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside> -->
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="80%"  style=" border:5; border-radius: 7px; opacity: .7;" allowfullscreen=""></iframe>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">CE Dept.</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include 'footer_student.php' ;?>
         <!--================End Footer Area =================-->
         
         

@@ -1,6 +1,7 @@
-<?php include 'dbconnection1.php'; 
+<?php 
 session_start();
-?>
+include 'dbconnection1.php';
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -43,7 +44,22 @@ session_start();
         <![endif]-->
 
         <style type="text/css">
- 
+            .resort_title1 h2 {
+  font-size: 27px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: .96px;
+  text-transform: uppercase;
+  color: #242424;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.resort_title1 h2 span {
+  color: #ffb606;
+
+  padding-left: 20px;
+}
         .h_middle_text2 {
                  
                 font-family: "Montserrat", sans-serif;
@@ -85,7 +101,7 @@ session_start();
   padding-left: 20px;
 }
 
-           #application tr:nth-child(even){background-color: #f2f2f2;}
+            #application tr:nth-child(even){background-color: #f2f2f2;}
 
             #application tr:hover {background-color: #ddd;}
 
@@ -93,7 +109,7 @@ session_start();
                 padding: 8px;
                 font-size: 20px;
                 border-collapse: none;
-                border:1px solid grey;
+                border:0.2px solid white    ;
                 text-align: center;
                 font-family: "Montserrat", sans-serif;
 
@@ -111,12 +127,14 @@ session_start();
 
             #application td{
                 font-size: 15px;
-                color
+                color:black;
+                
             }
 
             #application th{
                 background-color: #039287;
                 color: white;
+
             }
             select{
                 background-color: #e3e4fa;
@@ -160,10 +178,10 @@ session_start();
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>Room Allocation</h3>
+                    <h3>Intake</h3>
                     <ul>
-                        <li class="active"><a href="home_admin.php">Home</a></li>
-                        <li><a href="roomallocation_table_admin.php">Admission</a></li>
+                        <li class="active"><a href="">Home</a></li>
+                        <li><a href="">Intake</a></li>
                     </ul>
                 </div>
             </div>
@@ -172,13 +190,153 @@ session_start();
         
         <!--================Room List Area =================-->
        <section class="room_details_area">
-         <?php  //code to update intakes of specific branch & sem
+            <div class="container">
+                <div class="main_big_title">
+                    <h2>BRANCH & SEM Wise&nbsp<span>INTAKE</span></h2>
+                    
+                       </div>
+                     <?php
+                    $_SESSION['id']=$_POST['app_id'];
+                        $_SESSION['name']=$_POST['name1'];
+                        $_SESSION['branch']=$_POST['branch1'];
+                        $_SESSION['sem']=$_POST['sem1'];
+                        $_SESSION['rank']=$_POST['rank1'];
+
+                    ?>   
+                    <div class="details">   
+                    <form target=""  method="POST">
+                    <table id="search_area" align="left" style="padding-bottom: 20px;color: black;" class="container-fluid">
+                        <br><br>
+                        <!-- <tr>
+                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Application Id:</h4></td>
+
+                        <td style="padding-bottom: 10px;">
+                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id']; } ?>"></td>
+                        </tr>
+
+                        <tr>
+                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Name:</h4></td>
+
+                        <td style="padding-bottom: 10px;">
+                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['name'])){echo $_SESSION['name']; } ?>"></td>
+                        </tr> -->
+
+
+                        <tr>
+                        <td style="padding-bottom: 10px;">
+                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Branch:</h4></td>
+                        <td style="padding-bottom: 10px;">
+                        <select name="branch1" class="form-control form-group" style="color: black;" value="">
+                            <option value=""><?php if(isset($_SESSION['branch'])){echo $_SESSION['branch']; } if(!isset($_SESSION['branch'])){echo "Select branch"; } ?></option>
+                            <option value="Computer">Computer</option>
+                            <option value="IT">IT</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Chemical">Chemical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="IC">IC</option>
+                            <option value="EC">EC</option>
+                            <option value="PE">PE</option>
+                      </select>
+
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td style="padding-bottom: 10px;">
+                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Sem:</h4></td>
+                        <td style="padding-bottom: 10px;">
+                        <select name="sem1" class="form-control form-group" style="color:black;">
+                                <option value=""><?php if(isset($_SESSION['sem'])){echo $_SESSION['sem']; }if(!isset($_SESSION['sem'])){echo "Select sem"; }?></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                       </select>
+
+                        </td>
+                        </tr>
+                        <!-- <tr>
+                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK or CPI:</h4></td>
+
+                        <td style="padding-bottom: 10px;">
+                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
+                        </tr>
+                    -->
+                        
+                        <tr>
+                            <td></td>
+                        <td style="padding-bottom: 10px;">
+                        
+                            <button type="submit" name="submit" class="form-group" style="color: black;">Submit</button>
+                            <button type="submit" name="reset" class="form-group" style="color: black;">Clear</button>
+                        
+                        </td>
+                        </tr>
+                        </table>
+                        <br><br><br>
+                         </form>
+
+
+                        <table align="center" id="application" style="width: 100%;">
+                        <tr>
+                        <th style="border:0px solid;"></th><th style="border:0px solid;"></th><th style="border:0px solid;" ></th>
+                      
+                        <th colspan="6">Applications</th>
+                        <th colspan="2">INTAKE</th></tr>
+                        <tr>
+                          <th style="border:0px solid;">No.</th>
+                        <th style="border:0px solid;">BRANCH</th>
+                        <th style="border:0px solid;">SEM</th>
+                        <th>PENDING</th>
+                        <th>APPROVED</th>
+                        <th>REJECTED</th>
+                        <th>TEMPORARY ALLOCATED</th>
+                        <th>ALLOCATED</th>
+                        <th>TOTAL</th>
+                        
+                        <th>LEFT</th>
+                        <th>TOTAL</th>
+                        
+                        
+                        <!-- <th>waiting</th> -->
+                        
+                        </tr>
+                        
+
+                        <?php                                                                                                       
+                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+
+                        
+
+                       /* if(date("Y-m-d")>$_SESSION['_edate_round']) {
+                            echo "another round started";
+                            if($raw=mysqli_fetch_array(mysqli_query($connection1,"select * from branch_intake"),MYSQLI_ASSOC)){
+                                $new_approved=$raw['approved'];
+                                $total=$raw['total'];
+                                //$allocated=$raw['allocated'];
+                                
+                                if(mysqli_query($connection1,"update branch_intake set approved='$new_approved'"))
+                                    echo "updated"; 
+
+                            }
+                        }*/
+                     $ind=0;   
+                     /*while($branchh=mysqli_fetch_array(mysqli_query($connection1,"select branch from branch_intake"),MYSQLI_ASSOC)){*/
+
+
+                         //code to update intakes of specific branch & sem
+                          //code to update intakes of specific branch & sem
                          $branch_array=array("IC","IT");
                         for($i=0;$i<2;$i++){
                             for($j=1;$j<4;$j+=2){
                                 $sem = $j;
                         $branch = $branch_array[$i];
-                        //echo $branch;
+                        
                      
                       $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
                         
@@ -224,288 +382,68 @@ session_start();
                         $total_applications=$raw2['count(*)'];
                         mysqli_query($connection1,"update branch_intake set total_applications ='$total_applications' where branch='$branch' and sem='$sem'");//echo "up";
                     }
-                    }?>
-            <div class="container">
-                <div class="main_big_title">
-                    <h2>Room&nbsp<span>Allocation</span></h2>
-                    <br>
-                    <!-- <h3>APPROVED APPLICATIONS</h3> -->
-                    <?php
-                   error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-                    $_SESSION['id']=$_POST['app_id'];
-                        $_SESSION['name']=$_POST['name1'];
-                        $_SESSION['branch']=$_POST['branch1'];
-                        $_SESSION['sem']=$_POST['sem1'];
-                        $_SESSION['rank']=$_POST['rank1'];
-
-                    ?>
-                       </div>
-                    <div class="details">   
-                    <form target=""  method="POST">
-                    <table id="search_area" align="left" style="padding-bottom: 20px;color: black;" class="container-fluid">
-                        <br><br>
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Application Id:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id']; } ?>"></td>
-                        </tr>
-
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Name:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['name'])){echo $_SESSION['name']; } ?>"></td>
-                        </tr>
-
-
-                        <tr>
-                        <td style="padding-bottom: 10px;">
-                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Branch:</h4></td>
-                        <td style="padding-bottom: 10px;">
-                        <select name="branch1" class="form-control form-group" style="color: black;" value="">
-                            <option value=""><?php if(isset($_SESSION['branch'])){echo $_SESSION['branch']; } if(!isset($_SESSION['branch'])){echo "Select branch"; } ?></option>
-                            <option value="Computer">Computer</option>
-                            <option value="IT">IT</option>
-                            <option value="Mechanical">Mechanical</option>
-                            <option value="Electrical">Electrical</option>
-                            <option value="Chemical">Chemical</option>
-                            <option value="Civil">Civil</option>
-                            <option value="IC">IC</option>
-                            <option value="EC">EC</option>
-                            <option value="PE">PE</option>
-                      </select>
-
-                        </td>
-                        </tr>
-
-                        <tr>
-                        <td style="padding-bottom: 10px;">
-                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Sem:</h4></td>
-                        <td style="padding-bottom: 10px;">
-                        <select name="sem1" class="form-control form-group" style="color:black;">
-                                <option value=""><?php if(isset($_SESSION['sem'])){echo $_SESSION['sem']; }if(!isset($_SESSION['sem'])){echo "Select sem"; }?></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                       </select>
-
-                        </td>
-                        </tr>
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
-                        </tr>
-                   
-                        
-                        <tr>
-                            <td></td>
-                        <td style="padding-bottom: 10px;">
-                        
-                            <button type="submit" name="submit" class="form-group" style="color: black;">Submit</button>
-                            <button type="submit" name="reset" class="form-group" style="color: black;">Clear</button>
-                        
-                        </td>
-                        </tr>
-                        </table>
-                        <br><br><br>
-                         </form>
-                    <br><br>
-
-
-
-
-                        <table align="center" id="application">
-                        <tr>
-                        <th>NO</th>
-                        <th>Timestamp</th>
-                        <th>Application id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Branch</th>
-                        <th>Sem</th>
-                        
-                        <th>View fees reciept</th>
-                        <th>Action</th>
-                        <th>Room No.</th>
-                        <th>Enter remarks & Reject</th>
-
-                        </tr>
-
-                        <?php  
-                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-                        
-                        $room_no = 0;
-                        $id = $_POST['id'];
-                        $room_no = $_POST['room_no'];
-                        
-                        $action2 = $_POST['action2'];
-
-                        /*$q = "select * from admission where id = '$id'";
-                        $q_run = mysqli_query($connection1,$q);
-                        if($result = mysqli_fetch_array($q_run,MYSQLI_ASSOC)){
-                            $name = $result['name'];
-                            $branch = $result['branch'];
-                            $sem =  $result['sem'];
-                            $rank = $result['rank'];
-                            
-                        }
-                        echo $name;*/
-                         $left = $_POST['left'];
-                         
-                       
-                        
-                        if($action2 == "temp_allocated"){
-                           
-                        if(mysqli_query($connection1,"update admission set room_no = '$room_no' ,action2 ='temp_allocated' where id = '$id'"))  {//echo "<br>temp allocated block<br>";
-                      
-                        echo "room_no:".$room_no;
-                        if($left-- >0){
-                        mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'"); //"temp allocated updated";  
                     }
-                         }
-                         }
+                            
 
-                        else if($action2 == "deallocated"){
-                            if(mysqli_query($connection1,"update admission set room_no = 0 ,action2 = 'not allocated' where id = '$id'")) //echo "deallocated block"; 
-
-                            if($left++ <3){
-                                echo "left:".$left."room_no".$room_no;
-                                mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'"); //echo "deallocated updated";
-                            }
-                        }
-
-                        else if($action2 == "rejected"){
-                            $remarks = $_POST['remarks'];
-                            mysqli_query($connection1,"update admission set room_no = 0 ,action2 = 'rejected',remarks = '$remarks' where id = '$id'"); //echo "runnnnnnnn";
-                        }  
-
-                        else if($action2 = "finally_allocated"){
-                            if(mysqli_query($connection1,"update admission set action2 = 'finally_allocated' where id = '$id'"))
-                            if($left-- >0){
-                               mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'"); //echo "finally allocated updated";  
-                           }
-                        }  
-                        
-                        $no=0;
-                        
-
-                        $id1  = $_POST['app_id'];
-                        $name1 = $_POST['name1'];
+                              
+                            
+                       /* $id1  = $_POST['app_id'];
+                        $name1 = $_POST['name1'];*/
                         $branch1 = $_POST['branch1'];
                         $sem1 =$_POST['sem1'];
-                        $rank1 = $_POST['rank1'];
+                        /*$rank1 = $_POST['rank1']*/;
 
                         if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='1' and fees='1' and (action2='temp_allocated' or action2='not allocated') ";
+                             $select_query = "select * from branch_intake where sem = '$sem1' and branch='$branch1'";
                         }
 
-                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" || $rank1 != "") {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='1' and fees='1' and (action2='temp_allocated' or action2='not allocated') ";
-                            # code...
+                        else if($sem1 != "" ){
+                             $select_query = "select * from branch_intake where sem = '$sem1'";
                         }
+
+                        else if($branch1 != "") {
+                             $select_query = "select * from branch_intake where branch='$branch1'";
+                        }
+
+                        /*else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" || $rank1 != "") {
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and (action='2' or action2='rejected')";
+                            # code...
+                        }*/
                         else{
-                            $select_query = "select * from admission where action='1' and fees='1' and (action2='temp_allocated' or action2='not allocated') ";
+                            $select_query = "select * from branch_intake";
                         }
 
                         
                         //mysqli_query($dbconnection1,"update admission set remarks='' where action='1'");
 
                         $select_query_run= mysqli_query($connection1,$select_query);
-                        
+                        $sr=1;
                         while ($result = mysqli_fetch_array($select_query_run,MYSQLI_ASSOC)){
-                            # code...
-                        
-                        ?>
-                        <tr>
-                        	<td><?php echo ++$no; ?></td>
-                            <td><?php echo $result['timestamp']?></td>
-                            <td><?php echo $result['id']; ?></td>
-                            <td><?php echo $result['name']; ?></td>
-                            <td><?php echo $result['email_id']; ?></td>
-                            <td><?php echo $result['branch']; ?></td>
-                            <td><?php echo $result['sem']; ?></td>
+                            $branch = $result['branch'];
                            
+                            ?>
                             
-                            <td><form method="post" action="hostel_fees_reciept.php"><button type="submit" value="">Click here</button><input type="hidden" name="id" value="<?php echo $result['id']; ?>"></form></td>
-                            <td>
-                                <script >
-                                   function deallocated(){
-                                        alert("First deallocate that room!");
-                                    }
-                                    function lock(){
-                                        alert("fisrt allocate room");
-                                    }
-                                    function outofdate(){
-                                        alert("You can't allocate room please refer rounds shedule and allocate room in proper dates");
-                                    }
-                                </script>
-                                
-                                <?php 
+                        <tr>
+                        	<td><?php echo $sr++; ?></td>
+                            <td><?php echo $result['branch'] ?></td>
+                            <td><?php echo $result['sem']; ?></td>
+                            <td><?php echo $result['pending']; ?></td>
+                            <td><?php echo $result['approved']; ?></td>
+                            <td><?php echo $result['rejected']; ?></td>
+                            <td><?php echo $result['temp_allocated']; ?></td>
+                            <td><?php echo $result['allocated']; ?></td>
+                            <td><?php echo $result['total_applications']; ?></td>
+                            <td><?php echo $result['intake']; ?></td>
+                            <td><?php echo $result['total']; ?></td>
+                          <!--   <td><?php echo $result['waiting_intake']; ?></td> -->
+                            
+                         </tr>   
+                     <?php } 
+                 ?>
+                 </table>
 
+                            
 
-            if($detail=mysqli_fetch_array(mysqli_query($connection1,"select * from rounds order by round desc"),MYSQLI_ASSOC)){
-                //echo "runn";
-            $round=$detail['round'];
-            $sdate_application=$detail['sdate_application'];
-            $edate_application=$detail['edate_application'];
-            $sdate_fees=$detail['sdate_fees'];
-            $edate_fees=$detail['edate_fees'];
-            $edate_round=$detail['edate_round'];
-            $decription=$detail['decription'];
-
-                                if($result['room_no'] > 0 ){ ?>
-
-                                 <button type="" onclick="deallocated()" >Allocate</button> 
-                                 <?php }
-                                 else if (!(date("Y-m-d")>$edate_fees and date("Y-m-d")<=$edate_round)) {
-                                     echo "<button type='' onclick='outofdate()'' >Allocate</button> ";
-                                     } 
-                                 else {
-                                  ?>  
-                                  <form action="roomselection_admin.php" method="post">
-                                 <button type="submit">Allocate</button> <?php } }?>
-                                 <input type="hidden" name="id" value="<?php echo $result['id'];?>">  
-                                 
-                                </form>
-
-                                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post"><button type="submit">Deallocate</button>
-                                 <input type="hidden" name="id" value="<?php echo $result['id'];?>">
-                                 <input type="hidden" name="action2" value= <?php echo "deallocated"; ?>> 
-                                 <input type="hidden" name="room_no" value="<?php echo $result['room_no']; ?>"> 
-                                 
-                                </form>
-                                <?php if($result['room_no'] == 0){ ?>
-                                <button type="" onclick="lock()" style="background-color: blue; color: white; opacity: .5; " >LOCK</button><?php } else{  ?>   
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-                                <button style="background-color: blue; color: white;">LOCK</button><?php } ?>
-                                <input type="hidden" name="id" value="<?php echo $result['id'];?>"> 
-                                <input type="hidden" name="action" value="finally_allocated">
-                                <input type="hidden" name="room_no" value="<?php echo $result['room_no']; ?>">
-
-                            </form>
-                            </td>
-                                
-                            <td><?php echo $result['room_no']; ?></td> 
-                       
-                            <td>
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-                                <input type="text" name="remarks" style="background: transparent;border: none; border-bottom: 2px solid; margin-bottom: 4px;width: 100px;">
-                                <button style="background-color: red; color: white;">Reject</button>
-                                <input type="hidden" name="id" value="<?php echo $result['id'];?>"> 
-                                <input type="hidden" name="action2" value="rejected">
-                                </form></td>   
-                        </tr>
-                        <?php } ?>
-
-                    </table>
                 
             </div>
             </div>
@@ -514,7 +452,7 @@ session_start();
         <!--================End Room List Area =================-->
         
         <!--================Footer Area =================-->
-          <?php include 'footer_admin.php'; ?>
+         <?php include 'footer_admin.php'; ?>
         <!--================End Footer Area =================-->
         
         

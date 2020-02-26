@@ -1,4 +1,7 @@
-<?php include 'dbconnection1.php' ?>
+<?php 
+session_start();
+include 'dbconnection1.php';
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -8,7 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -151,246 +154,62 @@
     <body>
 
         <!--================Header Area =================-->
-        <header class="main_header_area" style="background-color: black;">
-            <div class="header_top">
-                <div class="container">
-                    <div class="header_top_inner">
-                        <div class="pull-left">
-                            <a href="#" style="margin-right: 720px;"><i class="fa fa-phone" ></i>+ (1800) 456 7890</a>
-                            <a href="#"><i class="fa fa-envelope-o"></i>hostelmanagement01@gmail.com</a>
-                            
-                        </div>
-                        <!-- <div class="pull-right">
-                            
-                                
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="header_menu">
-                <nav class="navbar navbar-default">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                               <span style="background-color: #039287;" class="icon-bar"></span>
-                                <span style="background-color: #039287;" class="icon-bar"></span>
-                                <span style="background-color: #039287;" class="icon-bar"></span>
-                            </button>
-                           <div>
-                                <a class="navbar-brand" href="#">
-                                <img src="img/logo.png" alt="">
-                                <img src="img/logo-sticky.png" alt="">
-                            </a>
-                           
-                            <div class="resort_title1 ">
-                                <h2><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                             </div>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a href="home.html">HOME</a></li>
-                               <!--  <li class="dropdown submenu active">
-                                    <a href="index-4.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index.html">Home Page 1</a></li>
-                                        <li><a href="index-2.html">Home Page 2</a></li>
-                                        <li><a href="index-3.html">Home Page 3</a></li>
-                                        <li><a href="index-4.html">Home Page 4</a></li>
-                                    </ul>
-                                </li> -->
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="Admission_application.html">APPLICATION</a></li>
-                                        <li><a href="upload_documents.html">UPLOAD DOCUMENTS</a></li>
-                                        <li><a href="Admission_status.html">ADMISSION STATUS</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="fees.html">FEES</a></li>
-                                <!-- <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
-                                   <!--  <ul class="dropdown-menu">
-                                        <li><a href="aminities.html">Aminities</a></li>
-                                        <li><a href="search.html">Search</a></li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="event.html">-  Event List</a></li>
-                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
-                                                <li><a href="event-details.html">-  Event Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
-                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
-                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="restaurant.html">Our Reataurant</a></li>
-                                        <li><a href="spa.html">Spa & Relax</a></li>
-                                        <li><a href="activities.html">Activities</a></li>
-                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                    </ul> -->
-                                </li>
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="complaint01.html">COMPLAINT FORM</a></li>
-                                        <li><a href="complaint02.html">COMPLAINT STATUS</a></li>
-                                        
-                                    </ul>
-                                </li>
-                                <!-- <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
-                                    <!-- <ul class="dropdown-menu">
-                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
-                                        <li><a href="blog.html">Blog without side bar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul> -->
-                                </li>
-                                <li><a href="notice.html">NOTICE</a></li>
-                                <li><a href="help.html">HELP</a></li>
-                                <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
-                                <li><a href="profile.html">PROFILE</a></li>
-
-                                <ul class="nav navbar-nav navbar-right">
-                                <!-- <li class="search_dropdown">
-                                    <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
-                                </li> -->
-                                <li class="book_btn">
-                                    <a class="book_now_btn" href="#">LOGIN</a>
-                                </li>
-                            </ul>
-
-                                <!-- <li><a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a></li> -->
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                  
-<!--                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index.html">Home Page 1</a></li>
-                                        <li><a href="index-2.html">Home Page 2</a></li>
-                                        <li><a href="index-3.html">Home Page 3</a></li>
-                                        <li><a href="index-4.html">Home Page 4</a></li>
-                                    </ul>
-                                </li>
-                                <li class="submenu dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooms <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="room.html">Rooms Grid Style</a></li>
-                                        <li><a href="room-list.html">Rooms List Style</a></li>
-                                        <li><a href="room-details.html">Single Room</a></li>
-                                    </ul>
-                                </li>
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">pages <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="aminities.html">Aminities</a></li>
-                                        <li><a href="search.html">Search</a></li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="event.html">-  Event List</a></li>
-                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
-                                                <li><a href="event-details.html">-  Event Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
-                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
-                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="restaurant.html">Our Reataurant</a></li>
-                                        <li><a href="spa.html">Spa & Relax</a></li>
-                                        <li><a href="activities.html">Activities</a></li>
-                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                    </ul>
-                                </li>
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
-                                        <li><a href="blog.html">Blog without side bar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="search_dropdown">
-                                    <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
-                                </li>
-                                <li class="book_btn">
-                                    <a class="book_now_btn" href="#">Book now</a>
-                                </li>
-                            </ul>
-                        </div> /.navbar-collapse --> 
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-        </header>
+       <?php include 'header_admin.php'; ?>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>Upload Documents</h3>
+                    <h3>New Applications</h3>
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="room-list.html">Admission</a></li>
+                        <li class="active"><a href="home_admin.php">Home</a></li>
+                        <li><a href="application_table.php">Admission</a></li>
                     </ul>
                 </div>
             </div>
         </section>
         <!--================End Banner Area =================-->
         
+     <?php
+     
+       // echo "fetched";
+
+
+         ?>
+        
+        
         <!--================Room List Area =================-->
        <section class="room_details_area">
-            <div class="container">
+            <div class="container" >
                 <div class="main_big_title">
                     <h2>NEW Admission&nbsp<span>APPLICATIONS</span></h2>
-                    
+                   <?php
+                   error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+                    $_SESSION['id']=$_POST['app_id'];
+                        $_SESSION['name']=$_POST['name1'];
+                        $_SESSION['branch']=$_POST['branch1'];
+                        $_SESSION['sem']=$_POST['sem1'];
+                        $_SESSION['rank']=$_POST['rank1'];
+
+                    ?>
                        </div>
                     <div class="details">   
                     <form target=""  method="POST">
-                    <table id="search_area" align="left" style="padding-bottom: 20px;">
+                    <table id="search_area" align="left" style="padding-bottom: 20px;color: black;" class="container-fluid">
                         <br><br>
                         <tr>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Application Id:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;"></td>
+                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id']; } ?>"></td>
                         </tr>
 
                         <tr>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Name:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;"></td>
+                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['name'])){echo $_SESSION['name']; } ?>"></td>
                         </tr>
 
 
@@ -398,8 +217,8 @@
                         <td style="padding-bottom: 10px;">
                         <h4 style="float: left;font-weight: solid; font-size:20px; ">Branch:</h4></td>
                         <td style="padding-bottom: 10px;">
-                        <select name="branch1">
-                            <option value="">Select Branch</option>
+                        <select name="branch1" class="form-control form-group" style="color: black;" value="">
+                            <option value=""><?php if(isset($_SESSION['branch'])){echo $_SESSION['branch']; } if(!isset($_SESSION['branch'])){echo "Select branch"; } ?></option>
                             <option value="Computer">Computer</option>
                             <option value="IT">IT</option>
                             <option value="Mechanical">Mechanical</option>
@@ -418,8 +237,8 @@
                         <td style="padding-bottom: 10px;">
                         <h4 style="float: left;font-weight: solid; font-size:20px; ">Sem:</h4></td>
                         <td style="padding-bottom: 10px;">
-                        <select name="sem1">
-                                <option value="">current sem</option>
+                        <select name="sem1" class="form-control form-group" style="color:black;">
+                                <option value=""><?php if(isset($_SESSION['sem'])){echo $_SESSION['sem']; }if(!isset($_SESSION['sem'])){echo "Select sem"; }?></option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -433,23 +252,25 @@
                         </td>
                         </tr>
                         <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK or CPI:</h4></td>
+                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;"></td>
+                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
                         </tr>
                    
                         
                         <tr>
+                            <td></td>
                         <td style="padding-bottom: 10px;">
                         
-                            <input type="submit" name="submit">
+                            <button type="submit" name="submit" class="form-group" style="color: black;">Submit</button>
+                            <button type="submit" name="reset" class="form-group" style="color: black;">Clear</button>
                         
                         </td>
                         </tr>
                         </table>
                         <br><br><br>
-                    </form>
+                         </form>
                         <br><br><br><br><br><br>
 
 
@@ -462,7 +283,9 @@
                         <th>Email</th>
                         <th>Branch</th>
                         <th>Sem</th>
-                        <th>ACPC RANK or CPI</th>
+                        <!-- <th>INTAKE LEFT</th>
+                        <th>WAITING INTAKE</th> -->
+                        <th>ACPC RANK</th>
                         <th>View Application</th>
                         <th>Action</th>
                         <!-- <th>Remarks</th> -->
@@ -476,8 +299,38 @@
                              $action= substr($var,0,1);
                             $action_id=substr($var,1);
                            
-                            
-                                $action_query = "update admission set action = '$action' where id = '$action_id'";
+
+
+
+
+                           /*if (isset($_SESSION["flag"])) {//to stop repetation in changing in intake
+                              
+                           
+                            if ($action == 1) {
+                                
+                                $branch = $_POST['branch'];
+                                $sem= $_POST['sem'];
+                                if ($result1=mysqli_fetch_array((mysqli_query($connection1,"select intake,waiting_intake from branch_intake where branch='$branch' and sem='$sem'")),MYSQLI_ASSOC)) 
+                                    $intake=$result1['intake'];
+                                    $waiting_intake = $result1['waiting_intake'];
+                                    echo $waiting_intake;
+                                    $prev_table_id = $action_id;
+                                if ($intake>0) {
+                                   $intake--;
+                                
+                                    
+                                if(mysqli_query($connection1,"update branch_intake set intake = $intake where branch='$branch' and sem='$sem'")){echo "updated;";}
+                            }
+                                else if($intake == 0){
+                                    $waiting_intake++;
+                                    
+                                if(mysqli_query($connection1,"update branch_intake set waiting_intake = $waiting_intake where branch='$branch' and sem='$sem'")){echo "waiting intake updated;";}    
+
+                                }
+                            }
+                            session_destroy();
+                        }*/
+                               $action_query = "update admission set action = '$action' where id = '$action_id'";
                                 if(!($action_query_run = mysqli_query($connection1,$action_query))){
                                     echo "action query can't run";
                                 }
@@ -498,15 +351,15 @@
                         $rank1 = $_POST['rank1'];
 
                         if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='0'";
+                             $select_query = "select * from admission order by rank asc where sem = '$sem1' and branch  = '$branch1' and action='0'";
                         }
 
                         else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" || $rank1 != "") {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='0'";
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='0' order by rank asc";
                             # code...
                         }
                         else{
-                            $select_query = "select * from admission where action='0'";
+                            $select_query = "select * from admission where action='0' order by rank asc";
                         }
 
                         
@@ -515,7 +368,12 @@
                         $select_query_run= mysqli_query($connection1,$select_query);
                         $sr=1;
                         while ($result = mysqli_fetch_array($select_query_run,MYSQLI_ASSOC)){
-                           
+                           /*$branch=$result['branch'];
+                           $sem=$result['sem'];
+                            if ($result1=mysqli_fetch_array((mysqli_query($connection1,"select intake,waiting_intake from branch_intake where branch='$branch' and sem='$sem'")),MYSQLI_ASSOC)){
+                                $intake=$result1['intake'];
+                                $waiting_intake = $result1['waiting_intake'];*/
+                            
                             ?>
                             
                         <tr>
@@ -527,6 +385,8 @@
                             <td><?php echo $result['email_id']; ?></td>
                             <td><?php echo $result['branch']; ?></td>
                             <td><?php echo $result['sem']; ?></td>
+                           <!--  <td><?php echo $intake; ?></td>
+                            <td><?php echo $waiting_intake; ?></td> -->
                             <td><?php echo $result['rank']; ?></td>
                             
                             
@@ -564,6 +424,59 @@
             </div>
             </div>
         </section>
+        <?php  //code to update intakes of specific branch & sem
+                         $branch_array=array("IC","IT");
+                        for($i=0;$i<2;$i++){
+                            for($j=1;$j<4;$j+=2){
+                                $sem = $j;
+                        $branch = $branch_array[$i];
+                        
+                     
+                      $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action)'];
+                        $approved=$raw2['count(action)']; 
+                        if(mysqli_query($connection1,"update branch_intake set approved ='$approved' where branch='$branch'and sem='$sem'"))//echo "up";
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action2)from admission where action2='finally_allocated' and branch='$branch'and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action2)'];
+                        $allocated=$raw2['count(action2)'];
+                        if(mysqli_query($connection1,"update branch_intake set allocated ='$allocated' where branch='$branch' and sem='$sem'"))//echo "up";
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action2)from admission where action2='temp_allocated' and branch='$branch'and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action2)'];
+                        $temp_allocated=$raw2['count(action2)'];
+                        if(mysqli_query($connection1,"update branch_intake set temp_allocated ='$temp_allocated' where branch='$branch' and sem='$sem'"))//echo "up";
+
+                      
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(*) from admission where (action2='rejected' or action='2') and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(*)'];
+                        $rejected=$raw2['count(*)'];
+                        if(mysqli_query($connection1,"update branch_intake set rejected ='$rejected' where branch='$branch' and sem='$sem'"))//echo "up";
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(*)from admission where action='0' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(*)'];
+                        $pending=$raw2['count(*)'];
+                        if(mysqli_query($connection1,"update branch_intake set pending ='$pending' where branch='$branch' and sem='$sem'"))//echo "up";
+
+
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select * from branch_intake where branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        $intake=$raw2['total']-$approved;
+                       if(mysqli_query($connection1,"update branch_intake set intake ='$intake' where branch='$branch' and sem='$sem'"))//echo "up";
+
+                       $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(*)from admission where branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(*)'];
+                        $total_applications=$raw2['count(*)'];
+                        mysqli_query($connection1,"update branch_intake set total_applications ='$total_applications' where branch='$branch' and sem='$sem'");//echo "up";
+                    }
+                    }?>
         <!--================End Room List Area =================-->
         
         <!--================Footer Area =================-->

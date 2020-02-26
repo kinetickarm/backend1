@@ -37,7 +37,10 @@ mysqli_select_db($connection1 ,'HostelManagement');
 
   $result =mysqli_query($connection1 ,$s);
   if(mysqli_num_rows($result)==0){
-    echo "incorrect details";
+     //header('location:login-07.php');
+    
+    echo "<script> alert('can t login:please check ypu email-id or password'); window.location = 'login-07.php'</script>";
+   
   }
 
   else
@@ -45,8 +48,8 @@ mysqli_select_db($connection1 ,'HostelManagement');
   while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
    {
     if ($row['email_id']==$email_id && $row['password']==md5($pass) && $row['type'] == 'admin') {
-      echo "admin";
-      header('location:login_admin.php');
+      $_SESSION["admin_email"]=$row['email_id'];
+      header('location:home_admin.php');
     }
     
     if ($row['email_id']==$email_id && $row['password']==md5($pass) && $row['type']=='user')
@@ -66,5 +69,6 @@ mysqli_select_db($connection1 ,'HostelManagement');
   }
 }
 }
+//header('login-07.php');
  
 ?>

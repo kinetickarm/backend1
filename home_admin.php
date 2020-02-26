@@ -14,7 +14,7 @@ include 'dbconnection1.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -163,7 +163,9 @@ include 'dbconnection1.php';
                 <div class="container" >
                     <div class="header_top_l_inner" >
                         <div class="h_left_text">
-                            <a href="#"><img src="img/icon/phone-icon.png" alt="">1800 456 7890</a>
+                            <a href="#" style="font-family: 'MONTSERRAT,sans-serif'; font-size: 18px;"><img src="img/icon/use.svg" height="25px" width="40px"  alt="">
+
+                                <?php if(isset($_SESSION["admin_email"])) echo $_SESSION['admin_email']; else echo "hostelmanagement01@gmail.com"; ?></a>
                            
                         </div>
 
@@ -191,7 +193,7 @@ include 'dbconnection1.php';
                             </div>
                              
                         <div class="h_right_text">
-                            <?php if(isset($_SESSION["email"])){ ?>
+                            <?php if(isset($_SESSION["admin_email"])){ ?>
                             <a class="book_now_btn" href="logout.php">LOGOUT</a>
                         <?php }
                         else {?>
@@ -220,7 +222,7 @@ include 'dbconnection1.php';
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="home.php">HOME</a></li>
+                                <li><a href="home_admin.php">HOME</a></li>
                                <!--  <li class="dropdown submenu active">
                                     <a href="home.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -287,6 +289,7 @@ include 'dbconnection1.php';
                                     </ul>
                                 </li>
                                 <li><a href="finally_allocated.php" style="color: white">STUDENTS</a></li>
+
                                 <!-- <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
                                     <!-- <ul class="dropdown-menu">
@@ -347,6 +350,7 @@ include 'dbconnection1.php';
                             data-textAlign="['center','center','center','center']">WELCOME</div>
                             
                             <div class="tp-caption tp-resizeme middle_s_text" 
+                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1587-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -361,7 +365,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">ADMIN</h4>
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_f_text" 
@@ -376,7 +380,7 @@ include 'dbconnection1.php';
                                 data-whitespace="nowrap"
                                 data-type="text" 
                                 data-responsive_offset="on" 
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"><h4>STUDENT SIDE</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">
                                <!--   <a class="" href="#">STUDENT SIDE</a> -->
                             </div>
                         </div>
@@ -404,8 +408,9 @@ include 'dbconnection1.php';
                             data-responsive_offset="on" 
                             data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:0px;s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"
                             data-textAlign="['center','center','center','center']">WELCOME</div>
-                            
+                            <br><br>
                             <div class="tp-caption tp-resizeme middle_s_text" 
+                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1590-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -420,7 +425,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">ADMIN</h4>
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_t_button" 
@@ -435,7 +440,7 @@ include 'dbconnection1.php';
                                 data-whitespace="nowrap"
                                 data-type="text" 
                                 data-responsive_offset="on" 
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"><h4>STUDENT SIDE</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">
                                <!--  <a class="slider_btn" href="#">Reserve now</a> -->
                             </div>
                         </div>
@@ -462,6 +467,7 @@ include 'dbconnection1.php';
                             data-textAlign="['center','center','center','center']">WELCOME</div>
                             
                             <div class="tp-caption tp-resizeme middle_s_text" 
+                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1593-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -476,7 +482,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">ADMIN</h4>
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_t_button" 
@@ -491,7 +497,7 @@ include 'dbconnection1.php';
                                 data-whitespace="nowrap"
                                 data-type="text" 
                                 data-responsive_offset="on" 
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"><h4>STUDENT SIDE</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">
                                 <!-- <a class="slider_btn" href="#">Reserve now</a> -->
                             </div>
                         </div>
@@ -866,112 +872,9 @@ include 'dbconnection1.php';
         <!--================End Fun Fact Area =================-->
         
         <!--================Footer Area =================-->
+        <?php include 'footer_student_home.php'; ?>
 
-         <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <!-- <div class="h_middle_text2">
-                             <a href="#"><img src="img/logo.png" alt=""></a> 
-                            < <h1><span id="H">H</span>OSTEL</h1> <h3> MANAGEMEN<span id="T">T</span></h3>
-                        </div> --> 
-                        <div>
-                                <a class="navbar-brand" href="#">
-                                <img src="img/logo.png" alt="" height="70px" >
-                               
-                            </a>
-                           
-                            <div class="resort_title1">
-                                <h2 style="padding-top: 20px;"><span style="color: #039287">HOSTEL <span style="color: #039287">MANAGEMENT</span></span></h2>
-                            </div>
-                             </div>
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 style="color: white;">VGEC Hostel, Chandkheda <br /> 382424,Gandhinagar</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </div>
-                                        <div class="media-body">
-                                           <a href="#"> <h4 style="color: white; font-size: 10px; ">hostelmanagement01@gmail.com</h4></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-4 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Useful Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">- Sign up</a></li>
-                                    <li><a href="#">- Admission process</a></li>
-                                    <li><a href="#">-  Gallery</a></li>
-                                    <li><a href="help.html">-  Faq’s </a></li>
-                                    <li><a href="https://www.vgecg.ac.in/" target="_blank" >-  visit our college web</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <!-- <div class="col-md-2 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div> -->
-                        <div class="col-md-4 col-xs-6">
-                                
-
-                                <div class="f_title">
-                                     <h3 style="margin-right:10px; ">Location</h3>
-                                    
-                                
-                                   
-                                </div> 
-                                
-                            <!-- <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside> -->
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.717209126576!2d72.59106171444378!3d23.10744571895034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83ca44f7d0dd%3A0xbbfdcfcf4fb6ccf0!2sVGEC%20Boys%20Hostel-1!5e0!3m2!1sen!2sin!4v1577121123820!5m2!1sen!2sin" width="100%" height="300px" style=" border:5; border-radius: 4px; opacity: .5;" allowfullscreen=""></iframe>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © Hostel Management  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">CE Dept.</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <!--  -->
        
 
         <!--================End Footer Area =================-->

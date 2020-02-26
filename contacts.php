@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+<?php session_start(); ?>    
 <!-- Mirrored from designarc.biz/demos/hilltown/theme/room-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Dec 2019 17:36:39 GMT -->
 <head> 
         <link rel="stylesheet" type="text/css" href="css/header CSS.css">

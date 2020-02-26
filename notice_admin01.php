@@ -10,7 +10,7 @@ include 'dbconnection1.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-       <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+       <link rel="icon" href="img/logo.png" type="image/x-icon" />
 
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
@@ -61,8 +61,31 @@ include 'dbconnection1.php';
         	.form-control textarea::-webkit-input-placeholder{
         		color: black;
         	}
-            <style type="text/css">
-                    .resort_title1 h2 {
+            .h_middle_text2 {
+                 
+                font-family: "Montserrat", sans-serif;
+                 font-size: 25px;
+                font-weight: bold;
+                margin-top: 15px;
+                /*letter-spacing: .96px;*/
+                text-transform: uppercase;
+                 padding-bottom: 15px;
+                 position: relative;
+            }
+
+            .h_middle_text2 h3{
+                 color: #ffb606;
+                letter-spacing: 3.3px;
+            }
+
+            .h_middle_text2 h5{
+                color: #ffb606;
+            }
+            #H{
+                font-size: 35px;
+
+            }
+            .resort_title1 h2 {
   font-size: 27px;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
@@ -78,7 +101,7 @@ include 'dbconnection1.php';
 
   padding-left: 20px;
 }
-        </style>
+</style>
     </head>
     <body>
 
@@ -90,10 +113,10 @@ include 'dbconnection1.php';
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>NOTICE</h3>
+                    <h3>UPLOADED NOTICE</h3>
                     <ul>
                         <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="event.html">Upload notice</a></li>
+                        <li><a href="event.html">notice</a></li>
                     </ul>
                 </div>
             </div>

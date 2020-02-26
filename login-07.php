@@ -14,7 +14,7 @@
   <!-- Mobile Specific Metas
   ================================================== -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+  <link rel="icon" href="img/logo.png" type="image/x-icon" />
   <!-- For Search Engine Meta Data  -->
   <meta name="description" content="" />
   <meta name="keywords" content="" />
@@ -23,7 +23,7 @@
   <title>Authfy : Login-07</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/icon" href="login_images/favicon-16x16.html"/>
+  <link rel="shortcut icon" type="img/icon" href="login_images/favicon-16x16.html"/>
    
   <!-- Main structure css file -->
   <link  rel="stylesheet" href="login_css/login7-style.css">
@@ -41,6 +41,10 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+body{
+  background: -webkit-linear-gradient(to right,#006699,#00CC99);
+  background: linear-gradient(to right,#006699,#00CC99);
 }
  </style>
   </head>
@@ -61,10 +65,9 @@
               <div class="headline">
                 <!-- brand-logo start -->
                 <div class="brand-logo">
-                  <img src="images/logo-sticky.png" width="150" class="center" alt="logo-sticky.png">
+                  <img class="img-fluid" src="img/logo-sticky.png" width="100%" class="center" alt="logo-sticky.png">
                 </div><!-- ./brand-logo -->
-                <h2 style="color:#039287" align="center">HOSTEL </h2>
-                <h2 style="color:#039287"> MANAGEMENT</h2 >
+                
                 <!-- social login buttons start -->
                 <div class="row social-buttons">
                   <!-- <div class="col-xs-4 col-sm-4 col-md-12">
@@ -225,8 +228,8 @@
     <!-- Custom js-->
     <script src="login_js/custom.js"></script>
 
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+<!--     Start of Tawk.to Script-->
+<!-- <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -236,7 +239,7 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-</script>
+</script> --> 
 <!--End of Tawk.to Script-->
   
   </body>	

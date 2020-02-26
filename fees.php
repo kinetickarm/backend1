@@ -1,3 +1,7 @@
+<?php
+include 'dbconnection1.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -7,7 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+           <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -119,7 +123,30 @@
   text-align: center;
 }
 
+#application{
+  background-color: #039287; /* Green */
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding: 3px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 3px;
 
+             }
+
+             #application:hover{
+                background-color: white;
+                border:1px solid #039287;
+                color: #039287;
+                font-family: "Montserrat", sans-serif;
+             }
 
      </style>
 
@@ -137,8 +164,8 @@
                 <div class="banner_inner_content">
                     <h3>Fees</h3>
                     <ul>
-                        <li class="active"><a href="index.html" style="color: #039287">Home</a></li>
-                        <li><a href="activities.html">Fees</a></li>
+                        <li class="active"><a href="home.php" style="color: #039287">Home</a></li>
+                        <li><a href="fees.php">Fees</a></li>
                     </ul>
                 </div>
             </div>
@@ -279,6 +306,105 @@
                     </div>
                 </div>
             </div>
+            <?php 
+            error_reporting(E_ALL ^ E_NOTICE); 
+
+function upload_image($file_name,$connection){
+$target_dir = "documents/";
+$target_file = $target_dir.basename($_FILES[$file_name]["name"]);//base name gives file name with extension
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));//path info function gives info about path and pathinfo_extension gives only extension of file
+echo $imageFileType;
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES[$file_name]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+       echo "<script>alert('file is not a image');</script>";
+        $uploadOk = 0;
+    }
+    echo "<br>";
+}
+// Check if file already exists
+/*if (file_exists($target_file)) {
+    echo "Sorry, file already exists";
+    $uploadOk = 1;
+    //unlink delete selected file:here if file exist thn unlink delete that file and then we can upload again
+    /*if (unlink($target_file)) {
+        echo "and now we deleted";
+        # code...
+    }
+    else{
+        echo "can't deleted";
+    }
+    echo ".that so try again!<br>";*/
+
+// Check file size
+/*if ($_FILES[$file_name]["size"] > 50000000){//size is in byte:500000=500kb 
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+    echo "<br>";
+}*/
+// Allow certain file formats
+if(!($imageFileType == "jpg" or $imageFileType == "png" or $imageFileType == "jpeg"
+or $imageFileType == "gif" )) {
+    if(!($imageFileType == ''))
+    echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed')</script>";
+    $uploadOk = 0;
+    echo "<br>";
+}
+return $uploadOk;
+}
+// Check if $uploadOk is set to 0 by an error
+/*if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES[$file_name]["tmp_name"], $target_file)) {
+
+
+    $image=$_FILES[$file_name]['name'];
+    $insert_image = "insert into images ($image_column1,$image_column2) values('$image')";
+    $run = mysqli_query($connection,$insert_image);
+    if($run){
+        echo "<br>image inserted in database<br>";
+    }
+    else
+        echo "<br>image can't inserted in database<br>";
+
+    
+       
+    } */
+   
+
+if(upload_image('reciept',$connection1)){
+    $target_dir = "documents/";
+    $target_file1 = $target_dir.basename($_FILES['reciept']["name"]);
+   
+    if (move_uploaded_file($_FILES['reciept']["tmp_name"], $target_file1)) {
+
+
+    $reciept=$_FILES['reciept']['name'];
+    
+    $email = $_SESSION["email"];
+    if(mysqli_num_rows(mysqli_query($connection1,"select email_id from admission where email_id = '$email'")) == 1)
+         if($row = mysqli_fetch_array(mysqli_query($connection1,"select id from admission where email_id='$email'"),MYSQLI_ASSOC)) $id= $row['id'];
+    
+    $insert_image = "insert into feereciept (id,reciept) values('$id','$reciept')";
+    $run = mysqli_query($connection1,$insert_image);
+    mysqli_query($connection1,"update admission set fees='1' where id='$id'");
+    if($run){
+        echo "<br><script>alert('image inserted in database');</script><br>";
+    }
+    else{
+        echo "<br>image can't inserted in database<br>";
+    }
+
+}
+}
+            ?>
 
 
 
@@ -296,9 +422,27 @@
                                     </h3>
                                 </div>
                                 <br>
-                                <form action="/action_page.php">
-                                     <input type="file" name="myFile"><br><br>
-                                       <input type="submit">
+                                <?php  
+                                if($detail=mysqli_fetch_array(mysqli_query($connection1,"select * from rounds order by round desc"),MYSQLI_ASSOC)){
+                //echo "runn";
+            $round=$detail['round'];
+            $sdate_application=$detail['sdate_application'];
+            $edate_application=$detail['edate_application'];
+            $sdate_fees=$detail['sdate_fees'];
+            $edate_fees=$detail['edate_fees'];
+            $edate_round=$detail['edate_round'];
+            $decription=$detail['decription'];
+                                /*echo "$_SESSION['student_sdate_fees']"."$_SESSION['student_edate_fees']";*/
+                                if (!(date("Y-m-d")>=$sdate_fees and date("Y-m-d")<=$edate_fees)) {
+                                     echo "<h4 style='color:red; font-size:20px;'>You can not upload fees reciept during this time. please be update with round shedule and upload fees reciept in right duration</h4><br>";
+                                     }
+
+                                else{ ?>
+                                 
+                                <form action="" method="post" enctype="multipart/form-data">
+                                     <input type="file" name="reciept"><br><br>
+                                       <button id="application" type='submit'>upload</button><?php }
+                                       } ?>
                                 </form>
                                 <br>
                                
@@ -318,21 +462,7 @@
         <!--================End Activities Area =================-->
         
         <!--================Footer Area =================-->
- <?php include 'footer_student.php' ;?>
-        <!--================End Footer Area =================-->
-        
-        <!--================Search Box Area =================-->
-        <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
-            <div class="search_box_inner">
-                <h3>Search</h3>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
+ <?php include 'footer_student.php'; ?>
         <!--================End Search Box Area =================-->
         
         

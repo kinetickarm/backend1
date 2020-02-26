@@ -1,5 +1,6 @@
 <?php 
 include 'dbconnection1.php';
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 session_start();
 ?>
 <!DOCTYPE html>
@@ -8,11 +9,11 @@ session_start();
 <!-- Mirrored from designarc.biz/demos/hilltown/theme/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2019 05:38:26 GMT -->
 <head>
 <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-       <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
-
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -62,7 +63,6 @@ session_start();
         	.form-control textarea::-webkit-input-placeholder{
         		color: black;
         	}
-            <style type="text/css">
                     .resort_title1 h2 {
   font-size: 27px;
   font-weight: bold;
@@ -79,6 +79,30 @@ session_start();
 
   padding-left: 20px;
 }
+        .h_middle_text2 {
+                 
+                font-family: "Montserrat", sans-serif;
+                 font-size: 25px;
+                font-weight: bold;
+                margin-top: 15px;
+                /*letter-spacing: .96px;*/
+                text-transform: uppercase;
+                 padding-bottom: 15px;
+                 position: relative;
+            }
+
+            .h_middle_text2 h3{
+                 color: #ffb606;
+                letter-spacing: 3.3px;
+            }
+
+            .h_middle_text2 h5{
+                color: #ffb606;
+            }
+            #H{
+                font-size: 35px;
+
+            }
         </style>
     </head>
     <body>
@@ -92,10 +116,10 @@ session_start();
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>NOTICE</h3>
+                    <h3>Manage Rounds</h3>
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="event.html">Manage Rounds</a></li>
+                        <li class="active"><a href="home_admin.php">Home</a></li>
+                        <li><a href="manage_rounds.php">Admissions</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,10 +136,11 @@ session_start();
             $edate_round=$_POST['edate_round'];
             $decription=$_POST['decription'];
 
+            
 
-            mysqli_query($connection1,"insert into rounds (round,sdate_application,edate_application,sdate_fees,edate_fees,edate_round,decription) values ('$round','$sdate_application','$edate_application','$sdate_fees','$edate_fees','$edate_round','$decription')");
+            if(mysqli_query($connection1,"insert into rounds (round,sdate_application,edate_application,sdate_fees,edate_fees,edate_round,decription) values ('$round','$sdate_application','$edate_application','$sdate_fees','$edate_fees','$edate_round','$decription')"))echo'inserted';
 
-            /*if($detail=mysqli_fetch_array(mysqli_query($connection1,"select * from rounds"),MYSQLI_ASSOC)){
+            if($detail=mysqli_fetch_array(mysqli_query($connection1,"select * from rounds order by round desc"),MYSQLI_ASSOC)){
                 echo "runn";
             $round=$detail['round'];
             $sdate_application=$detail['sdate_application'];
@@ -126,34 +151,13 @@ session_start();
             $decription=$detail['decription'];
 }
            
-            echo "$sdate_application";*/
+            echo "$sdate_application";
 
-            $notice="Round:".$round."--You have to pay the hostel fees between ".$sdate_fees." and ".$edate_fees;
-            $run = mysqli_query($connection1,"insert into notice (subject,sdate,edate,notice,status) values('ROUND SCHEDULE','$sdate_application','$edate_fees','$notice','1')");
-            if(!$run){
-                $error=mysqli_error($connection1);
-                echo $error;
-            }
-
-            $notice="Round:".$round."--You have to fill application between ".$sdate_application." and ".$edate_application;
-            $run = mysqli_query($connection1,"insert into notice (subject,sdate,edate,notice,status) values('ROUND SCHEDULE','$sdate_application','$edate_application','$notice','1')");
-            if(!$run){
-                $error=mysqli_error($connection1);
-                echo $error;
-            }
-
-            $notice="Round:".$round."--Admin will approve your application between".$edate_application." and ".$sdate_fees;
-            $run = mysqli_query($connection1,"insert into notice (subject,sdate,edate,notice,status) values('ROUND SCHEDULE','$sdate_application','$sdate_fees','$notice','1')");
-            if(!$run){
-                $error=mysqli_error($connection1);
-                echo $error;
-            }
-
-            $notice="Round:".$round."--Room will be allocated by admin between ".$edate_fees." and ".$edate_round;
-            $run = mysqli_query($connection1,"insert into notice (subject,sdate,edate,notice,status) values('ROUND SCHEDULE','$sdate_application','$edate_round','$notice','1')");
-            if(!$run){
-                $error=mysqli_error($connection1);
-                echo $error;
+            $notice="Round:".$round."--you have to fill application between".$sdate_application." and ".$edate_application;
+            $any = mysqli_query($connection1,"insert into notice (subject,sdate,edate,notice,status) values('ROUND SCHEDULE','$sdate_application','$edate_application','$notice','0')");
+            if(!$any){
+                $any2=mysqli_error($connection1);
+                echo $any2;
             }
         }
         ?>
@@ -262,7 +266,7 @@ session_start();
         		</div>
         		
         		<div align="center">
-        			<button type="submit" name="submit" value="submit" class="col-md-6 center" style="margin-left:27.5%;height: 45px;width: 20%;background: #E3E4FA;padding:10px;color: grey;border-radius: 5px;border: 1px solid black;margin-right: 5%;margin-top: 50px;" align="center" >Submit</button>
+        			<button type="submit" name="submit" value="submit" class="col-md-6 center" style="margin-left:39%;height: 45px;width: 20%;background: #E3E4FA;padding:10px;color: grey;border-radius: 5px;border: 1px solid black;margin-right: 5%;margin-top: 50px;" align="center" >Submit</button>
                     <input type="hidden" name="submit" value="submit">
         		</div>
         		<!-- <div align="center">

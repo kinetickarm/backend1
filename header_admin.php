@@ -4,8 +4,13 @@
                 <div class="container">
                     <div class="header_top_inner">
                         <div class="pull-left">
-                            <a href="#" style="margin-right: 720px;"><i class="fa fa-phone" ></i>+ (1800) 456 7890</a>
-                            <a href="#"><i class="fa fa-envelope-o"></i>hostelmanagement01@gmail.com</a>
+                             <a href="#" style="margin-right: 720px;">
+                                <?php if(isset($_SESSION['admin_email'])){
+                                    echo "<i class='fa fa-user-o'></i>ADMIN";
+                                }
+                                else{?>
+                                <i class="fa fa-phone" ></i>+ (1800) 456 7890 <?php } ?></a>
+                            <a href="#"><i class="fa fa-envelope-o"></i><?php echo $_SESSION["admin_email"]; ?></a>
                             
                         </div>
                         <!-- <div class="pull-right">
@@ -46,7 +51,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a href="home.php">HOME</a></li>
+                                <li><a href="home_admin.php">HOME</a></li>
                                <!--  <li class="dropdown submenu active">
                                     <a href="home.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -59,12 +64,14 @@
                                 <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="manage_rounds.php">MANAGE ROUNDS</a></li>
                                         <li><a href="application_table.php">NEW APPLICATIONS</a></li>
                                         <li><a href="approved_table.php">APPROVED APPLICATIONS</a></li>
                                         <li><a href="rejected_table.php">REJECTED APPLICATION</a></li>
                                         <li><a href="roomallocation_table_admin.php">ROOM ALLOCATION</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="intake_branch_sem.php">INTAKE</a></li>
                                 
                                 <!-- <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
@@ -130,7 +137,7 @@
                                     <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
                                 </li> -->
                                 <li class="book_btn">
-                                    <?php if(isset($_SESSION["email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGOUT</a>"; } 
+                                    <?php if(isset($_SESSION["admin_email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='logout.php'>LOGOUT</a>"; } 
                                           else{
                                             echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGIN</a>";
                                           }  

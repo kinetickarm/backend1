@@ -10,7 +10,7 @@ include 'dbconnection1.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-       <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+       <link rel="icon" href="img/logo.png" type="image/x-icon" />
 
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
@@ -43,7 +43,7 @@ include 'dbconnection1.php';
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <style type="text/css">
+        
             <style type="text/css">
                     .resort_title1 h2 {
   font-size: 27px;
@@ -88,10 +88,10 @@ include 'dbconnection1.php';
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>NOTICE</h3>
+                    <h3>VIEW NOTICE</h3>
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="event.html">View Notices</a></li>
+                        <li class="active"><a href="">Home</a></li>
+                        <li><a href="">notice</a></li>
                     </ul>
                 </div>
             </div>

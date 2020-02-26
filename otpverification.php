@@ -1,6 +1,6 @@
-<?php session_start();
-ob_start();?>
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
   
@@ -19,7 +19,7 @@ ob_start();?>
   <meta name="keywords" content="" />
   <meta name="author" content="yoursite.com" />
 	
-  <title>Authfy : Login-07</title>
+  <title>Login</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/icon" href="login_images/favicon-16x16.html"/>
@@ -40,6 +40,10 @@ ob_start();?>
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+body{
+  background: -webkit-linear-gradient(to right,#006699,#00CC99);
+  background: linear-gradient(to right,#006699,#00CC99);
 }
  </style>
  <script>
@@ -78,7 +82,9 @@ window.onload = function () {
     var fiveMinutes = 60 * 10,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
-};  
+};
+
+
 </script>
 
   </head>
@@ -99,10 +105,9 @@ window.onload = function () {
               <div class="headline">
                 <!-- brand-logo start -->
                 <div class="brand-logo">
-                  <img src="images/logo-sticky.png" width="150" class="center" alt="logo-sticky.png">
+                   <img class="img-fluid" src="img/logo-sticky.png" width="100%" class="center" alt="logo-sticky.png">
                 </div><!-- ./brand-logo -->
-                <h2 style="color:#039287" align="center">HOSTEL </h2>
-                <h2 style="color:#039287"> MANAGEMENT</h2 >
+               
                 <!-- social login buttons start -->
                 <div class="row social-buttons">
                   <!-- <div class="col-xs-4 col-sm-4 col-md-12">
@@ -132,17 +137,34 @@ window.onload = function () {
                 <div class="authfy-heading">
                   <h3 class="auth-title">Verify OTP</h3>
                 </div>
-            <form class="form-signin" action="" method="post">
+          <!--       <script>
+
+    var auto_refresh = setInterval(
+    function()
+    {
+    submitform();
+    }, 10000);
+
+    function submitform()
+    {
+      
+      document.myForm.submit();
+    }
+    </script> -->
+            <form class="form-signin" action="" method="post" name="myForm" id="myForm">
               <div class="form-label-group">
                 <input type="text" name="inputOTP" id="inputOTP" class="form-control" placeholder="Enter OTP" required autofocus autocomplete="off">
               </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" id="bt">Verify</button>
               <label style="margin-top: 20px;"><a href="sendotp.php" style="text-decoration: none" >Resend OTP</a></label>
-              <?php
+           
+            </form>
+     <?php
             if(isset($_POST['inputOTP']))
             {
             if($_SESSION['otp']==$_POST['inputOTP'])
             {
+              
               $con =mysqli_connect('localhost','root','');
               mysqli_select_db($con ,'HostelManagement');
               $email=$_SESSION['Email'];
@@ -150,9 +172,13 @@ window.onload = function () {
               $pass = $_SESSION['pass'];
               $pnumber=$_SESSION['pnumber'];
               $type = 'user';
+             // echo $email.$name.$pass.$pnumber;
               $reg="INSERT INTO usersignup(email_id,fullname,password,phonenumber,type) VALUES ('$email','$name',md5('$pass'),'$pnumber','$type')";
-              if(mysqli_query($con ,$reg))
-                 { header("Location: login-07.php");}
+              if(mysqli_query($con ,$reg)){
+              echo "<script>alert('You have successfully registered');</script>";
+              header("Location : login-07.php");
+
+            }
                 else
                 {
                   echo mysqli_error($con);
@@ -160,12 +186,11 @@ window.onload = function () {
             }
             else
             {
+
               echo '<br><label class="pt-3 mb-0 text-danger w-100 text-center"><strong>'.'Wrong OTP'.'</strong></label>';
             }
           }
       ?>
-            </form>
-  
             </div> <!-- ./authfy-login -->
           </div>
         </div>
@@ -184,22 +209,12 @@ window.onload = function () {
     <script src="login_js/custom.js"></script>
 
     <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5e458394a89cda5a1885d3ce/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
+
 <!--End of Tawk.to Script-->
   
   </body>	
 
 <!-- Mirrored from gitapp.top/demo/authfy/demo/login-07.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jan 2020 09:57:35 GMT -->
 </html>
-<?php ob_flush();?>
+
 

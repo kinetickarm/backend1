@@ -4,8 +4,18 @@
                 <div class="container">
                     <div class="header_top_inner">
                         <div class="pull-left">
-                            <a href="#" style="margin-right: 720px;"><i class="fa fa-phone" ></i>+ (1800) 456 7890</a>
-                            <a href="#"><i class="fa fa-envelope-o"></i>hostelmanagement01@gmail.com</a>
+                            <a href="#" style="margin-right: 720px;">
+                                <?php if(isset($_SESSION['email'])){
+                                    echo "<i class='fa fa-user-o'></i>STUDENT";
+                                }
+                                else{?>
+                                <i class="fa fa-phone" ></i>+ (1800) 456 7890 <?php } ?></a>
+                            <a href="#"><i class="fa fa-envelope-o"></i>
+                                <?php if(isset($_SESSION['email']))
+                                    echo $_SESSION['email']; 
+
+                                 else 
+                                    echo "hostelmagement01@gmail.com";  ?></a>
                             
                         </div>
                         <!-- <div class="pull-right">
@@ -65,8 +75,7 @@
                                         <li><a href="index-4.html">Home Page 4</a></li>
                                     </ul>
                                 </li> -->
-                                <?php
-                                if(isset($_SESSION['email'])){
+                                <?php if(isset($_SESSION['email'])){
                                 ?>
                                    <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
@@ -76,6 +85,7 @@
                                         <li><a href="Admission_status.php">ADMISSION STATUS</a></li>
                                     </ul>
                                 </li>
+
                                 <li><a <?php if($result['action']=='1'){ ?>href="fees.php"<?php }else{ ?>onclick="fun1()"<?php } ?>>FEES</a> </li>
                                 <script>
                                     function fun1()
@@ -83,36 +93,10 @@
                                         window.alert("Sorry,you can only see fees page after your application is approved!")
                                     }
                                 </script>
-                               
-                                <!-- <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
-                                   <!--  <ul class="dropdown-menu">
-                                        <li><a href="aminities.html">Aminities</a></li>
-                                        <li><a href="search.html">Search</a></li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="event.html">-  Event List</a></li>
-                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
-                                                <li><a href="event-details.html">-  Event Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
-                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
-                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="restaurant.html">Our Reataurant</a></li>
-                                        <li><a href="spa.html">Spa & Relax</a></li>
-                                        <li><a href="activities.html">Activities</a></li>
-                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                    </ul> -->
-                                </li>
-                                <li class="submenu dropdown">
+                               <?php } ?>
+
+                               <?php if(isset($_SESSION['email'])){ ?>
+                               <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a <?php if($result['action2']== "finally_allocated" || $result['action2']== "temp_allocated"){ ?>href="complaint01.php"<?php }else{?> onclick="fun2()"<?php } ?>>COMPLAINT FORM</a></li>
@@ -125,22 +109,35 @@
                                         </script>
                                     </ul>
                                 </li>
-                                <!-- <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
-                                    <!-- <ul class="dropdown-menu">
-                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
-                                        <li><a href="blog.html">Blog without side bar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul> -->
+                                <li><a href="notice01.php">NOTICE</a></li>
+                                <?php } ?>
+
+                                <?php 
+                                    if(isset($_SESSION['email'])){
+                                ?>
+                                <li class="submenu dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HELP <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="readguide.php">READ GUIDE</a></li>
+                                        <li><a href="norms.php">NORMS</a></li>
+                                        <li><a href="contacts.php">ABOUT</a></li>
+                                    </ul>
+                                </li>
                                 
-                                <li><a href="notice.php">NOTICE</a></li><?php } ?>
-                                <li><a href="help.php">HELP</a></li>
-                                <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
+                            <?php }
+                                    if(!isset($_SESSION['email']))
+                                    { ?>
+                                        <li><a href="norms.php">NORMS</a></li>
+                                        <li><a href="readguide.php">READ GUIDE</a></li>
+                                        <li><a href="contacts.php">ABOUT</a></li>
+                               <?php  
+                                    }
+                            ?>
+
                                 <?php
                                 if(isset($_SESSION['email'])){
                                 ?>
-                                
+
                                 <li><a href="editprofile_page.php">PROFILE</a></li><?php } ?>
 
                                 <ul class="nav navbar-nav navbar-right">
@@ -148,12 +145,15 @@
                                     <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
                                 </li> -->
                                 <li class="book_btn">
-                                    <?php if(isset($_SESSION["email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGOUT</a>"; } 
+                                    <form method="post" action="homepage">
+                                    <?php if(isset($_SESSION["email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='logout.php'>LOGOUT</a>";
+                                      } 
                                           else{
                                             echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGIN</a>";
                                           }  
                                     ?>
                                    <!--  <a class="book_now_btn" href="#">LOGIN</a> -->
+                                </form>
                                 </li>
                             </ul>
 

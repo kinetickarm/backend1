@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -8,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         
-        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon"/>
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Managemnet</title>
 
@@ -145,128 +146,17 @@
     <body>
 
         <!--================Header Area =================-->
-        <header class="main_header_area">
-            <div class="header_top">
-                <div class="container">
-                    <div class="header_top_inner">
-                        <div class="pull-left">
-                            <a href="#"><i class="fa fa-phone"></i>+ (1800) 456 7890</a>
-                            <a href="#"><i class="fa fa-envelope-o"></i>info@hilltownresort.com</a>
-                        </div>
-                        <div class="pull-right">
-                            <ul class="header_social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header_menu">
-                <nav class="navbar navbar-default">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <div class="resort_title1 ">
-                                <h2><span style="color: #039287">HOSTEL MANAGEMENT</span></h2>
-                            </div>
-                            <!-- <a class="navbar-brand" href="#">
-                                <img src="img/logo.png" alt="">
-                                <img src="img/logo-sticky.png" alt="">
-                            </a> -->
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index.html">Home Page 1</a></li>
-                                        <li><a href="index-2.html">Home Page 2</a></li>
-                                        <li><a href="index-3.html">Home Page 3</a></li>
-                                        <li><a href="index-4.html">Home Page 4</a></li>
-                                    </ul>
-                                </li>
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admission <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="room.html">Rooms Grid Style</a></li>
-                                        <li><a href="room-list.html">Rooms List Style</a></li>
-                                        <li><a href="room-details.html">Single Room</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="activities.html"  role="button" aria-haspopup="true" aria-expanded="false">Fees <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                   <!--  <ul class="dropdown-menu">
-                                        <li><a href="aminities.html">Aminities</a></li>
-                                        <li><a href="search.html">Search</a></li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="event.html">-  Event List</a></li>
-                                                <li><a href="event-two-column.html">-  Event Grid</a></li>
-                                                <li><a href="event-details.html">-  Event Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown submenu">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="gallery-two-column.html">-  Gallery 2 Column</a></li>
-                                                <li><a href="gallery-three-column.html">-  Gallery 3 Column</a></li>
-                                                <li><a href="cobage-gallery.html">-  Gallery Cobage</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="restaurant.html">Our Reataurant</a></li>
-                                        <li><a href="spa.html">Spa & Relax</a></li>
-                                        <li><a href="activities.html">Activities</a></li>
-                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                    </ul>
-                                </li> -->
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complain <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog-left-sidebar.html">Blog with leftside bar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog with rightside bar</a></li>
-                                        <li><a href="blog.html">Blog without side bar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">Notice</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <!-- <li class="search_dropdown">
-                                    <a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a>
-                                </li> -->
-                                <li class="book_btn">
-                                    <a class="book_now_btn" href="#" >Sign Up</a>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-        </header>
+        <?php include 'header.php'; ?>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>Read Guide</h3>
+                    <h3>HELP</h3>
                     <ul>
-                        <li class="active"><a href="index.html" style="color: #039287">Home</a></li>
-                        <li><a href="activities.html">Read Guide</a></li>
+                        <li class="active"><a href="home.html" style="color: #039287">Home</a></li>
+                        <li><a href="readguide..php">Help</a></li>
                     </ul>
                 </div>
             </div>
@@ -277,17 +167,12 @@
         <section class="activities_title">
             <div class="container">
                 <div class="resort_title">
-                    <h2><span style="color: #039287">Tutorial</span> for Addmition Process</h2>
+                    <h2><span style="color: #039287">Tutorials</span></h2>
                     <br>
-                    <h4>Follow the given demonstration and further proceed. </h4>
-                     
-                    <br><br>
-                    <!-- <p>Go through the given tutorial and then press click Here to redirect to <b style="color:#039287"> SBI fees payment</b> link. </p>
                     <br>
-                   <a href="https://www.onlinesbi.com/sbicollect/icollecthome.htm" target="_blank"><button class="button">Click Here</button></a> -->
-
-                    <!-- <button onclick="location.href=
-                    'https://www.onlinesbi.com/sbicollect/icollecthome.htm';">Click Here</button> -->
+                    <h3 style="color: #039287;text-decoration: underline;">Admission Process:</h3>
+                    <br>
+                    <h4 style="color: black">Follow the given demonstration and proceed further.</h4>   
                 </div>
             </div>
         </section>
@@ -298,79 +183,54 @@
             <div class="activities_item_inner">
                 <div class="container">
                     <div class="row activities_item_row">
-                         <!-- <div class="col-md-6" >
-                            <div class="activities_content">
-                                <h4>Step: <span>1</span></h4>
-                                <p><b>- You will see this page after you commence the process.</b></p>
-                                <p><b>- Select <b style="color:#039287">'Gujarat'</b> for state of corporate/institution and select <b style="color:#039287">'Educational Institutions'</b> for type of corporate /institutions.</b> </p>
-                                <p><b>- simply press <b style="color:#039287">'Go'</b></b></p>
-                               
-                            </div>
-                        </div> -->
                         <div class="card">
-  
                              <div class="activities_content">
                                 <h4>Step: <span>1</span></h4>
-                                <p><b>- If you have an account so please <b style="color:#039287">log in</b> </b></p>
+                                <p><b>- If you have an account, please <b style="color:#039287">log in</b> </b></p>
                                 <br>    
-                                <p><b>- If you don't have an account so create a new account for further procedures.</b> </p>
-                                
-                                <br><br>
-                                <a href="#" style="color:#039287"><h3>Click Here</h3></a>
-                            </div>
+                                <p><b>- If you don't have an account, then create a new account for further procedures.</b> </p>
+                              </div>
                             </div>
                          <div class="card">
   
                              <div class="activities_content">
                                 <h4>Step: <span>2</span></h4>
-                                <p><b>- First of all, you fill the admission application. </b></p>
-                                <p><b>- Fill all the details in the admission application.</b> </p>
-                                <p><b>- After filling up the application you must follow the next instruction.</b></b></p>
-                                <p><b>- here we have the link for admission application.</b> </p>
-                                <br><br>
-                                <a href="#" style="color:#039287"><h3>Click Here</h3></a>
+                                <p><b>- First of all,fill the admission application. </b></p>
+                                <p><b>- Fill all the details in the admission application as instructed.</b> </p>
+                                <p><b>- Here we have the link for admission application.</b> </p>
+                                <br>
+                                <a href="Admission_application.php" style="color:#039287"><h3>Click Here</h3></a>
                             </div>
                             </div>
                     </div>
                 </div>
             </div>
-
-
             <div class="activities_item_inner">
                 <div class="container">
                     <div class="row activities_item_row">
                        <div class="card">
-  
                              <div class="activities_content">
                                <h4>Step: <span>3</span></h4>
-                                <p><b>- After the complete step 2, you must upload the necessary document and submit.</b></p>
-                                <p><b>- Now if your all the document are right so your application is accepted.</b> </p>
-                                <p><b>-But if anything missing or wrong so your application is rejected and you must fills the admission application again.</b></b></p>
-                               
-                                <br><br>
-                               <a href="#" style="color:#039287"><h3>Click Here</h3></a>
-                               
+                                <p><b>- After the completion of step 2, you must upload necessary documents and submit as per the requirement.</b></p>
+                                <p><b>- If all the documents will be found appropriate,your application will be approved for further process.</b> </p>
+                                <p><b>- Incase if your details or documents are incomplete or inappropriate,the you must apply again within given time limit.</b></b></p>
+                            
                             </div>
                             </div>
                          <div class="card">
   
                              <div class="activities_content">
                                 <h4>Step: <span>4</span></h4>
-                                <p><b>- Once your application is accepted then you go fees payment page and pay fees. we also have a fee payment tutorial for you.</b></p>
-                                <p><b>- After paying the fees you must upload fees receipt.</b> </p>
-                                
-                               
-                                <br><br>
-                               <a href="#" style="color:#039287"><h3>Click Here</h3></a>  
+                                <p><b>- Once your application is accepted,you must pay hostel fees within the given time period.</b></p>
+                                <p><b>- After paying the fees,you must upload fees receipt to get room allocation.</b> </p>
+                                <br>
+                               <a href="fees.php" style="color:#039287"><h3>Click Here</h3></a>  
                                
                             </div>
                             </div>
                     </div>
                 </div>
             </div>
-
-
-
 
             <div class="activities_item_inner">
                 <div class="container">
@@ -379,13 +239,10 @@
   
                              <div class="activities_content">
                                <h4>Step: <span>5</span></h4>
-                                <p><b>- Now your fees receipt will be verified.</b></p>
-                                <p><b>- if there are problems in your fee receipt so you can check your problem and Resubmit it.</b> </p>
+                                <p><b>- Once you have uploaded your fee receipt,it will be verified by the admin and room will be allocated to complete the admission process.</b></p>
+                                <p><b>- If any problems are found in fee receipt,your fees receipt will be rejected and you will have to upload it again.</b> </p>
+                                <br>
                                 
-                               
-                                <br><br>
-                                <a href="#" style="color:#039287"><h3>Click Here</h3></a>   
-                               
                             </div>
                             </div> 
                         <div class="card">
@@ -393,23 +250,83 @@
                              <div class="activities_content">
                                 <h4>Step: <span>6</span></h4>
                                 
-                                <p><b>- If there are no problems in your fees receipt so now you will go into the room allocation process.</b> </p>
-                                <p><b>- You can check your status </b></p>
-                                
-                               
-                                <br><br>
-                                <a href="#" style="color:#039287"><h3>Click Here</h3></a>   
+                                <p><b>- Once you go through this process, you will be eligible for admission process.</b> </p>
+                                <p><b>- You can check your admission process status in your account under Admission status.</b></p>
+                                <br>
+                                <a href="Admission_status.php" style="color:#039287"><h3>Click Here</h3></a>   
                             </div>
                             </div>
                     </div>
                 </div>
             </div>
 
+            <section class="activities_title">
+            <div class="container">
+                <div class="resort_title">
+                    <br>
+                    <h3 style="color: #039287;text-decoration: underline;">Complaint Process:</h3>
+                    <br>
+                    <h4 style="color: black">Follow the given demonstration and proceed further to submit a complaint.</h4>   
+                </div>
+            </div>
+        </section>
+        
+    <section class="activities_area">
+            <div class="activities_item_inner">
+                <div class="container">
+                    <div class="row activities_item_row">
+                        <div class="card">
+                             <div class="activities_content">
+                                <h4>Step: <span>1</span></h4>
+                                <p><b>- If you have any complaint login to your account and submit a complaint form given under complaint section.</b></p>
+                                <br>    
+                                <p><b>- You can also upload an image in the specified format to give a proof and to have immediate solution of your complaint.</b> </p>
+                              </div>
+                            </div>
+                         <div class="card">
+  
+                             <div class="activities_content">
+                                <h4>Step: <span>2</span></h4>
+                                <p><b>- Once you submit a complaint, you can view your previous complaints and the status of your complaints in past complaint section.</b></p>
+                                <p><b>- Note that you can only submit a complaint if your are staying in the hostel and you are alloted a permanent room in the hostel as this facility is only for currently students staying in hostel.</b> </p>
+                                
+                                <br>
+                                <a href="complaint01.php" style="color:#039287"><h3>Click Here</h3></a>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-
-
-
+        <section class="activities_title">
+            <div class="container">
+                <div class="resort_title">
+                    <br>
+                    <h3 style="color: #039287;text-decoration: underline;">Notice:</h3>
+                    <br>
+                    <h4 style="color: black">Follow the given instructions to be updated with the notice board.</h4>   
+                </div>
+            </div>
+        </section>
+        
+    <section class="activities_area">
+            <div class="activities_item_inner">
+                <div class="container">
+                    <div class="row activities_item_row">
+                        <div class="card">
+                             <div class="activities_content">
+                                <h4>Step: <span>1</span></h4>
+                                <p><b>- You can view all the notices on the notice board after login under notice section.</b></p>
+                                <br>    
+                                <p><b>- You can also view the details of admission rounds/schedules of hostel.</b> </p>
+                              </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
            
 
 
@@ -449,86 +366,7 @@
         <!--================End Activities Area =================-->
         
         <!--================Footer Area =================-->
-        <footer class="footer_area">
-            <div class="footer_widget_area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget about_widget">
-                                <img src="img/footer-logo.png" alt="">
-                                <div class="ab_wd_list">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-map-marker"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>54B, Tailstoi Town 5238 MT, La city, IA 522364</h4>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4>+ 547 5895 621</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Book now</a>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>Extra Links</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  About Us</a></li>
-                                    <li><a href="#">-  Faq’s</a></li>
-                                    <li><a href="#">-  Blog</a></li>
-                                    <li><a href="#">-  Testimonials</a></li>
-                                    <li><a href="#">-  Reservation Now</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget link_widget">
-                                <div class="f_title">
-                                    <h3>our services</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">-  Food & Drinks</a></li>
-                                    <li><a href="#">-  Rooms</a></li>
-                                    <li><a href="#">-  Amenities</a></li>
-                                    <li><a href="#">-  Spa & Gym</a></li>
-                                    <li><a href="#">-  Hill Tours</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-xs-6">
-                            <aside class="f_widget instagram_widget">
-                                <div class="f_title">
-                                    <h3>Instagram</h3>
-                                </div>
-                                <ul class="instagram_list" id="instafeed"></ul>
-                            </aside>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_copyright_area">
-                <div class="container">
-                    <div class="pull-left">
-                        <h4>Copyright © HillTown Resort  <script>document.write(new Date().getFullYear());</script>. All rights reserved. </h4>
-                    </div>
-                    <div class="pull-right">
-                        <h4>Created by: <a href="#">DesignArc</a></h4>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       <?php include 'footer_student.php' ?>
         <!--================End Footer Area =================-->
         
         <!--================Search Box Area =================-->

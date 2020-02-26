@@ -10,8 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
-
+           <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -545,11 +544,12 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 </div> -->
  <script >
             function mail_alert(){
-                alert("mail id already exist");
+                alert("You have already applied for hostel.(mail id already exist)");
             }
         </script>
+               
 <?php 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL ^ E_NOTICE );
 $id = $_POST['id'];
                         $name = $_POST['name'];
                         $branch = $_POST['branch'];
@@ -567,14 +567,14 @@ $id = $_POST['id'];
                         $gender = $_POST['gender'];
 
                         
-                        if(mysqli_num_rows(mysqli_query($connection1,"select email from admission_form where email = '$email'"))>0){ 
+                        if(mysqli_num_rows(mysqli_query($connection1,"select * from admission where email_id = '$email' and (action = '0' or action='1')"))>0){ 
                             //echo "Mail id already exist";    
                             echo '<script type="text/javascript"> mail_alert(); </script>';
                             /*header('Admission_application.php');*/
                         }
                         
                         else    {
-                        $insert_query = "insert into admission (email_id,id,name,branch,sem,rank,action,action2,remarks,room_no) values ('$email','$id','$name','$branch','$sem','$rank','0','not allocated','','0')";
+                        $insert_query = "insert into admission (email_id,id,name,branch,sem,rank,action,action2,fees,remarks,room_no) values ('$email','$id','$name','$branch','$sem','$rank','0','not allocated','0','','0')";
                         $insert_query_run = mysqli_query($connection1,$insert_query);
 
                         $insert_query2 = "insert into admission_form(id,dob,category,email,phone_number,area,city,district,zipcode,gender) values ('$id','$dob','$category','$email','$phone_number','$area','$city','$district','$zipcode','$gender')";
@@ -603,19 +603,39 @@ $id = $_POST['id'];
         <!---728x90--->
 
         <div class="register-form">
+            <?php
+           
+            $detail=mysqli_fetch_array(mysqli_query($connection1,"select * from rounds order by round desc"),MYSQLI_ASSOC);
+                 $check=1;
+                //echo "runn";
+            $round=$detail['round'];
+            $sdate_application=$detail['sdate_application'];
+            $edate_application=$detail['edate_application'];
+            $sdate_fees=$detail['sdate_fees'];
+            $edate_fees=$detail['edate_fees'];
+            $edate_round=$detail['edate_round'];
+            $decription=$detail['decription'];
+       if (!(date("Y-m-d")>=$sdate_application and date("Y-m-d")<=$edate_application)) {
+           echo "<h4 style='color:red;'>*DATE TO FILL APPLICATION FROM FOR ROUND:".$round." IS EXPIRED<br></h4>";
+           $check=0;
+       }
+   
+   //echo "check=".$check;
+        ?>
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                 <div class="fields-grid" >
                 	<label class="header" style="color: black;">Application ID</label>
                     <div class="styled-input" >
 
                     <?php 
-                        $select_query = 'select * from admission order by id desc';
+                        $select_query = 'select id from admission_form order by timestamp desc';
                         $select_query_run= mysqli_query($connection1,$select_query);
-                        $result = mysqli_fetch_array($select_query_run,MYSQLI_ASSOC);
-                        if(!($result['id']))
+                        $result = mysqli_fetch_array($select_query_run);
+                        
+                        if(!($result[0]))
                         $id='VGECHOSTEL1';
                         else{
-                        	$id = intval(substr($result['id'],10));
+                        	$id = intval(substr($result[0],10));
                         	$id = "VGECHOSTEL".($id+1);
                         }                    
                     ?>	
@@ -760,7 +780,7 @@ $id = $_POST['id'];
                         </div>
                     </div>
                      <div class="styled-input">
-                            <input type="number" name="rank" placeholder="ACPC rank or CPI" title="Please enter your ACPC rank or spi" required="" style="font-size: 15px;
+                            <input type="number" name="rank" placeholder="ACPC rank" title="Please enter your ACPC rank" required="" style="font-size: 15px;
     color: black;
     border: 0;
     width: 96%;
@@ -791,9 +811,20 @@ $id = $_POST['id'];
 
  <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">  I Agree Terms & Coditions
 <br><br>
-                
+      
+       <?php
+
+       if ($check==0) {
+           /*echo "<h4>DATE TO FILL APPLICATION FROM FOR ROUND:1 IS EXPIRED</h4>";*/
+       }
+       else{
+        ?> 
+            
                 <input type="submit" value="Submit" style="background-color: #FFBB06;" id="submit">
             </form>
+            <?php
+       }
+        ?>
         </div>
     </div>
     <!-- //main -->
@@ -816,276 +847,12 @@ $id = $_POST['id'];
     </script>
     <!-- //Calendar -->
             </div></section>
-               <!-- <div class="explor_title row m0">
-                    <div class="left_ex_title">
-                        <h2>Explor Our <span>rooms</span></h2>
-                        <p>choose room according to budget</p>
-                    </div>
-                </div>
-                <div class="row explor_room_item_inner">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-1.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-2.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-3.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-1.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-2.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-3.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-1.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-2.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="explor_item">
-                            <a href="room-details.html" class="room_image">
-                                <img src="img/room/room-3.jpg" alt="">
-                            </a>
-                            <div class="explor_text">
-                                <a href="room-details.html"><h4>Budget room</h4></a>
-                                <ul>
-                                    <li><a href="#">10x15</a></li>
-                                    <li><a href="#">Mountain view</a></li>
-                                    <li><a href="#">2 Balcony</a></li>
-                                </ul>
-                                <div class="explor_footer">
-                                    <div class="pull-left">
-                                        <h3>$170 <span>/ Night</span></h3>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="book_now_btn" href="room-details.html">View details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <nav aria-label="Page navigation" class="room_pagination">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>-->
+             
           
         <!--================End Eadmission form=================-->
         
         <!--================Footer Area =================-->
-       <?php include 'footer_student.php' ;?>
-        <!--================End Footer Area =================-->
-        
-        <!--================Search Box Area =================-->
-<!--         <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
-            <div class="search_box_inner">
-                <h3>Search</h3>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div> -->
-        <!--================End Footer Area =================-->
-        
-        <!--================Search Box Area =================-->
-        <!-- <div class="search_area zoom-anim-dialog mfp-hide" id="test-search">
-            <div class="search_box_inner">
-                <h3>Search</h3>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div> -->
-        <!--================End Search Box Area =================-->
-        
-        
-        
-        
+        <?php include 'footer_student.php'; ?>
         
         <!--================End Footer Area =================-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
