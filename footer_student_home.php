@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         
-        <link rel="icon" href="fees/img/fav-icon.png" type="image/x-icon" />
+        <link rel="icon" href="fees/img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Managemnet</title>
 

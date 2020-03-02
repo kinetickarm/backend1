@@ -195,8 +195,7 @@ session_start(); ?>
                         $_SESSION['name']=$_POST['name1'];
                         $_SESSION['branch']=$_POST['branch1'];
                         $_SESSION['sem']=$_POST['sem1'];
-                        $_SESSION['rank']=$_POST['rank1'];
-
+                        
                     ?>
                        </div>
                     <div class="details">   
@@ -256,12 +255,12 @@ session_start(); ?>
 
                         </td>
                         </tr>
-                        <tr>
+                       <!-- <tr>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
 
                         <td style="padding-bottom: 10px;">
                         <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
-                        </tr>
+                        </tr>-->
                    
                         
                         <tr>
@@ -288,7 +287,7 @@ session_start(); ?>
                         <th>Email</th>
                         <th>Branch</th>
                         <th>Sem</th>
-                        <th>ACPC RANK</th>
+                        <th>ACPC RANK/CPI</th>
                         <th>View Application</th>
                         <th>Action</th>
                         
@@ -296,8 +295,6 @@ session_start(); ?>
                         
 
                         <?php                                                                                                       
-                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-
                              /*$var = $_POST['action'];
                              $action= substr($var,0,1);
                             $action_id=substr($var,1);
@@ -314,28 +311,57 @@ session_start(); ?>
                             $remarks=$reason."<br>".$decription;
                             mysqli_query($connection1,"update admission set remarks = '$remarks' where id = '$action_id'");*/
                             
-
                           error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);    
-                            
                         $id1  = $_POST['app_id'];
                         $name1 = $_POST['name1'];
                         $branch1 = $_POST['branch1'];
                         $sem1 =$_POST['sem1'];
-                        $rank1 = $_POST['rank1'];
+                        //$select_query = "select * from admission where action='1' order by acpc desc";
+                        if($sem1!=1){
+                           // $acpc1=$_POST['acpc1'];
+                            $select_query = "select * from admission where sem = '$sem1' and action='1' order by cpi desc";
 
+                        
                         if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='1'";
+                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='1' order by cpi desc";
                         }
 
-                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" || $rank1 != "") {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='1'";
+                        else if ($sem1!="") {
+                                 $select_query = "select * from admission where sem = '$sem1' and action='1' order by cpi desc";
+                            }  
+
+                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='1' order by cpi desc";
                             # code...
                         }
                         else{
-                            $select_query = "select * from admission where action='1'";
+                            $select_query = "select * from admission where action='1' order by cpi desc";
                         }
+                    
+                            
+                        }
+                        else{
+                            $select_query = "select * from admission where sem = '$sem1' and action='1' order by acpc asc";
 
                         
+                        if($sem1 != "" && $branch1 != ""){
+                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='1' order by acpc asc";
+                        }
+
+                        else if ($sem1!="") {
+                                 $select_query = "select * from admission where sem = '$sem1' and action='1' order by acpc asc";
+                            }  
+
+                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='1' order by acpc asc";
+                            # code...
+                        }
+                        else{
+                            $select_query = "select * from admission where action='1' order by acpc asc";
+                        }
+                    
+
+                        }
                         //mysqli_query($dbconnection1,"update admission set remarks='' where action='1'");
 
                         $select_query_run= mysqli_query($connection1,$select_query);
@@ -352,7 +378,14 @@ session_start(); ?>
                             <td><?php echo $result['email_id']?></td>
                             <td><?php echo $result['branch']; ?></td>
                             <td><?php echo $result['sem']; ?></td>
-                            <td><?php echo $result['rank']; ?></td>
+                            <?php if($result['sem'] == 1){ ?>
+                            <td><?php echo $result['acpc']; ?></td>
+                            <?php } 
+                            else{
+                                ?>
+                                <td><?php echo $result['cpi']; ?></td>
+                                <?php
+                            }?>
                             
                             
                             <td><form method="post" action="view_application .php"><a href=""><button type="submit">click here</button></a>
@@ -373,7 +406,6 @@ session_start(); ?>
                         <?php $sr++; } ?>
 
                     </table>
-       <!--              <?php echo "action:".$_POST['action']; ?> -->
                 
             </div>
             </div>

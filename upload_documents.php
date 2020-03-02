@@ -276,7 +276,7 @@ if(upload_image('photo',$connection1) and upload_image('aadhar_card',$connection
                     
                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
 
-<table align="center">
+<table align="center" style="color: black;">
       <tr>
 <th>Sr No.</th>
 <th>Document name</th>
@@ -310,7 +310,7 @@ if(upload_image('photo',$connection1) and upload_image('aadhar_card',$connection
 
 </table>
 
-<div>                   <div class="container-fluid">
+<div>                   <div class="container-fluid" style="color: black;">
                         <br>
                         <div class="row">
                         <div class="col-sm-3"></div>

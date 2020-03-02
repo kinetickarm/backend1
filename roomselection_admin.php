@@ -1,4 +1,5 @@
-<?php include 'dbconnection1.php';?>
+<?php include 'dbconnection1.php';
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -8,9 +9,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/vgeclogo.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>HillTown Resort</title>
+        <title>Hostel Management</title>
 
         <!-- Icon css link -->
         <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -260,7 +261,7 @@
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>Upload Documents</h3>
+                    <h3>Room Allocation</h3>
                     <ul>
                         <li class="active"><a href="index.html">Home</a></li>
                         <li><a href="room-list.html">Admission</a></li>
@@ -283,32 +284,43 @@
                        
                     <div class="container2">
 
-                    <table id="search_area" align="left" style="text-align: left;">
+                    <table id="search_area" align="left" style="text-align: left; color: black;">
                     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>"> 
                         <tr>
                           <td>
-                            <?php $id = $_POST['id']; ?>
-                            <h3 style="color: black;"> APPLICATION ID:<span style="color: grey;"> <?php echo $id; ?></span></h3>
+                            <?php $id = $_POST['id']; 
+                            $branch = $_POST['branch'];
+                            $sem = $_POST['sem'];
+
+                            
+                            ?>
+                            <h4 style="color: black;"> APPLICATION ID:<span style="color: black;"> <?php echo $id; ?></span></h4><br>
+                            <h4 style="color: black;"> BRANCH:<span style="color: black;"> <?php echo $branch; ?></span></h4><br>
+                            <h4 style="color: black;"> SEM:<span style="color: black;"> <?php echo $sem; ?></span></h4>
+                            <br>
+                            <?php $raw= mysqli_fetch_array(mysqli_query($connection1,"select * from branch_intake where branch = '$branch' and sem = '$sem'"),MYSQLI_ASSOC);?>
+                             <h4 style="color: black;"> INTAKE LEFT:<span style="color: black;"> <?php echo $raw['intake']; ?></span></h4>
+                            <br>
                           </td>
                         </tr> 
                         <tr>
                             <td style="text-align: left; padding-bottom: 10px;">
-                               <h3 style="margin-bottom: 5px;">Hostel:</h3> 
+                               <h3 style="margin-bottom: 5px;"></h3> 
                                <label class="radio-inline">
                                 
-                               <input type="radio" name="radio1" value="1" >
-                               <span class="checkmark"></span><span style="margin-left: 10px;">1</span>
+                               <input type="radio" name="radio1" value="All" >
+                               <span class="checkmark"></span><span style="margin-left: 10px;">Show all rooms</span>
                                </label> 
                                <label class="radio-inline">
-                               <input type="radio" name="radio1" value="2">
-                               <span class="checkmark"></span><span style="margin-left: 10px;">2</span>
+                               <input type="radio" name="radio1" value="Only Same branch & differnt sem in single room pattern">
+                               <span class="checkmark"></span><span style="margin-left: 10px;">Show Only matched branch rooms</span>
                                </label> 
                             </td>
                         </tr>
                 
                 
                         <br><br>
-                        <tr>
+                       <!--  <tr>
                             <td style="text-align: left; padding-bottom: 10px;">
                                <h3 style="margin-bottom: 5px;">Floor:</h3> 
                                <label class="radio-inline">
@@ -324,12 +336,17 @@
                                <span class="checkmark"></span><span style="margin-left: 10px;">3rd</span>
                                </label> 
                             </td>
-                        </tr>
+                        </tr> -->
                         
                         <tr>
-                          <br>
-                          <td><button type="submit" id="btn">CLICK HERE</button></td><br>
+                          <br><br>
+                          <td><button type="submit" id="btn">CLICK HERE</button></td><br><br> 
                           <input type="hidden" name="id" value="<?php echo $id; ?>">
+                          <input type="hidden" name="branch_room" value="<?php echo $branch?>">
+                          <!-- <input type="hidden" name="flag" value="flag_on"> -->
+                          <input type="hidden" name="branch" value="<?php echo $branch; ?>">
+                          <input type="hidden" name="sem" value="<?php echo $sem; ?>">
+
                         </tr>
                         </form>
                         </table>
@@ -339,44 +356,97 @@
                         
                         <?php
                         error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-                        $hostel = $_POST['radio1'];
+                        $flag = $_POST['radio1'];
                         $floor = $_POST['radio2'];
+                        $branch = $_POST['branch'];
+                        $sem = $_POST['sem'];
                      
                         //$query  = "select * from intake where hostel='$hostel' and floor = '$floor'";
-                        if($hostel and $floor){
-                          $query = "select * from intake where hostel='$hostel' and floor = '$floor'";
+
+                        
+                          //echo "flag posted";
+                          //$flag = $_POST['flag'];
+                       $query  = "select * from intake where order by seat_left";
+                       // echo "<br><br>flag:".$flag;
+                          if ($flag == "All") {
+                            //echo "flag_on query run";
+                            $query  = "select * from intake order by seat_left";
+                          }
+                          else if($flag="Only Same branch & differnt sem in single room pattern"){
+
+                             if($hostel and $floor){
+                          $query = "select * from intake where hostel='$hostel' and floor = '$floor' order by seat_left";
                         }
                         elseif($hostel or $floor){
-                          $query = "select * from intake where hostel='$hostel' or floor = '$floor'";
+                          $query = "select * from intake where hostel='$hostel' or floor = '$floor' order by seat_left";
                         }
                         else {
-                          $query  = "select * from intake";
+                         // echo "else box";
+                         // echo $branch;
+                          //echo $sem;
+
+                          
+                          $query  = "select * from intake where seat_left = 3 or (branch_1 = '$branch' and sem_1 != '$sem' and sem_3 != '$sem' and seat_left != 0) order by seat_left";
+
                         }
+
+                          }
                         
+                       
                         
-                        $query_run = mysqli_query($connection1,$query);
+                      $query_run = mysqli_query($connection1,$query);
+                      $er = mysqli_error($connection1);
+                      echo $er;
 
                         ?>
-                        <br><br><br><br><br><br><br>
-                        <h3>Select Room:</h3><br>
+                        <br><br><br><br><br><br><br><br><br>
+                        <h3><?php echo $flag." Rooms"; ?></h3><br>
                         <div style="overflow-y: scroll; height: 400px;">
                         <table align="Left" id="application">
                         <tr>
+                       
+                       <th></th>  <th></th> <th></th> <th></th> 
+                         
+                        
+                        <th colspan="2">Student 1</th>
+                        <th colspan="2">Student 2</th>
+                        <th colspan="2">Student 3</th>
+
+                        <th></th></tr>
+                        <tr>
+                          
+                        </tr>
                         <th>Hostel</th>  
                         <th>Floor</th>
                         <th>Room No.</th>
                         <th>Left</th>
+
+                        <th>Branch</th>
+                        <th>Sem</th>
+                        <th>Branch</th>
+                        <th>Sem</th>
+                        <th>Branch</th>
+                        <th>Sem</th>
                         <th>Select</th>
-                        
                         </tr>
                         <?php while ($result = mysqli_fetch_array($query_run,MYSQLI_ASSOC)) {
-                          # code...
+                      
+                        
                          ?>
                         <tr>
                           <td><?php echo $result['hostel'] ?></td>
                           <td><?php echo $result['floor'] ?></td>
                         	<td><?php echo $result['room_no']; ?></td>
                             <td><?php echo $result['seat_left']; ?></td>
+                            <td><?php echo $result['branch_1']; ?></td>
+                            <td><?php echo $result['sem_1']; ?></td>
+                            <td><?php echo $result['branch_3']; ?></td>
+                            <td><?php echo $result['sem_3']; ?></td>
+                            <td><?php echo $result['branch_5']; ?></td>
+                            <td><?php echo $result['sem_5']; ?></td>
+
+
+
 
                             <script >
                               function deactivate(){
@@ -398,7 +468,10 @@
                                   <input type="hidden" name="room_no" value="<?php echo $result['room_no']; ?>">
                                   <input type="hidden" name="id" value="<?php echo $id?>">
                                   <input type="hidden" name="action2" value="temp_allocated"> 
+                                  <input type="hidden" name="branch_room" value="<?php echo $branch ?>">
                                   <input type="hidden" name="left" value="<?php echo $result['seat_left']; ?>">
+                                   
+                                  <input type="hidden" name="room_sem" value="<?php echo $sem; ?>">
                             </td></form>
                         </tr>
                          <?php } ?>

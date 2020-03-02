@@ -1,5 +1,6 @@
 <?php 
 include 'dbconnection1.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@ include 'dbconnection1.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
+        <link rel="icon" href="img/logo.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
@@ -136,17 +137,18 @@ include 'dbconnection1.php';
                         
                         <?php
                             $cid=$_POST["cid"];
+                            echo "$cid".$cid;
                             $query="select * from complaint where cid='$cid'";
                             $execute=mysqli_query($connection1,$query);
-                            while ($result=mysqli_fetch_array($execute,MYSQLI_NUM)) {
-                                $name="$result[1]";
-                                $email="$result[2]";
-                                $contact="$result[3]";
-                                $sem="$result[5]";
-                                $branch="$result[4]";
-                                $roomno="$result[6]";
-                                $category="$result[7]";
-                                $desc="$result[8]";
+                            while ($result=mysqli_fetch_array($execute,MYSQLI_ASSOC)) {
+                                $name=$result['name'];
+                                $email=$result['email'];
+                                $contact=$result['contact'];
+                                $sem=$result['sem'];
+                                $branch=$result['branch'];
+                                $roomno=$result['roomno'];
+                                $category=$result['category'];
+                                $desc=$result['description'];
                             }
                         ?>
                         <table style="width: 100%; font-size: 18px;">

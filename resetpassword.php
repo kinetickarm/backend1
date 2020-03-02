@@ -34,7 +34,7 @@ if ($num == 0) {
 
 
 else if (isset($_POST["password"])) {
-	$pw=$_POST["password"];
+	$pw=md5($_POST["password"]);
 
 	$row =mysqli_fetch_array($q);
 	$email=$row["Email_id"];
@@ -45,7 +45,7 @@ else if (isset($_POST["password"])) {
 	if ($query) {
 		$query = mysqli_query($con,"DELETE FROM resetpassword WHERE code='$code'");
 		echo "<script> alert('Password Update.');</script>";
-		header('Location : login-07.php');
+		header('Location: login-07.php');
 	}
 	else
 	{

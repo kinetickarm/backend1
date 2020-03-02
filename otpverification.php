@@ -175,8 +175,7 @@ window.onload = function () {
              // echo $email.$name.$pass.$pnumber;
               $reg="INSERT INTO usersignup(email_id,fullname,password,phonenumber,type) VALUES ('$email','$name',md5('$pass'),'$pnumber','$type')";
               if(mysqli_query($con ,$reg)){
-              echo "<script>alert('You have successfully registered');</script>";
-              header("Location : login-07.php");
+               echo "<script> alert('You have succesfully regestered'); window.location = 'login-07.php'</script>";
 
             }
                 else

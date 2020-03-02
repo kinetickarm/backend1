@@ -450,32 +450,21 @@
       </tr>
       <tr>
         <td>Prof.Dipak.A.Bhatt</td>
-        <td>Warden(Boys)</td>
+        <td>Warden</td>
       </tr>
       <tr>
         <td>Prof.Nitin R.Prajapati</td>
-        <td>Warden(Boys)</td>
+        <td>Warden</td>
     </tr>
     <tr>
         <td>Prof.Alpesh.M.Patel</td>
-        <td>Warden(Boys)</td>
+        <td>Warden</td>
       </tr>
       <tr>
         <td>Prof.Ghanshyam Sah</td>
-        <td>Warden(Boys)</td>
+        <td>Warden</td>
       </tr>
-      <tr>
-        <td>Prof.Vaibhavi Parmar</td>
-        <td>Warden(Girls)</td>
-      </tr>
-      <tr>
-        <td>Prof.Sejal Saravaiya</td>
-        <td>Warden(Girls)</td>
-      </tr>
-      <tr>
-        <td>Prof.Pravina Parmar</td>
-        <td>Warden(Girls)</td>
-      </tr>
+      
       
         
     
@@ -500,40 +489,40 @@
     </thead>
     <tbody>
   <tr>
-    <td>Abc</td>
-    <td>Student Co-ordinator</td> 
+    <td>Smit Akhani</td>
+    <td>Student Co-ordinator-1</td> 
     <td>1</td>
-  <td>675465868548</td>
+  <td>7359911009</td>
 </tr>
 <tr>
-    <td>Abc</td>
-    <td>Student Co-ordinator</td> 
+    <td>Karm Patel</td>
+    <td>Student Co-ordinator-2</td> 
     <td>1</td>
-  <td>675465868548</td>
+  <td>9624383710</td>
 </tr>
 <tr>
-    <td>Abc</td>
-    <td>Student Co-ordinator</td> 
+    <td>Malav Mevada</td>
+    <td>Student Co-ordinator-1</td> 
     <td>2</td>
-  <td>675465868548</td>
+  <td>9724635648</td>
 </tr>
 <tr>
-    <td>Abc</td>
-    <td>Student Co-ordinator</td> 
+    <td>Khushnood Shaikh</td>
+    <td>Student Co-ordinator-2</td> 
     <td>2</td>
-  <td>675465868548</td>
+  <td>6355316409</td>
 </tr>
   <tr>
-    <td>Abc</td>
+    <td>Prachi Patel</td>
     <td>House keeping</td>
     <td>Both</td>
-  <td>657465455</td>
+  <td>7698209629</td>
 </tr>
   <tr>
-    <td>Abc</td>
+    <td>Gunjan Vazirani</td>
     <td>Electrician</td>
     <td>Both</td>
-  <td>675485748
+  <td>9265688352
 </td>
 </tr>
 </tbody>

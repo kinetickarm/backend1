@@ -202,14 +202,14 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Application Id:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id']; } ?>"></td>
+                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php echo $_POST['app_id'];?>"></td>
                         </tr>
 
                         <tr>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Name:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['name'])){echo $_SESSION['name']; } ?>"></td>
+                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php echo $_POST['name1'];?>"></td>
                         </tr>
 
 
@@ -255,7 +255,7 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
 
                         <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
+                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php echo $_POST['rank1'];?>"></td>
                         </tr>
                    
                         
@@ -293,101 +293,81 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         
 
                         <?php                                                                                                       
-                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-
-                             $var = $_POST['action'];
-                             $action= substr($var,0,1);
-                            $action_id=substr($var,1);
-                           
-
-
-
-
-                           /*if (isset($_SESSION["flag"])) {//to stop repetation in changing in intake
-                              
-                           
-                            if ($action == 1) {
-                                
-                                $branch = $_POST['branch'];
-                                $sem= $_POST['sem'];
-                                if ($result1=mysqli_fetch_array((mysqli_query($connection1,"select intake,waiting_intake from branch_intake where branch='$branch' and sem='$sem'")),MYSQLI_ASSOC)) 
-                                    $intake=$result1['intake'];
-                                    $waiting_intake = $result1['waiting_intake'];
-                                    echo $waiting_intake;
-                                    $prev_table_id = $action_id;
-                                if ($intake>0) {
-                                   $intake--;
-                                
-                                    
-                                if(mysqli_query($connection1,"update branch_intake set intake = $intake where branch='$branch' and sem='$sem'")){echo "updated;";}
-                            }
-                                else if($intake == 0){
-                                    $waiting_intake++;
-                                    
-                                if(mysqli_query($connection1,"update branch_intake set waiting_intake = $waiting_intake where branch='$branch' and sem='$sem'")){echo "waiting intake updated;";}    
-
-                                }
-                            }
-                            session_destroy();
-                        }*/
-                               $action_query = "update admission set action = '$action' where id = '$action_id'";
-                                if(!($action_query_run = mysqli_query($connection1,$action_query))){
-                                    echo "action query can't run";
-                                }
-
-                            //reason for rejection
-                            $reason = $_POST['reason'];
-                            $decription = $_POST['decription'];
-                            $remarks=$reason."<br>".$decription;
-                            mysqli_query($connection1,"update admission set remarks = '$remarks' where id = '$action_id'");
-                            
-
-                              
-                            
+                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);    
                         $id1  = $_POST['app_id'];
                         $name1 = $_POST['name1'];
                         $branch1 = $_POST['branch1'];
                         $sem1 =$_POST['sem1'];
-                        $rank1 = $_POST['rank1'];
+                        //$select_query = "select * from admission where action='0' order by acpc desc";
+                        if($sem1!=1){
+                           // $acpc1=$_POST['acpc1'];
+                            $select_query = "select * from admission where sem = '$sem1' and action='0' order by cpi desc";
 
+                        
                         if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission order by rank asc where sem = '$sem1' and branch  = '$branch1' and action='0'";
+                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='0' order by cpi desc";
                         }
 
-                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" || $rank1 != "") {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='0' order by rank asc";
+                        else if ($sem1!="") {
+                                 $select_query = "select * from admission where sem = '$sem1' and action='0' order by cpi desc";
+                            }  
+
+                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='0' order by cpi desc";
                             # code...
                         }
                         else{
-                            $select_query = "select * from admission where action='0' order by rank asc";
+                            $select_query = "select * from admission where action='0' order by cpi desc";
                         }
+                    
+                            
+                        }
+                        else{
+                            $select_query = "select * from admission where sem = '$sem1' and action='0' order by acpc asc";
 
                         
-                        //mysqli_query($dbconnection1,"update admission set remarks='' where action='1'");
+                        if($sem1 != "" && $branch1 != ""){
+                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and action='0' order by acpc asc";
+                        }
+
+                        else if ($sem1!="") {
+                                 $select_query = "select * from admission where sem = '$sem1' and action='0' order by acpc asc";
+                            }  
+
+                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
+                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and action='0' order by acpc asc";
+                            # code...
+                        }
+                        else{
+                            $select_query = "select * from admission where action='0' order by acpc asc";
+                        }
+                    
+
+                        }
+                        //mysqli_query($dbconnection1,"update admission set remarks='' where action='0'");
 
                         $select_query_run= mysqli_query($connection1,$select_query);
                         $sr=1;
                         while ($result = mysqli_fetch_array($select_query_run,MYSQLI_ASSOC)){
-                           /*$branch=$result['branch'];
-                           $sem=$result['sem'];
-                            if ($result1=mysqli_fetch_array((mysqli_query($connection1,"select intake,waiting_intake from branch_intake where branch='$branch' and sem='$sem'")),MYSQLI_ASSOC)){
-                                $intake=$result1['intake'];
-                                $waiting_intake = $result1['waiting_intake'];*/
-                            
+                           
                             ?>
                             
                         <tr>
-                        	<td><?php echo $sr; ?></td>
+                            <td><?php echo $sr; ?></td>
                             <td><?php echo $result['timestamp']?></td>
                             <td><?php echo $result['id']; ?></td>
                             <td><?php echo $result['name']; ?></td>
-
-                            <td><?php echo $result['email_id']; ?></td>
+                            <td><?php echo $result['email_id']?></td>
                             <td><?php echo $result['branch']; ?></td>
                             <td><?php echo $result['sem']; ?></td>
-                           <!--  <td><?php echo $intake; ?></td>
-                            <td><?php echo $waiting_intake; ?></td> -->
-                            <td><?php echo $result['rank']; ?></td>
+                            <?php if($result['sem'] == 1){ ?>
+                            <td><?php echo $result['acpc']; ?></td>
+                            <?php } 
+                            else{
+                                ?>
+                                <td><?php echo $result['cpi']; ?></td>
+                                <?php
+                            }?>
                             
                             
                             <td><form method="post" action="view_application .php"><a href=""><button type="submit">click here</button></a>
@@ -432,13 +412,21 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         $branch = $branch_array[$i];
                         
                      
-                      $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                      $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='0' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
                         
                        //echo $raw2['count(action)'];
                         $approved=$raw2['count(action)']; 
                         if(mysqli_query($connection1,"update branch_intake set approved ='$approved' where branch='$branch'and sem='$sem'"))//echo "up";
 
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action)'];
+                        $not_allocated=$raw2['count(action)']; 
+                        if(mysqli_query($connection1,"update branch_intake set not_allocated ='$not_allocated' where branch='$branch'and sem='$sem'"))
+
                         $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action2)from admission where action2='finally_allocated' and branch='$branch'and sem='$sem'"),MYSQLI_ASSOC);
+
+
                         
                        //echo $raw2['count(action2)'];
                         $allocated=$raw2['count(action2)'];

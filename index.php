@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php
 include 'dbconnection1.php';
  error_reporting(E_ALL | E_WARNING | E_PARSE);
 //$email_id = $_POST['email_id'];
@@ -65,7 +65,7 @@ include 'dbconnection1.php';
         <![endif]-->
 
         <style type="text/css">
-                .resort_title1 h2 {
+                        .resort_title1 h2 {
   font-size: 27px;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
@@ -105,7 +105,6 @@ include 'dbconnection1.php';
                 font-size: 35px;
 
             }
-
 
             .media-body h2{
                 font-size: 32px;
@@ -163,9 +162,7 @@ include 'dbconnection1.php';
                 <div class="container" >
                     <div class="header_top_l_inner" >
                         <div class="h_left_text">
-                            <a href="#" style="font-family: 'MONTSERRAT,sans-serif'; font-size: 18px;"><img src="img/icon/use.svg" height="25px" width="40px"  alt="">
-
-                                <?php if(isset($_SESSION["email"])) echo $_SESSION['email']; else echo "hostelmanagement01@gmail.com"; ?></a>
+                            <a href="#"><img src="img/icon/phone-icon.png" alt="">+91 9624383710</a>
                            
                         </div>
 
@@ -193,11 +190,7 @@ include 'dbconnection1.php';
                             </div>
                              
                         <div class="h_right_text">
-                            <?php if(isset($_SESSION["email"])){ ?>
-                            <a class="book_now_btn" href="logout.php">LOGOUT</a>
-                        <?php }
-                        else {?>
-                            <a class="book_now_btn" href="login-07.php">LOGIN</a> <?php } ?>
+                            <a class="book_now_btn" href="login-07.php">LOGIN</a>
                         </div>
                     </div>
                 </div>
@@ -222,7 +215,7 @@ include 'dbconnection1.php';
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                 <li><a href="home.php">HOME</a></li>
+                                 <li><a href="index.php">HOME</a></li>
                                 <!-- <li class="dropdown submenu active">
                                     <a href="index-4.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -232,31 +225,14 @@ include 'dbconnection1.php';
                                         <li><a href="index-4.html">Home Page 4</a></li>
                                     </ul>
                                 </li> -->
-                                <li class="submenu dropdown">
+                               <!--<li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="Admission_application.php">APPLICATION</a></li>
                                         <li><a href="upload_documents.php">UPLOAD DOCUMENTS</a></li>
                                         <li><a href="Admission_status.php">ADMISSION STATUS</a></li>
                                     </ul>
-                                </li>
-                                  <?php 
-                                  
-                                      
-                                  
-                                $email=$_SESSION["email"];
-                                $query="select * from admission where email_id='$email'";
-                                $run=mysqli_query($connection1,$query);
-                                $result=mysqli_fetch_array($run,MYSQLI_ASSOC);
-                                ?> 
-                                <li><a <?php if($result['action']=='1'){ ?> href="fees.php" <?php }else{?> onclick="fun1()" <?php } ?>>FEES</a> </li>
-                                <script>
-                                    function fun1()
-                                    {
-                                        window.alert("Sorry,you can only see fees page after your application is approved!")
-                                    }
-                                </script>
-                            
+                                </li>-->
                                 <!--<li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEES <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -285,7 +261,7 @@ include 'dbconnection1.php';
                                         <li><a href="404.html">404 Error</a></li>
                                     </ul> 
                                 </li>-->
-                                <!-- <li><a href="#">COMPLAINT</a></li> -->
+                                <!-- <li><a href="#">COMPLAINT</a></li> 
                                 <li class="submenu dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Complaint <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -299,27 +275,12 @@ include 'dbconnection1.php';
                                         </script>
                                     </ul>
                                 </li>
-                                <li><a href="notice01.php">NOTICE</a></li>
-                                
-                                <?php 
-                                    if(isset($_SESSION['email'])){
-                                ?>
-                                <li class="submenu dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HELP <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="readguide.php">READ GUIDE</a></li>
-                                        <li><a href="norms.php">NORMS</a></li>
-                                        <li><a href="contacts.php">ABOUT</a></li>
-                                    </ul>
-                                </li>
-                                
-                                <?php
-                                }
-                                
-                                ?>
-
+                                <li><a href="notice.php">NOTICE</a></li>-->
+                                <li><a href="norms.php">NORMS</a></li>
+                                <li><a href="readguide.php">READ GUIDE</a></li>
+                                <li><a href="contacts.php">ABOUT</a></li>
                                 <!-- <a href=""><i class="fa fa-user-circle-o" style="font-size: 40px; color:black ;margin-top: 50px;"></i></a> -->
-                                <li><a href="profile.php">PROFILE</a></li>
+                                <!--<li><a href="editprofile_page.php">PROFILE</a></li>-->
 
                                 <!-- <li><a class="popup-with-zoom-anim" href="#test-search"><i class="icon icon-Search"></i></a></li> -->
                             </ul>
@@ -357,7 +318,6 @@ include 'dbconnection1.php';
                             data-textAlign="['center','center','center','center']">WELCOME</div>
                             
                             <div class="tp-caption tp-resizeme middle_s_text" 
-                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1587-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -372,7 +332,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">STUDENT</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_f_text" 
@@ -387,7 +347,8 @@ include 'dbconnection1.php';
                                 data-whitespace="nowrap"
                                 data-type="text" 
                                 data-responsive_offset="on" 
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">                              <!--   <a class="" href="#">STUDENT SIDE</a> -->
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">
+                               <!--   <a class="" href="#">STUDENT SIDE</a> -->
                             </div>
                         </div>
                     </li>
@@ -416,7 +377,6 @@ include 'dbconnection1.php';
                             data-textAlign="['center','center','center','center']">WELCOME</div>
                             
                             <div class="tp-caption tp-resizeme middle_s_text" 
-                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1590-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -431,7 +391,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">STUDENT</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_t_button" 
@@ -473,7 +433,6 @@ include 'dbconnection1.php';
                             data-textAlign="['center','center','center','center']">WELCOME</div>
                             
                             <div class="tp-caption tp-resizeme middle_s_text" 
-                            style="margin-top: 15px; padding-top: 15px;"
                                 id="slide-1593-layer-2" 
                                 data-x="['center','center','center','center','center']" 
                                 data-hoffset="['0','0','0','0']" 
@@ -488,7 +447,7 @@ include 'dbconnection1.php';
                                 data-responsive_offset="on"
                                 data-transform_idle="o:1;"
                                 data-textAlign="['center','center','center','center']"
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL<h4 style="font-family: 'MONTSERRAT,sans-serif'; font-size: 25px; margin-top: 10px;">STUDENT</h4>
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">VGEC HOSTEL
                             </div>
                             
                             <div class="tp-caption tp-resizeme middle_t_button" 
@@ -503,7 +462,7 @@ include 'dbconnection1.php';
                                 data-whitespace="nowrap"
                                 data-type="text" 
                                 data-responsive_offset="on" 
-                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]">
+                                data-frames="[{&quot;delay&quot;:10,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;y:[175%];&quot;,&quot;mask&quot;:&quot;x:inherit;y:inherit;s:inherit;e:inherit;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;}]"><h4>STUDENT SIDE</h4>
                                 <!-- <a class="slider_btn" href="#">Reserve now</a> -->
                             </div>
                         </div>
@@ -1044,7 +1003,6 @@ include 'dbconnection1.php';
         
         <!--================Footer Area =================-->
          <?php include 'footer_student_home.php'; ?>
-
         <!--================End Footer Area =================-->
         
         <!--================Search Box Area =================-->

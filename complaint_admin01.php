@@ -120,9 +120,9 @@ include 'dbconnection1.php';
                         while ($result=mysqli_fetch_array($run,MYSQLI_NUM)) {
                             
                         ?>  <tr><form method="POST" action="complaint_admin02.php">
-                            <td><input name="cid" value="<?php echo "$result[0]"; ?>" id="cid" style="border: none;background: #f7f7f7;text-align: center;width: 40px;"></input></td>
-                            <td><?php echo "$result[1]"; ?></td>
-                            <td><?php echo "$result[7]"; ?></td>
+                            <td><input name="cid" value="<?php echo "$result[1]"; ?>" id="cid" style="border: none;background: #f7f7f7;text-align: center;width: 40px;"></input></td>
+                            <td><?php echo "$result[2]"; ?></td>
+                            <td><?php echo "$result[8]"; ?></td>
                             <td><button type="submit" class="btn btn-primary" name="view">View</button></td>
                             </form></tr>
                         <?php }?>

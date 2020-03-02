@@ -175,7 +175,7 @@ session_start();
          <?php  //code to update intakes of specific branch & sem
                          $branch_array=array("IC","IT");
                         for($i=0;$i<2;$i++){
-                            for($j=1;$j<4;$j+=2){
+                            for($j=1;$j<6;$j+=2){
                                 $sem = $j;
                         $branch = $branch_array[$i];
                         //echo $branch;
@@ -186,8 +186,15 @@ session_start();
                         $approved=$raw2['count(action)']; 
                         if(mysqli_query($connection1,"update branch_intake set approved ='$approved' where branch='$branch'and sem='$sem'"))//echo "up";
 
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action)'];
+                        $not_allocated=$raw2['count(action)']; 
+                        if(mysqli_query($connection1,"update branch_intake set not_allocated ='$not_allocated' where branch='$branch'and sem='$sem'"))//echo "up";
+
                         $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action2)from admission where action2='finally_allocated' and branch='$branch'and sem='$sem'"),MYSQLI_ASSOC);
                         
+
                        //echo $raw2['count(action2)'];
                         $allocated=$raw2['count(action2)'];
                         if(mysqli_query($connection1,"update branch_intake set allocated ='$allocated' where branch='$branch' and sem='$sem'"))//echo "up";
@@ -236,7 +243,7 @@ session_start();
                         $_SESSION['name']=$_POST['name1'];
                         $_SESSION['branch']=$_POST['branch1'];
                         $_SESSION['sem']=$_POST['sem1'];
-                        $_SESSION['rank']=$_POST['rank1'];
+                        
 
                     ?>
                        </div>
@@ -297,12 +304,7 @@ session_start();
 
                         </td>
                         </tr>
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
-                        </tr>
+                    
                    
                         
                         <tr>
@@ -344,9 +346,13 @@ session_start();
                         
                         $room_no = 0;
                         $id = $_POST['id'];
+                        $branch = $_POST['branch_room'];
+                        $sem = $_POST['room_sem'];
+                        //echo "branch room".$branch."sem:".$sem;
                         $room_no = $_POST['room_no'];
                         
                         $action2 = $_POST['action2'];
+
 
                         /*$q = "select * from admission where id = '$id'";
                         $q_run = mysqli_query($connection1,$q);
@@ -358,28 +364,57 @@ session_start();
                             
                         }
                         echo $name;*/
-                         $left = $_POST['left'];
+                         $left = intval($_POST['left']);
+                         $result_left=mysqli_fetch_array(mysqli_query($connection1,"select seat_left from intake where room_no = '$room_no'"));
+                         $left=$result_left['seat_left'];
                          
-                       
-                        
+                       //echo "left".$left;   
+                       //echo $action2; 
                         if($action2 == "temp_allocated"){
-                           
+
+                           $left--;
                         if(mysqli_query($connection1,"update admission set room_no = '$room_no' ,action2 ='temp_allocated' where id = '$id'"))  {//echo "<br>temp allocated block<br>";
                       
-                        echo "room_no:".$room_no;
-                        if($left-- >0){
-                        mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'"); //"temp allocated updated";  
+                        //echo "room_no:".$room_no;
+                        if($left ==2){
+                        mysqli_query($connection1,"update intake set seat_left = '$left',branch_1='$branch',sem_1='$sem' where room_no = '$room_no'"); //"temp allocated updated";  
                     }
+                       if($left == 1){
+                        mysqli_query($connection1,"update intake set seat_left = '$left',branch_3='$branch',sem_3='$sem' where room_no = '$room_no'"); //"temp allocated updated";  
+                    }
+                       if($left == 0){
+                        mysqli_query($connection1,"update intake set seat_left = '$left',branch_5='$branch',sem_5='$sem' where room_no = '$room_no'"); //"temp allocated updated";  
+
                          }
+
                          }
+                         
+
+                    
+                     }
 
                         else if($action2 == "deallocated"){
+                            $left=$left+1;
+                            //echo "left deallocated:".$left;
                             if(mysqli_query($connection1,"update admission set room_no = 0 ,action2 = 'not allocated' where id = '$id'")) //echo "deallocated block"; 
 
-                            if($left++ <3){
-                                echo "left:".$left."room_no".$room_no;
-                                mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'"); //echo "deallocated updated";
+                           if( mysqli_query($connection1,"update intake set seat_left = '$left' where room_no = '$room_no'")) echo "intake updated";
+
+
+                            if($left==1){
+                                //echo "left:".$left."room_no".$room_no;
+                                mysqli_query($connection1,"update intake set seat_left = '$left',branch_5 = NULL,sem_5 = NULL where room_no = '$room_no'"); //echo "deallocated updated";
                             }
+                             if($left==2){
+                                //echo "left:".$left."room_no".$room_no;
+                                mysqli_query($connection1,"update intake set seat_left = '$left',branch_3 = NULL,sem_3 = NULL where room_no = '$room_no'"); //echo "deallocated updated";
+                            }
+                             if($left==3){
+                                //echo "left:".$left."room_no".$room_no;
+                                mysqli_query($connection1,"update intake set seat_left = '$left',branch_1 = NULL,sem_1=NULL where room_no = '$room_no'"); //echo "deallocated updated";
+                            }
+                            $er = mysqli_error($connection1);
+                            echo $er;
                         }
 
                         else if($action2 == "rejected"){
@@ -434,7 +469,7 @@ session_start();
                             <td><?php echo $result['sem']; ?></td>
                            
                             
-                            <td><form method="post" action="hostel_fees_reciept.php"><button type="submit" value="">Click here</button><input type="hidden" name="id" value="<?php echo $result['id']; ?>"></form></td>
+                            <td><form method="post" action="hostel_fees_reciept.php" target="_blank"><button type="submit" value="">Click here</button><input type="hidden" name="id" value="<?php echo $result['id']; ?>"></form></td>
                             <td>
                                 <script >
                                    function deallocated(){
@@ -463,7 +498,7 @@ session_start();
 
                                 if($result['room_no'] > 0 ){ ?>
 
-                                 <button type="" onclick="deallocated()" >Allocate</button> 
+                                 <button type="" onclick="deallocated()" style="opacity: .5;" >Allocate</button> 
                                  <?php }
                                  else if (!(date("Y-m-d")>$edate_fees and date("Y-m-d")<=$edate_round)) {
                                      echo "<button type='' onclick='outofdate()'' >Allocate</button> ";
@@ -472,14 +507,21 @@ session_start();
                                   ?>  
                                   <form action="roomselection_admin.php" method="post">
                                  <button type="submit">Allocate</button> <?php } }?>
-                                 <input type="hidden" name="id" value="<?php echo $result['id'];?>">  
+                                 <input type="hidden" name="id" value="<?php echo $result['id'];?>"> 
+                                 <input type="hidden" name="branch" value="<?php echo $result['branch']; ?>"> 
+                                 <input type="hidden" name="sem" value="<?php echo $result['sem']; ?>">
                                  
                                 </form>
 
-                                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post"><button type="submit">Deallocate</button>
+                                <?php if($result['room_no'] == 0){ ?>
+                                <button type="" onclick="lock()" style="opacity: .5; " >Deallocate</button><?php } else{  ?>   
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                                <button style="color: white;">Deallocate</button><?php } ?>
+
                                  <input type="hidden" name="id" value="<?php echo $result['id'];?>">
                                  <input type="hidden" name="action2" value= <?php echo "deallocated"; ?>> 
                                  <input type="hidden" name="room_no" value="<?php echo $result['room_no']; ?>"> 
+                                  <input type="hidden" name="sem" value="<?php echo $result['sem']; ?>"> 
                                  
                                 </form>
                                 <?php if($result['room_no'] == 0){ ?>
@@ -553,6 +595,12 @@ session_start();
         
         <script src="js/theme.js"></script>
     </body>
+    <script>
+        if(window.history.replaceState ){
+            window.history.replaceState(null,null,window.location.href);
+        }
+
+    </script>
 
 <!-- Mirrored from designarc.biz/demos/hilltown/theme/room-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Dec 2019 17:36:50 GMT -->
 </html>

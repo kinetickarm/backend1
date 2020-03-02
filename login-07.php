@@ -20,7 +20,7 @@
   <meta name="keywords" content="" />
   <meta name="author" content="yoursite.com" />
 	
-  <title>Authfy : Login-07</title>
+  <title>Hostel Management</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="img/icon" href="login_images/favicon-16x16.html"/>
@@ -163,7 +163,7 @@ body{
                         <span class="focus-input"></span>
                       </div>
                       <div class="form-group wrap-input">
-                        <input type="number" class="form-control" name="phonenumber" placeholder="Phone-number" required="required">
+                        <input type="tel" class="form-control" name="phonenumber" placeholder="Phone-number" required="required" maxlength="10">
                         <span class="focus-input"></span>
                       </div>
                       <div class="form-group wrap-input">

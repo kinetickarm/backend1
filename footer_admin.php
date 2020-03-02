@@ -1,4 +1,6 @@
-
+<?php session_start();
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+ ?>
 
         <footer class="footer_area">
             <div class="footer_widget_area">
@@ -46,7 +48,15 @@
                                     </div>
                                 </div>
                                 <div class="book_now_area">
-                                    <a class="book_now_btn" href="#">Login</a>
+                                      <form method="post" action="homepage">
+                                    <?php if(isset($_SESSION["admin_email"])){echo "<a style='font-size:10px;' class='book_now_btn' href='logout.php'>LOGOUT</a>";
+                                      } 
+                                          else{
+                                            echo "<a style='font-size:10px;' class='book_now_btn' href='login-07.php'>LOGIN</a>";
+                                          }  
+                                    ?>
+                                   <!--  <a class="book_now_btn" href="#">LOGIN</a> -->
+                                </form>
                                 </div>
                             </aside>
                         </div>

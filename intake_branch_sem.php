@@ -286,7 +286,7 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         <tr>
                         <th style="border:0px solid;"></th><th style="border:0px solid;"></th><th style="border:0px solid;" ></th>
                       
-                        <th colspan="6">Applications</th>
+                        <th colspan="7">Applications</th>
                         <th colspan="2">INTAKE</th></tr>
                         <tr>
                           <th style="border:0px solid;">No.</th>
@@ -295,6 +295,7 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                         <th>PENDING</th>
                         <th>APPROVED</th>
                         <th>REJECTED</th>
+                        <th>NOT ALLOCATED</th>
                         <th>TEMPORARY ALLOCATED</th>
                         <th>ALLOCATED</th>
                         <th>TOTAL</th>
@@ -333,16 +334,22 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                           //code to update intakes of specific branch & sem
                          $branch_array=array("IC","IT");
                         for($i=0;$i<2;$i++){
-                            for($j=1;$j<4;$j+=2){
+                            for($j=1;$j<6;$j+=2){
                                 $sem = $j;
                         $branch = $branch_array[$i];
                         
                      
-                      $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                      $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2!='rejected' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
                         
                        //echo $raw2['count(action)'];
                         $approved=$raw2['count(action)']; 
                         if(mysqli_query($connection1,"update branch_intake set approved ='$approved' where branch='$branch'and sem='$sem'"))//echo "up";
+
+                        $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action) from admission where action='1' and action2='not allocated' and branch='$branch' and sem='$sem'"),MYSQLI_ASSOC);
+                        
+                       //echo $raw2['count(action)'];
+                        $not_allocated=$raw2['count(action)']; 
+                        if(mysqli_query($connection1,"update branch_intake set not_allocated ='$not_allocated' where branch='$branch'and sem='$sem'"))//echo "up";
 
                         $raw2=mysqli_fetch_array(mysqli_query($connection1,"select count(action2)from admission where action2='finally_allocated' and branch='$branch'and sem='$sem'"),MYSQLI_ASSOC);
                         
@@ -430,6 +437,7 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); ?>
                             <td><?php echo $result['pending']; ?></td>
                             <td><?php echo $result['approved']; ?></td>
                             <td><?php echo $result['rejected']; ?></td>
+                            <td><?php echo $result['not_allocated']; ?></td>
                             <td><?php echo $result['temp_allocated']; ?></td>
                             <td><?php echo $result['allocated']; ?></td>
                             <td><?php echo $result['total_applications']; ?></td>

@@ -272,7 +272,7 @@
                             <h3>Norms</h3>
                             <ul>
                                 <li class="active"><a href="index.html" style="color: #039287">Home</a></li>
-                                <li><a href="activities.html">Addmission</a></li>
+                                <li><a href="activities.html">NORMS</a></li>
                             </ul>
                         </div>
                     </div>
@@ -410,19 +410,25 @@
         <td style="font-size: 20px;">Hostels</td>
         <td style="font-size: 20px;">2</td></tr>
         <tr>
-        <td style="font-size: 20px;">Rooms per Hostel</td>
-        <td style="font-size: 20px;">90</td></tr>
+        <td style="font-size: 20px;">Rooms Per Hostel</td>
+        <td style="font-size: 20px;">88</td></tr>
         <tr>
-        <td style="font-size: 20px;">Intake per room</td>
+        <td style="font-size: 20px;">Total Rooms</td>
+        <td style="font-size: 20px;">176</td></tr>
+        <tr>
+        <td style="font-size: 20px;">Intakes per room</td>
         <td style="font-size: 20px;">3</td></tr>
         <tr>
-        <td style="font-size: 20px;">Total intake</td>
-        <td style="font-size: 20px;">540</td>
+        <td style="font-size: 20px;">Intakes per year</td>
+        <td style="font-size: 20px;">132</td></tr>
+        <tr>
+        <td style="font-size: 20px;">Total intakes</td>
+        <td style="font-size: 20px;">132*4=528</td>
       </tr>
     
-        <td style="font-size: 20px;">Branch vise Distribution</td>
+       <!-- <td style="font-size: 20px;">Branch vise Distribution</td>
         <td style="font-size: 20px;">135</td>
-      </tr>
+      </tr>-->
     </tbody></table></div>
 <br><br><br>
 
@@ -454,74 +460,75 @@
     <tbody>
   <tr>
     <td>Chemical</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>8</td> 
+  <td>2</td>
+  <td>1</td>
+  <td>11</td>
  
 </tr>
   <tr>
     <td>Computer</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>16</td> 
+  <td>4</td>
+  <td>2</td>
+  <td>22</td>
  
 </tr>
   <tr>
     <td>Civil</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>8</td> 
+  <td>2</td>
+  <td>1</td>
+  <td>11</td>
   
 </tr>
-<tr>
-    <td>Electrical</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
 
-</tr>
 <tr>
     <td>Electrical & communication</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>16</td> 
+  <td>4</td>
+  <td>2</td>
+  <td>22</td>
  
 </tr>
 <tr>
     <td>Information Technology</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>8</td> 
+  <td>2</td>
+  <td>1</td>
+  <td>11</td>
  
 </tr>
 <tr>
     <td>Instrumentation & Control</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>16</td> 
+  <td>4</td>
+  <td>2</td>
+  <td>22</td>
   
 </tr>
 <tr>
     <td>Mechanical</td>
-    <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+    <td>16</td> 
+  <td>4</td>
+  <td>2</td>
+  <td>22</td>
 
 </tr>
 <tr>
     <td>Power Electronics</td>
-   <td>10</td> 
-  <td>20</td>
-  <td>30</td>
-  <td>40</td>
+   <td>8</td> 
+  <td>2</td>
+  <td>1</td>
+  <td>11</td>
+
+</tr>
+<tr>
+    <td style="font-family: sans-serif; font-size: 20px;background-color: #039287; color: #d3d3d3;">Total</td>
+   <td>96</td> 
+  <td>24</td> 
+  <td>12</td>
+  <td>132</td>
 
 </tr>
 

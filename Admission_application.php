@@ -14,6 +14,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Hostel Management</title>
 
+        <script src="jquery-3.4.1.min.js"></script>
         <!-- Icon css link -->
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="vendors/stroke-icon/style.css" rel="stylesheet">
@@ -554,7 +555,8 @@ $id = $_POST['id'];
                         $name = $_POST['name'];
                         $branch = $_POST['branch'];
                         $sem =$_POST['sem'];
-                        $rank = $_POST['rank'];
+                        $cpi=$_POST['cpi1'];
+                        $acpc=$_POST['acpc1'];
 
                         $dob = $_POST['dob'];
                         $category = $_POST['category'];
@@ -564,8 +566,9 @@ $id = $_POST['id'];
                         $city = $_POST['city'];
                         $district = $_POST['district'];
                         $zipcode = $_POST['zipcode'];
-                        $gender = $_POST['gender'];
-
+                        //$gender = $_POST['gender'];
+                        $handicap=$_POST['handicap'];
+                        $ses_email = $_SESSION["email"];
                         
                         if(mysqli_num_rows(mysqli_query($connection1,"select * from admission where email_id = '$email' and (action = '0' or action='1')"))>0){ 
                             //echo "Mail id already exist";    
@@ -574,15 +577,27 @@ $id = $_POST['id'];
                         }
                         
                         else    {
-                        $insert_query = "insert into admission (email_id,id,name,branch,sem,rank,action,action2,fees,remarks,room_no) values ('$email','$id','$name','$branch','$sem','$rank','0','not allocated','0','','0')";
+
+                                if($_POST['acpc']!=NULL || $_POST['acpc']!=" "){
+                            $insert_query = "insert into admission (email_id,id,name,branch,sem,acpc,action,action2,fees,remarks,room_no) values ('$email','$id','$name','$branch','$sem','$acpc','0','not allocated','0','','0')";
+                            $insert_query_run = mysqli_query($connection1,$insert_query);
+                            //echo mysqli_error($connection1);
+                            $insert_query2 = "insert into admission_form(id,dob,category,email,phone_number,area,city,district,zipcode,handicap) values ('$id','$dob','$category','$email','$phone_number','$area','$city','$district','$zipcode','$handicap')";
+                            echo $handicap;
+                            $insert_query_run2 = mysqli_query($connection1,$insert_query2); }
+    
+                             if($_POST['cpi']!=NULL || $_POST['cpi']!=" "){
+                        $insert_query = "insert into admission (email_id,id,name,branch,sem,cpi,action,action2,fees,remarks,room_no) values ('$email','$id','$name','$branch','$sem','$cpi','0','not allocated','0','','0')";
                         $insert_query_run = mysqli_query($connection1,$insert_query);
 
-                        $insert_query2 = "insert into admission_form(id,dob,category,email,phone_number,area,city,district,zipcode,gender) values ('$id','$dob','$category','$email','$phone_number','$area','$city','$district','$zipcode','$gender')";
+                        $insert_query2 = "insert into admission_form(id,dob,category,email,phone_number,area,city,district,zipcode,handicap) values ('$id','$dob','$category','$email','$phone_number','$area','$city','$district','$zipcode','$handicap')";   
                         $insert_query_run2 = mysqli_query($connection1,$insert_query2); }
 
+                       
 
-
-        ?>
+}
+        
+         if($handi = mysqli_fetch_array(mysqli_query($connection1,"select handicap from admission_form where email='$ses_email'"))){$_SESSION["handicap"]= $handi['handicap'];}?>
 
 
     <!-- main -->
@@ -622,7 +637,7 @@ $id = $_POST['id'];
    
    //echo "check=".$check;
         ?>
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <form method="post" action="Admission_application.php">
                 <div class="fields-grid" >
                 	<label class="header" style="color: black;">Application ID</label>
                     <div class="styled-input" >
@@ -668,6 +683,19 @@ $id = $_POST['id'];
                             </select>
                         </div>
                     </div>
+                     <div class="styled-input">
+                        <div class="agileits_w3layouts_grid">
+                             <span class="fa fa-user" aria-hidden="true" style="float: left; font-size: 15px; "></span>
+                            <select class="category2" name="handicap" required="">
+                                <option value="">Handicape</option>
+                                <option value="yes">YES</option>
+                                <option value="no">NO</option>
+                                
+                               
+
+                            </select>
+                        </div>
+                    </div>
                     
                     <div class="styled-input" >
                         <span style="width: 100%;">DOB:</span><br>
@@ -701,7 +729,7 @@ $id = $_POST['id'];
                     
                     
 
-                    <div class="styled-input agile-styled-input-top">
+                   <!-- <div class="styled-input agile-styled-input-top">
                         <span class="fa fa-venus" aria-hidden="true"></span>
                         <select class="category2" required="" name="gender">
                             <option value="">Gender</option>
@@ -709,7 +737,7 @@ $id = $_POST['id'];
                             <option value="Male">Male</option>
                             
                         </select>
-                    </div>
+                    </div>-->
                     
                     <div class="styled-input">
                         <span class="fa fa-phone" aria-hidden="true"></span>
@@ -762,10 +790,11 @@ $id = $_POST['id'];
                             <option value="PE">PE</option>
                         </select>
                     </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                     <div class="styled-input">
                         <div class="agileits_w3layouts_grid">
                             <span class="fa fa-clock-o" aria-hidden="true"></span>
-                            <select class="category2" name="sem" required="">
+                            <select class="category2" name="sem" id="sem" required="" onchange="showfield()">
                                 <option value="">current sem</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -774,13 +803,12 @@ $id = $_POST['id'];
                                 <option value="5">5</option>
                                 <option value="6">6</option>
                                 <option value="7">7</option>
-                                <option value="8">8</option>
-                               
+                                <option value="8">8</option>     
                             </select>
                         </div>
                     </div>
-                     <div class="styled-input">
-                            <input type="number" name="rank" placeholder="ACPC rank" title="Please enter your ACPC rank" required="" style="font-size: 15px;
+                    <div class="styled-input container1" id="acpc" style="display: none;color: black;">
+                            <input type="number" class="add_input" name="acpc1" placeholder="ACPC rank" title="Please enter your ACPC rank" style="font-size: 15px;
     color: black;
     border: 0;
     width: 96%;
@@ -791,6 +819,34 @@ $id = $_POST['id'];
                     
                     <div class="clear"> </div>
                 </div>
+                <div class="styled-input container1" id="cpi" style="display: none;color: black;">
+                            <input type="number" step="any" class="add_input" name="cpi1" placeholder="CPI" title="Please enter your CPI"  style="font-size: 15px;
+    color: black;
+    border: 0;
+    width: 96%;
+    letter-spacing: 1px;
+    background: transparent;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;">
+                    
+                    <div class="clear"> </div>
+                </div>
+            <script type="text/javascript">
+                    function showfield()
+                    {
+                        var value=$('#sem').val();
+                        if(value==1)
+                        {
+                            $('#acpc').show();
+                            $('#cpi').hide();
+                        }
+                        else
+                        {
+                            $('#cpi').show();
+                            $('#acpc').hide();
+                        }
+                    }
+            </script>
                 <script>
  function disableSubmit() {
   document.getElementById("submit").disabled = true;
@@ -803,7 +859,6 @@ $id = $_POST['id'];
        }
        else  {
         document.getElementById("submit").disabled = true;
-        
       }
 
   }
@@ -819,13 +874,13 @@ $id = $_POST['id'];
        }
        else{
         ?> 
-            
-                <input type="submit" value="Submit" style="background-color: #FFBB06;" id="submit">
-            </form>
+                <input type="submit" name="submit" value="submit" style="background-color: #FFBB06;" id="submit">
+           
             <?php
        }
         ?>
         </div>
+         </form>
     </div>
     <!-- //main -->
     <!---728x90--->

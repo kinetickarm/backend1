@@ -1,5 +1,13 @@
 <?php include 'dbconnection1.php';
-if($result = mysqli_fetch_array(mysqli_query($connection1,"SELECT max(Convert(substr(id,10), SIGNED)) as id1 FROM admission"),MYSQLI_ASSOC)){echo $result['id1'];}
+while($result = mysqli_fetch_array(mysqli_query($connection1,"select * from admission where action2='temp_allocated' or action2='finally_allocated'"),MYSQLI_ASSOC)){
+	$id = $result['id'];
+	$room_no = $result['room_no'];
+	$branch = $result['branch'];
+	$sem = $result['sem'];
+
+	if(mysqli_query($connection1,"insert into intake_new(id,room,branch,sem) values ('$id','$room_no','$branch','$sem')")){echo "inserted<br>";}
+
+}
 /*for($f=1;$f<4;$f++){
 
 	for ($i=2000+$f*100+1; $i<=2000+$f*100+5 ;$i++) { 

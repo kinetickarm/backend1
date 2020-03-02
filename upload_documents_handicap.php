@@ -1,5 +1,5 @@
-<?php include 'dbconnection1.php';
-session_start(); ?>
+<?php session_start(); ?>
+<?php include 'dbconnection1.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -99,85 +99,59 @@ session_start(); ?>
   padding-left: 20px;
 }
 
-            #application tr:nth-child(even){background-color: #f2f2f2;}
-
-            #application tr:hover {background-color: #ddd;}
-
-                #application ,#application th,#application td{
-                padding: 8px;
-                font-size: 20px;
-                border-collapse: none;
-                border:1px solid grey;
-                text-align: center;
-                font-family: "Montserrat", sans-serif;
-
-                
-            }
-            #search_area,#serach_area td{
-             
-                
-                font-size: 15px;
-                border-collapse: none;
-               
-                /*text-align: center;*/
-                font-family: "Montserrat", sans-serif;
+            table,th,td{
+                padding: 5px;
             }
 
-            #application td{
-                font-size: 15px;
-                color
-            }
-
-            #application th{
-                background-color: #039287;
-                color: white;
-            }
-            select{
-                background-color: #e3e4fa;
-            }
-            .select-items div:hover, .same-as-selected {
-            background-color: rgba(0, 0, 0, 0.1);
-             }
-             #application button{
+            .submit{
   background-color: #039287; /* Green */
   border: none;
   font-family: "Montserrat", sans-serif;
-  color: white;
-  padding: 3px 6px;
+  color: black;
+  padding: 8px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
   margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 3px;
-
-             }
-
-             #application button:hover{
+            }
+            .submit:hover{
                 background-color: white;
                 border:1px solid #039287;
                 color: #039287;
                 font-family: "Montserrat", sans-serif;
-             }
+
+            }
+            .Note span{
+                font-weight: bold;
+                letter-spacing: .6; 
+
+
+            }
+            .Note{
+                letter-spacing: .6;
+                font-family: "Montserrat", sans-serif;
+                
+            }
         </style>
     </head>
     <body>
 
         <!--================Header Area =================-->
-<?php include 'header_admin.php'; ?>
+        <?php include 'header.php'; ?>
         <!--================Header Area =================-->
         
         <!--================Banner Area =================-->
         <section class="banner_area">
             <div class="container">
                 <div class="banner_inner_content">
-                    <h3>Rejected Applications</h3>
+                    <h3>Upload Documents</h3>
                     <ul>
-                        <li class="active"><a href="home_admin.php">Home</a></li>
-                        <li><a href="rejected_application.php">Admission</a></li>
+                        <li class="active"><a href="home.php">Home</a></li>
+                        <li><a href="upload_documents.php">Admission</a></li>
                     </ul>
                 </div>
             </div>
@@ -185,234 +159,220 @@ session_start(); ?>
         <!--================End Banner Area =================-->
         
         <!--================Room List Area =================-->
-       <section class="room_details_area">
+       
+        
+
+<?php 
+error_reporting(E_ALL ^ E_NOTICE); 
+
+function upload_image($file_name,$connection){
+$target_dir = "documents/";
+$target_file = $target_dir.basename($_FILES[$file_name]["name"]);//base name gives file name with extension
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));//path info function gives info about path and pathinfo_extension gives only extension of file
+//echo $imageFileType;
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES[$file_name]["tmp_name"]);
+    if($check !== false) {
+        //echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;  
+    } else {
+        echo "<script>alert('file is not a image');</script>";
+        $uploadOk = 0;
+    }
+    echo "<br>";
+}
+// Check if file already exists
+/*if (file_exists($target_file)) {
+    echo "Sorry, file already exists";
+    $uploadOk = 1;
+    //unlink delete selected file:here if file exist thn unlink delete that file and then we can upload again
+    /*if (unlink($target_file)) {
+        echo "and now we deleted";
+        # code...
+    }
+    else{
+        echo "can't deleted";
+    }
+    echo ".that so try again!<br>";*/
+
+// Check file size
+if ($_FILES[$file_name]["size"] > 50000000){//size is in byte:500000=500kb 
+  echo "<script>alert('Sorry, your file is too large.');</script>";
+    
+    $uploadOk = 0;
+    echo "<br>";
+}
+// Allow certain file formats
+if(!($imageFileType == "jpg" or $imageFileType == "png" or $imageFileType == "jpeg"
+or $imageFileType == "gif" )) {
+  if (!($imageFileType ==""))
+    echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed')</script>";
+    $uploadOk = 0;
+    echo "<br>";
+}
+return $uploadOk;
+}
+// Check if $uploadOk is set to 0 by an error
+/*if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES[$file_name]["tmp_name"], $target_file)) {
+
+
+    $image=$_FILES[$file_name]['name'];
+    $insert_image = "insert into images ($image_column1,$image_column2) values('$image')";
+    $run = mysqli_query($connection,$insert_image);
+    if($run){
+        echo "<br>image inserted in database<br>";
+    }
+    else
+        echo "<br>image can't inserted in database<br>";
+
+    
+       
+    } */
+   
+
+if(upload_image('photo',$connection1) and upload_image('aadhar_card',$connection1) and upload_image('marksheet',$connection1) and upload_image('feereciept',$connection1) and  upload_image('handicap',$connection1)){
+    $target_dir = "documents/";
+    $target_file1 = $target_dir.basename($_FILES['photo']["name"]);
+    $target_file2 = $target_dir.basename($_FILES['aadhar_card']["name"]);
+    $target_file3 = $target_dir.basename($_FILES['marksheet']["name"]);
+    $target_file4 = $target_dir.basename($_FILES['feereciept']["name"]);
+    $target_file5 = $target_dir.basename($_FILES['handicap']["name"]);
+    if (move_uploaded_file($_FILES['photo']["tmp_name"], $target_file1) and move_uploaded_file($_FILES['aadhar_card']["tmp_name"], $target_file2) and move_uploaded_file($_FILES['marksheet']["tmp_name"], $target_file3) and move_uploaded_file($_FILES['feereciept']["tmp_name"], $target_file4) and move_uploaded_file($_FILES['handicap']["tmp_name"], $target_file5)) {
+
+
+    $photo=$_FILES['photo']['name'];
+    $aadhar_card=$_FILES['aadhar_card']['name'];
+    $marksheet=$_FILES['marksheet']['name'];
+    $feereciept=$_FILES['feereciept']['name'];
+    $handicap=$_FILES['handicap']['name'];
+    $email = $_SESSION["email"];
+    
+
+    if(mysqli_num_rows(mysqli_query($connection1,"select email_id from admission where email_id = '$email'")) == 1)
+         if($row = mysqli_fetch_array(mysqli_query($connection1,"select id from admission where email_id='$email'"),MYSQLI_ASSOC)) $id= $row['id'];
+    
+    $insert_image = "insert into documents(id,photo,aadhar_card,marksheet,feereciept,handicap) values('$id','$photo','$aadhar_card','$marksheet','$feereciept','$handicap')";
+    $run = mysqli_query($connection1,$insert_image);
+    if($run){
+        echo "<br><script>alert('image inserted in database');</script><br>";
+    }
+    else{
+        echo "<script>alert('image can't inserted in database plaese follow rules for upload documents and try agian');</script?<br>";
+    }
+
+}
+}
+?>
+
+
+
+        <section class="room_list_area">
             <div class="container">
                 <div class="main_big_title">
-                    <h2>Rejected&nbsp<span>APPLICATIONS</span></h2>
-                    <?php
-                   error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-                    $_SESSION['id']=$_POST['app_id'];
-                        $_SESSION['name']=$_POST['name1'];
-                        $_SESSION['branch']=$_POST['branch1'];
-                        $_SESSION['sem']=$_POST['sem1'];
-                        $_SESSION['rank']=$_POST['rank1'];
-
-                    ?>
-                       </div>
-                    <div class="details">   
-                    <form target=""  method="POST">
-                    <table id="search_area" align="left" style="padding-bottom: 20px;color: black;" class="container-fluid">
-                        <br><br>
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Application Id:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="app_id" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id']; } ?>"></td>
-                        </tr>
-
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">Name:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-control form-group" type="text" name="name1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['name'])){echo $_SESSION['name']; } ?>"></td>
-                        </tr>
-
-
-                        <tr>
-                        <td style="padding-bottom: 10px;">
-                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Branch:</h4></td>
-                        <td style="padding-bottom: 10px;">
-                        <select name="branch1" class="form-control form-group" style="color: black;" value="">
-                            <option value=""><?php if(isset($_SESSION['branch'])){echo $_SESSION['branch']; } if(!isset($_SESSION['branch'])){echo "Select branch"; } ?></option>
-                            <option value="Computer">Computer</option>
-                            <option value="IT">IT</option>
-                            <option value="Mechanical">Mechanical</option>
-                            <option value="Electrical">Electrical</option>
-                            <option value="Chemical">Chemical</option>
-                            <option value="Civil">Civil</option>
-                            <option value="IC">IC</option>
-                            <option value="EC">EC</option>
-                            <option value="PE">PE</option>
-                      </select>
-
-                        </td>
-                        </tr>
-
-                        <tr>
-                        <td style="padding-bottom: 10px;">
-                        <h4 style="float: left;font-weight: solid; font-size:20px; ">Sem:</h4></td>
-                        <td style="padding-bottom: 10px;">
-                        <select name="sem1" class="form-control form-group" style="color:black;">
-                                <option value=""><?php if(isset($_SESSION['sem'])){echo $_SESSION['sem']; }if(!isset($_SESSION['sem'])){echo "Select sem"; }?></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                       </select>
-
-                        </td>
-                        </tr>
-                        <tr>
-                        <td style="padding-bottom: 10px;"><h4 style="font-weight: solid; font-size: 20px; ">RANK:</h4></td>
-
-                        <td style="padding-bottom: 10px;">
-                        <input class="form-group form-control" type="text" name="rank1" style="background: transparent; border:none; border-bottom: 1px solid black;" value="<?php if(isset($_SESSION['rank'])){echo $_SESSION['rank']; } ?>"></td>
-                        </tr>
-                   
-                        
-                        <tr>
-                            <td></td>
-                        <td style="padding-bottom: 10px;">
-                        
-                            <button type="submit" name="submit" class="form-group" style="color: black;">Submit</button>
-                            <button type="submit" name="reset" class="form-group" style="color: black;">Clear</button>
-                        
-                        </td>
-                        </tr>
-                        </table>
-                        <br><br><br>
-                         </form>
-                        <br><br><br><br><br><br>
-
-
-                        <table align="center" id="application">
-                        <tr>
-                        <th>No.</th>
-                        <th>Timestamp</th>
-                        <th>Application id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Branch</th>
-                        <th>Sem</th>
-                        <th>ACPC RANK</th>
-                        <th>View Application</th>
-                        <th>Action</th>
-                        <th>Remarks</th>
-                        </tr>
-                        
-
-                        <?php                                                                                                       
-                        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-
-                             error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);    
-                        $id1  = $_POST['app_id'];
-                        $name1 = $_POST['name1'];
-                        $branch1 = $_POST['branch1'];
-                        $sem1 =$_POST['sem1'];
-                        //$select_query = "select * from admission where action='2' order by acpc desc";
-                        if($sem1!=1){
-                           // $acpc1=$_POST['acpc1'];
-                            $select_query = "select * from admission where sem = '$sem1' and (action='2' or action2='rejected') order by cpi desc";
-
-                        
-                        if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and (action='2' or action2='rejected') order by cpi desc";
-                        }
-
-                        else if ($sem1!="") {
-                                 $select_query = "select * from admission where sem = '$sem1' and (action='2' or action2='rejected') order by cpi desc";
-                            }  
-
-                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and (action='2' or action2='rejected') order by cpi desc";
-                            # code...
-                        }
-                        else{
-                            $select_query = "select * from admission where (action='2' or action2='rejected') order by cpi desc";
-                        }
+                    <h2>Upload&nbsp<span>Documents</span></h2>
+                </div>
                     
-                            
-                        }
-                        else{
-                            $select_query = "select * from admission where sem = '$sem1' and (action='2' or action2='rejected') order by acpc asc";
+               <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+
+<table align="center" style="color: black;">
+      <tr>
+<th>Sr No.</th>
+<th>Document name</th>
+<th>Choose file</th>
+</tr>
+<tr>
+<td>1</td>
+          <td id="photo"> Passportsize photo</td>
+<td><input type="file" id="photo_upload" name="photo" multiple required /></td>
+</tr>
+
+<tr>
+<td>2</td>
+        <td id="aadhar">Aadhar card</td>
+<td><input type="file" id="aadhar_upload" name="aadhar_card" multiple required /></td>
+</tr>
+
+<tr>
+      <td>3</td>
+<td id="markshet">Previous year marksheet</td>
+<td><input type="file" id="marksheet_upload" name="marksheet" multiple required /></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td id="feereciept">College fee reciept or colllege ID  card</td>
+<td><input type="file" id="feereciept_upload" name="feereciept" multiple required /></td>
+</tr>
+
+<tr>
+<td>5</td> 
+<td id="feereciept">Physically Handicapped </td>
+<td><input type="file" id="handicap_upload" name="handicap" multiple required /></td>
+</tr>
+
+
+</table>
+
+<div>                   <div class="container-fluid" style="color: black;">
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-3"></div>
+                         <div class="col-sm-9">
+                             <div class="Note"><br>
+                        <h4>Conditions:</h4><br>
+                        <h5><span>1)Passport phto:</span>You have to upload recent passport size photo, no selfies are allowed</h5>
+                        <br>
+                        <h5><span>2)Aadhar Card:</span>Aadhar card must be real copy & upload both side of aadharcard(Xerox not allowed)</h5><br>
+                        <h5><span>3)Marksheet:</span>If you are freshers in college then you have to  upload 12th marksheet(Real) or else you hve to upload previous sem marksheet verified by your department.</h5>  <br>
+                        <h5><span>4)fee reciept/ID card:</span>You have to upload SBI Fees reciept here or Your college ID card.</h5> 
 
                         
-                        if($sem1 != "" && $branch1 != ""){
-                             $select_query = "select * from admission where sem = '$sem1' and branch  = '$branch1' and (action='2' or action2='rejected') order by acpc asc";
-                        }
+                         </div>
+                         <br>
+                         <br><h5 style="color: red;" >*uploaded Documents must be in  JPEG/JPG Format & size less than  or equal to 500 KB</h5>
+                         <script>
+ function disableSubmit() {
+  document.getElementById("submit").disabled = true;
+ }
 
-                        else if ($sem1!="") {
-                                 $select_query = "select * from admission where sem = '$sem1' and (action='2' or action2='rejected') order by acpc asc";
-                            }  
+  function activateButton(element) {
 
-                        else if ($id1 != "" || $name1 != "" || $branch1 != "" || $sem1 != "" ) {
-                            $select_query = "select * from admission where (id = '$id1' or name = '$name1' or branch  = '$branch1' or sem = '$sem1' or rank  = '$rank1') and (action='2' or action2='rejected') order by acpc asc";
-                            # code...
-                        }
-                        else{
-                            $select_query = "select * from admission where (action='2' or action2='rejected') order by acpc asc";
-                        }
-                    
+      if(element.checked) {
+        document.getElementById("submit").disabled = false;
+       }
+       else  {
+        document.getElementById("submit").disabled = true;
+        
+      }
 
-                        }
-                        //mysqli_query($dbconnection1,"update admission set remarks='' where action='2'");
+  }
+</script>
 
-                        $select_query_run= mysqli_query($connection1,$select_query);
-                        $sr=1;
-                        while ($result = mysqli_fetch_array($select_query_run,MYSQLI_ASSOC)){
-                           
-                            ?>
-                            
-                        <tr>
-                            <td><?php echo $sr; ?></td>
-                            <td><?php echo $result['timestamp']?></td>
-                            <td><?php echo $result['id']; ?></td>
-                            <td><?php echo $result['name']; ?></td>
-                            <td><?php echo $result['email_id']?></td>
-                            <td><?php echo $result['branch']; ?></td>
-                            <td><?php echo $result['sem']; ?></td>
-                            <?php if($result['sem'] == 1){ ?>
-                            <td><?php echo $result['acpc']; ?></td>
-                            <?php } 
-                            else{
-                                ?>
-                                <td><?php echo $result['cpi']; ?></td>
-                                <?php
-                            }?>
-                            
-                            
-                            <td><form method="post" action="view_application .php"><a href=""><button type="submit">click here</button></a>
-                            <input type="hidden" name="table_id" value= "<?php echo $result['id'];?>">
-                              
-                            </form>
-                            </td>
-                            <?php
-                            switch ($result['action']) {
-                                case '1':
-                                    $action_val = "<span style='color:green;' >APPROVED</span>";
-                                  
-                                    break;
-                                case '2':
-                                    $action_val = "<span style='color:red; font-weight:bold;'>REJECTED</span>";
-                                    break;    
-                                
-                                default:
-                                    $action_val = "PENDING";
-                                    break;
-                            }
-
-                             ?>
-                             <td><?php echo $action_val; ?></td>
-                             <td><?php echo $result['remarks']; ?></td>
+                         <br><input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">  I have read all above mentioned conditions  & I will follow it. 
+<br>
+                         </div>
+                        </div>
+                    </div>
                         
-                        </tr>
-                        <?php $sr++; } ?>
-
-                    </table>
-       <!--              <?php echo "action:".$_POST['action']; ?> -->
-                
-            </div>
-            </div>
+                    </div>
+                    <br>
+                    <div align="center">
+    <input class="submit" type="submit" name="UPLOAD">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+</div>
+</form>
             </div>
         </section>
         <!--================End Room List Area =================-->
         
         <!--================Footer Area =================-->
-         <?php include 'footer_admin.php'; ?>
+        <?php include 'footer_student.php' ;?>
         <!--================End Footer Area =================-->
         
         

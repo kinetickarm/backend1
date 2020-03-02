@@ -348,7 +348,7 @@ include 'dbconnection1.php';
                                         <button type="reset" id="reset" class="btn btn-default" style="background: #E3E4FA;font-size: 16px;border:2px solid #242424;border-radius: 10px;color: black;padding: 10px;margin: 20px;width: 100px;">Reset</button>   
 
                                     <?php 
-                                    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+                                    error_reporting(E_ERROR  | E_PARSE);
                         $submit=$_POST["submit"];
                         if($submit=='submit')
                        { 	
@@ -384,38 +384,38 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["proof"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        //echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        //echo "File is not an image.";
         $uploadOk = 0;
     }
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    //echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
 // Check file size
 if ($_FILES["proof"]["size"] < 5000000) {
-    echo "Sorry, your file is too large.";
+    //echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    //echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+   // echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["proof"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["proof"]["name"]). " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        //echo "Sorry, there was an error uploading your file.";
     }
 }
 					$proof=$_FILES['proof']['name'];

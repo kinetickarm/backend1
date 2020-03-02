@@ -9,7 +9,7 @@
                                     echo "<i class='fa fa-user-o'></i>STUDENT";
                                 }
                                 else{?>
-                                <i class="fa fa-phone" ></i>+ (1800) 456 7890 <?php } ?></a>
+                                <i class="fa fa-phone" ></i>+ 7698209629 <?php } ?></a>
                             <a href="#"><i class="fa fa-envelope-o"></i>
                                 <?php if(isset($_SESSION['email']))
                                     echo $_SESSION['email']; 
@@ -65,7 +65,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <li><a <?php if(isset($_SESSION['email'])) {?>href="home.php" <?php } else{ ?> href="homepage.php" <?php } ?>>HOME</a></li>
+                                <li><a <?php if(isset($_SESSION['email'])) {?>href="home.php" <?php } else{ ?> href="index.php" <?php } ?>>HOME</a></li>
                                <!--  <li class="dropdown submenu active">
                                     <a href="home.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HOME <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
@@ -81,7 +81,17 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ADMISSION <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="Admission_application.php">APPLICATION</a></li>
-                                        <li><a href="upload_documents.php">UPLOAD DOCUMENTS</a></li>
+
+
+                                         <li>
+                                            <a <?php if($_SESSION["handicap"]=="yes"){?>href="upload_documents_handicap.php" <?php }
+
+                                             else{ ?> href="upload_documents.php" <?php } ?>>Upload Documents
+                                            </a>
+                                        </li>
+
+
+
                                         <li><a href="Admission_status.php">ADMISSION STATUS</a></li>
                                     </ul>
                                 </li>
@@ -138,7 +148,7 @@
                                 if(isset($_SESSION['email'])){
                                 ?>
 
-                                <li><a href="editprofile_page.php">PROFILE</a></li><?php } ?>
+                                <li><a href="profile.php">PROFILE</a></li><?php } ?>
 
                                 <ul class="nav navbar-nav navbar-right">
                                 <!-- <li class="search_dropdown">
