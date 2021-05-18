@@ -1,1 +1,1 @@
-# backend
+A web-based application 'Hostel Management System' which will reduce the complexity of the offline process done nowadays included features like Merit-based admission, room allocation, and complaint system. Our main concern was to provide an easy-to-go admission process to reduce the physical strain of the administrator as well as to provide a user-friendly process for the student. This project was made as a part of the Smart Gujarat Hackathon(2019-2020) with HTML5, CSS3, Bootstrap, JS, JQuery (front-end), PHP (backend) and MySQL(Database).
